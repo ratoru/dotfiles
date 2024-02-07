@@ -1,0 +1,38 @@
+# Aliases for common commands
+alias ls='eza --icons -F -H --group-directories-first --git -1'
+alias ll='ls -alF'
+
+# Yazi - change directory on quit
+function ya() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
+
+# Starship
+eval "$(starship init zsh)"
+
+# fzf finder
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# fnm (for Node)
+eval "$(fnm env --use-on-cd)"
+
+# Pyenv
+eval "$(pyenv init -)"
+
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+export WORKON_HOME=$HOME/.virtualenvs
+pyenv virtualenvwrapper_lazy
+
+# Zoxide directory jumping
+eval "$(zoxide init zsh)"
+
+# zsh autosuggestions
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# zsh syntax highlighting. Must be at the end of the file.
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

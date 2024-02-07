@@ -1,0 +1,51 @@
+"  Set-up relative and absolute line number handling
+"  ------------------------------------------------
+   set number
+   set relativenumber
+
+
+"  UI Configurations
+"  ------------------------------------------------
+  set showcmd           " show command in bottom bar
+
+
+"  General settings
+"  ------------------------------------------------
+   set nowrap		" dont wrap lines
+   set tabstop=4        " a tab is four spaces
+   set shiftwidth=4     " number of spaces to use for autoindenting and '>'
+   set expandtab
+   set autoindent       " always set autoindenting on
+   set ignorecase       " ignore case when searching
+   set smartcase        " ingonore case if search pattern is all lowercase,
+                        "      case-sensitive otherwise
+   set hlsearch         " highlight search term
+   set incsearch        " show search matches as you type
+
+
+"  Syntax Highlighting
+"  ------------------------------------------------
+   syntax on
+   set showmatch        " highlight matching [{()}]
+
+
+"  Plugins
+"  ------------------------------------------------
+"  Uses vim-plug.
+   call plug#begin('~/.vim/plugged')
+
+   " Vim-Matchup for the % key.  
+   Plug 'andymass/vim-matchup'
+
+   " Vim-Surround
+   Plug 'tpope/vim-surround'
+
+   " Cooklang Syntax Highlighting
+   Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
+
+   " Initialize plugin system
+   call plug#end()
+
+
+"  Fzf in Vim
+"   set rtp+=/opt/homebrew/opt/fzf
