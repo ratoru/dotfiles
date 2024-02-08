@@ -88,7 +88,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -113,7 +113,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -334,10 +334,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- Custom keymaps
 -- Copy & paste to system clipboard.
-vim.keymap.set('n', '<leader>p', '"+p', { desc = '[p]aste from system clipboard'})
-vim.keymap.set('n', '<leader>P', '"+P', { desc = '[P]aste from system clipboard'})
-vim.keymap.set('v', '<leader>y', '"+y', { desc = '[y]ank to system clipboard'})
-vim.keymap.set('v', '<leader>d', '"+d', { desc = 'delete to system clipboard'})
+vim.keymap.set('n', '<leader>p', '"+p', { desc = '[p]aste from system clipboard' })
+vim.keymap.set('n', '<leader>P', '"+P', { desc = '[P]aste from system clipboard' })
+vim.keymap.set('v', '<leader>y', '"+y', { desc = '[y]ank to system clipboard' })
+vim.keymap.set('v', '<leader>d', '"+d', { desc = 'delete to system clipboard' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -581,7 +581,7 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- Typos 
+  -- Typos
   typos_lsp = {},
   marksman = {},
   -- clangd = {},
@@ -592,7 +592,8 @@ local servers = {
   ruff_lsp = {},
 
   -- rust_analyzer = {},
-  -- tsserver = {},
+  tsserver = {},
+  astro = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
   lua_ls = {
@@ -637,6 +638,45 @@ local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+local kind_icons = {
+  Text = "",
+  Method = "󰆧",
+  Function = "󰊕",
+  Constructor = "",
+  Field = "󰇽",
+  Variable = "󰂡",
+  Class = "󰠱",
+  Interface = "",
+  Module = "",
+  Property = "󰜢",
+  Unit = "",
+  Value = "󰎠",
+  Enum = "",
+  Keyword = "󰌋",
+  Snippet = "",
+  Color = "󰏘",
+  File = "󰈙",
+  Reference = "",
+  Folder = "󰉋",
+  EnumMember = "",
+  Constant = "󰏿",
+  Struct = "",
+  Event = "",
+  Operator = "󰆕",
+  TypeParameter = "󰅲",
+  Copilot = "",
+}
+
+-- Source: https://github.com/zbirenbaum/copilot-cmp?tab=readme-ov-file#tab-completion-configuration-highly-recommended
+-- For better tab suggestions.
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+    return false
+  end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
+end
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -657,7 +697,7 @@ cmp.setup {
       select = true,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
+      if cmp.visible() and has_words_before() then -- Added has_words_before() for Copilot
         cmp.select_next_item()
       elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
@@ -676,9 +716,26 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
+    { name = 'copilot' }, -- Added for copilot support
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
+  },
+  formatting = {
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+      -- Source
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[LaTeX]",
+        copilot = "[Copilot]",
+      })[entry.source.name]
+      return vim_item
+    end
   },
 }
 

@@ -1,1 +1,4 @@
 README.md
+.gitignore
+/**/lazy-lock.json
+/**/dot_DS_Store
