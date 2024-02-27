@@ -26,3 +26,8 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
+### Fonts & Themes
+
+- [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
+- [Snazzy Terminal Theme](https://github.com/sindresorhus/iterm2-snazzy)
+
