@@ -1,6 +1,7 @@
 # Aliases for common commands
 alias ls='eza --icons -F -H --group-directories-first --git -1'
 alias ll='ls -alF'
+alias lg='lazygit'
 
 # Yazi - change directory on quit
 function ya() {
@@ -36,3 +37,5 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # zsh syntax highlighting. Must be at the end of the file.
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source /Users/raphael/.config/broot/launcher/bash/br
