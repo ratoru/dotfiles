@@ -32,3 +32,8 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 - [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
 - [Snazzy Terminal Theme](https://github.com/sindresorhus/iterm2-snazzy)
 
+### Docker Apps
+
+- [Glance](https://github.com/glanceapp/glance) as a simple website overview.
+- [Maybe](https://github.com/maybe-finance/maybe) as a finance tracker.
+
