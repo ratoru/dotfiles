@@ -13,6 +13,9 @@ function ya() {
     rm -f -- "$tmp"
 }
 
+# Broot - navigate directories
+source /Users/raphael/.config/broot/launcher/bash/br
+
 # Starship
 eval "$(starship init zsh)"
 
@@ -38,4 +41,3 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh syntax highlighting. Must be at the end of the file.
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-source /Users/raphael/.config/broot/launcher/bash/br
