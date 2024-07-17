@@ -32,6 +32,11 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 - [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
 - [Snazzy Terminal Theme](https://github.com/sindresorhus/iterm2-snazzy)
 
+### Environments
+
+- [pyenv](https://github.com/pyenv/pyenv) and [uv](https://github.com/astral-sh/uv) for Python.
+- [fnm](https://github.com/Schniz/fnm) for Node.js.
+
 ## Docker Apps
 
 - [Glance](https://github.com/glanceapp/glance) as a simple website overview.
