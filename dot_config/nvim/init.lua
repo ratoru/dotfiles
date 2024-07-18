@@ -282,6 +282,7 @@ require('lazy').setup({
 
       -- Document existing key chains
       require('which-key').add {
+        { '<leader>b', group = '[B]uffer' },
         { '<leader>c', group = '[C]ode' },
         { '<leader>D', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
@@ -924,6 +925,16 @@ require('lazy').setup({
       --   Make sure that the option key is set to "Meta" in your terminal emulator.
       --   In iTerm2, this is under Preferences -> Profiles -> Keys -> Left option key acts as 'Esc+'.
       require('mini.move').setup()
+      -- require('mini.align').setup()
+
+      -- Show a greeting screen when opening neovim without a file
+      require('mini.starter').setup()
+
+      -- Clear buffers
+      require('mini.bufremove').setup()
+      vim.keymap.set('n', '<leader>bd', function()
+        require('mini.bufremove').delete(0, false)
+      end, { desc = '[D]elete buffer' })
     end,
   },
   { -- Highlight, edit, and navigate code

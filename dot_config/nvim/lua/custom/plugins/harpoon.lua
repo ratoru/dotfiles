@@ -57,5 +57,22 @@ return {
     vim.keymap.set('n', '<C-S-N>', function()
       harpoon:list():next()
     end)
+
+    -- Removing marks
+    vim.keymap.set('n', ';c', function()
+      harpoon:list():clear()
+    end, { desc = '[C]lear all harpoon marks' })
+
+    vim.keymap.set('n', ';x', function()
+      -- Doesn't work if you are removing first mark?
+      local buf_name = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+      local name = require('plenary.path'):new(buf_name):make_relative(vim.loop.cwd())
+      local _, index = harpoon:list():get_by_value(name)
+      if index == nil then
+        return
+      end
+      harpoon:list():remove_at(index)
+      require('mini.bufremove').delete(0, false)
+    end, { desc = 'Delete cur harpoon window' })
   end,
 }
