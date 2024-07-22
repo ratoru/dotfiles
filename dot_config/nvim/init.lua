@@ -857,6 +857,7 @@ require('lazy').setup({
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'navarasu/onedark.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
+
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
@@ -930,7 +931,10 @@ require('lazy').setup({
       -- require('mini.align').setup()
 
       -- Show a greeting screen when opening neovim without a file
-      require('mini.starter').setup()
+      local starter = require 'mini.starter'
+      starter.setup {
+        footer = '',
+      }
 
       -- Clear buffers
       require('mini.bufremove').setup()
@@ -943,7 +947,8 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -986,7 +991,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
