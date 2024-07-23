@@ -30,3 +30,12 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.keymap.set('n', 'q', '<cmd>close<cr>', { buffer = event.buf })
   end,
 })
+
+-- Stop autocommenting when opening a new line with "o".
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('RemoveFormatOptionO', { clear = true }),
+  pattern = '*',
+  callback = function()
+    vim.opt_local.formatoptions:remove 'o'
+  end,
+})
