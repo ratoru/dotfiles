@@ -34,6 +34,18 @@ return {
         table.insert(file_paths, item.value)
       end
 
+      local make_finder = function()
+        local paths = {}
+
+        for _, item in ipairs(harpoon_files.items) do
+          table.insert(paths, item.value)
+        end
+
+        return require('telescope.finders').new_table {
+          results = paths,
+        }
+      end
+
       require('telescope.pickers')
         .new({}, {
           prompt_title = 'Harpoon',
@@ -42,6 +54,19 @@ return {
           },
           previewer = conf.file_previewer {},
           sorter = conf.generic_sorter {},
+          -- Use control-d to remove selected entry
+          attach_mappings = function(prompt_buffer_number, map)
+            map('i', '<c-d>', function()
+              local state = require 'telescope.actions.state'
+              local selected_entry = state.get_selected_entry()
+              local current_picker = state.get_current_picker(prompt_buffer_number)
+
+              harpoon:list():remove(selected_entry)
+              current_picker:refresh(make_finder())
+            end)
+
+            return true
+          end,
         })
         :find()
     end
@@ -49,30 +74,39 @@ return {
     vim.keymap.set('n', '<C-e>', function()
       toggle_telescope(harpoon:list())
     end, { desc = 'Open harpoon window' })
+    vim.keymap.set('n', ';o', function()
+      toggle_telescope(harpoon:list())
+    end, { desc = 'Open harpoon window' })
 
     -- Toggle previous & next buffers stored within Harpoon list
     vim.keymap.set('n', '<C-S-P>', function()
       harpoon:list():prev()
-    end)
+    end, { desc = 'Switch to prev harpoon file' })
     vim.keymap.set('n', '<C-S-N>', function()
       harpoon:list():next()
-    end)
+    end, { desc = 'Switch to next harpoon file' })
+    vim.keymap.set('n', ';p', function()
+      harpoon:list():prev()
+    end, { desc = 'Switch to prev harpoon file' })
+    vim.keymap.set('n', ';n', function()
+      harpoon:list():next()
+    end, { desc = 'Switch to next harpoon file' })
 
     -- Removing marks
     vim.keymap.set('n', ';c', function()
       harpoon:list():clear()
     end, { desc = '[C]lear all harpoon marks' })
 
-    vim.keymap.set('n', ';x', function()
-      -- Doesn't work if you are removing first mark?
-      local buf_name = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
-      local name = require('plenary.path'):new(buf_name):make_relative(vim.loop.cwd())
-      local _, index = harpoon:list():get_by_value(name)
-      if index == nil then
-        return
-      end
-      harpoon:list():remove_at(index)
-      require('mini.bufremove').delete(0, false)
-    end, { desc = 'Delete cur harpoon window' })
+    -- vim.keymap.set('n', ';x', function()
+    --   -- Doesn't work if you are removing first mark?
+    --   local buf_name = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+    --   local name = require('plenary.path'):new(buf_name):make_relative(vim.loop.cwd())
+    --   local _, index = harpoon:list():get_by_value(name)
+    --   if index == nil then
+    --     return
+    --   end
+    --   harpoon:list():remove_at(index)
+    --   require('mini.bufremove').delete(0, false)
+    -- end, { desc = 'Delete cur harpoon window' })
   end,
 }

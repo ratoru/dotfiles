@@ -158,6 +158,7 @@ vim.opt.scrolloff = 10
 -- My settings
 -- Convert tabs to spaces
 vim.opt.expandtab = true
+vim.opt.termguicolors = true -- for bufferline
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -669,6 +670,14 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         rust = { 'rustfmt' },
+        python = {
+          -- To fix auto-fixable lint errors.
+          'ruff_fix',
+          -- To run the Ruff formatter.
+          'ruff_format',
+          -- To organize the imports.
+          'ruff_organize_imports',
+        },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -869,26 +878,10 @@ require('lazy').setup({
     -- 'loctvl842/monokai-pro.nvim',
     -- 'catppuccin/nvim',
     'AlexvZyl/nordic.nvim',
+    -- 'ratoru/monokai-pro.nvim',
+    -- branch = 'mini-statusline',
 
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    -- opts = {
-    --   override = function(c)
-    --     return {
-    --       -- mini.hipatterns
-    --       -- MiniHipatternsTodo = { fg = c.base.black, bg = c.base.blue, bold = true }, -- TODO
-    --       -- MiniHipatternsHack = { fg = c.base.black, bg = c.base.yellow, bold = true }, -- HACK
-    --       -- MiniHipatternsNote = { fg = c.base.black, bg = c.base.green, bold = true }, -- NOTE
-    --       -- MiniHipatternsWip = { fg = c.base.black, bg = c.base.cyan, bold = true }, -- WIP
-    --       -- mini.statusline
-    --       -- MiniStatuslineModeNormal = { fg = c.base.black, bg = c.base.blue, bold = true },
-    --       -- MiniStatuslineModeInsert = { fg = c.base.black, bg = c.base.yellow, bold = true },
-    --       -- MiniStatuslineModeVisual = { fg = c.base.black, bg = c.base.cyan, bold = true },
-    --       -- MiniStatuslineModeReplace = { fg = c.base.black, bg = c.base.red, bold = true },
-    --       -- MiniStatuslineModeCommand = { fg = c.base.black, bg = c.base.green, bold = true },
-    --       -- MiniStatuslineModeOther = { fg = c.base.black, bg = c.base.orange, bold = true },
-    --   }
-    -- end,
-    -- },
 
     init = function()
       -- Load the colorscheme here.
@@ -973,10 +966,10 @@ require('lazy').setup({
       }
 
       -- Clear buffers
-      require('mini.bufremove').setup()
-      vim.keymap.set('n', '<leader>bd', function()
-        require('mini.bufremove').delete(0, false)
-      end, { desc = '[D]elete buffer' })
+      -- require('mini.bufremove').setup()
+      -- vim.keymap.set('n', '<leader>bd', function()
+      --   require('mini.bufremove').delete(0, false)
+      -- end, { desc = '[D]elete buffer' })
     end,
   },
   { -- Highlight, edit, and navigate code
