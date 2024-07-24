@@ -29,6 +29,3 @@ vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous result' })
 
 -- Window management
 vim.keymap.set('n', '<leader>be', '<C-w>=', { desc = 'Make windows [E]qual size' })
-
--- Telescope search over files that differ from main branch.
-vim.keymap.set('n', '<leader>sc', function() end)
