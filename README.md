@@ -2,6 +2,8 @@
 
 These dotfiles are designed to strike a good balance between minimalism and great features. 
 
+![preview](./imgs/terminal-preview.png)
+
 ## ⚡Getting Started
 
 I manage my dotfiles using `chezmoi`. Setting up a new machine can be done by [running one line](https://www.chezmoi.io/quick-start/#set-up-a-new-machine-with-a-single-command).
@@ -30,7 +32,7 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 
 ### Fonts & Themes
 
-- [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md) or [Iosevka](https://github.com/be5invis/Iosevka/tree/v30.3.3). To use Iosevka, go to the repo, pick the font variant you like (e.g. SS14), and download the term variant. In iTerm use a Nerd Font like Meslo for non ascii characters.
+- [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md) or [Iosevka](https://github.com/be5invis/Iosevka/tree/v30.3.3). To use Iosevka, go to the repo, pick the font variant you like (e.g. SS14), and download the term variant. In iTerm pick the Extended variant and use a Nerd Font like Meslo for non ascii characters.
 - [Snazzy Terminal Theme](https://github.com/sindresorhus/iterm2-snazzy)
 
 ### Environments
