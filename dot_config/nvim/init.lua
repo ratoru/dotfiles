@@ -878,10 +878,19 @@ require('lazy').setup({
     -- 'loctvl842/monokai-pro.nvim',
     -- 'catppuccin/nvim',
     'AlexvZyl/nordic.nvim',
+    -- 'ribru17/bamboo.nvim',
     -- 'ratoru/monokai-pro.nvim',
     -- branch = 'mini-statusline',
 
     priority = 1000, -- Make sure to load this before all the other start plugins.
+
+    -- Nordic options
+    opts = {
+      cursorline = {
+        -- Available styles: 'dark', 'light'.
+        theme = 'light',
+      },
+    },
 
     init = function()
       -- Load the colorscheme here.
@@ -891,6 +900,7 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'nightfox'
       -- vim.cmd.colorscheme 'monokai-pro-spectrum'
       -- vim.cmd.colorscheme 'catppuccin'
+      -- vim.cmd.colorscheme 'bamboo'
       vim.cmd.colorscheme 'nordic'
 
       -- You can configure highlights by doing something like:
@@ -1047,6 +1057,15 @@ require('lazy').setup({
       task = '📌',
       lazy = '💤 ',
     },
+  },
+  -- My additions
+  install = {
+    colorscheme = { 'nordic', 'onedark' },
+  },
+  checker = {
+    enabled = true, -- automatically check for updates
+    concurrency = 1, -- check slowly
+    frequency = 3600 * 4, -- every 4 hours
   },
 })
 

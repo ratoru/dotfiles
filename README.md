@@ -30,7 +30,7 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 
 ### Fonts & Themes
 
-- [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
+- [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md) or [Iosevka](https://github.com/be5invis/Iosevka/tree/v30.3.3). To use Iosevka, go to the repo, pick the font variant you like (e.g. SS14), and download the term variant. In iTerm use a Nerd Font like Meslo for non ascii characters.
 - [Snazzy Terminal Theme](https://github.com/sindresorhus/iterm2-snazzy)
 
 ### Environments
