@@ -1,7 +1,11 @@
 # Aliases for common commands
-alias ls='eza --icons -F -H --group-directories-first --git -1'
+alias ls='eza --icons=auto -F -H --group-directories-first --git -1'
 alias ll='ls -alF'
 alias lg='lazygit'
+alias lzd='lazydocker'
+
+# bindkey '^[[A' history-search-backward
+# bindkey '^[[B' history-search-forward
 
 # Yazi - change directory on quit
 function ya() {

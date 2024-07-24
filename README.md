@@ -23,6 +23,7 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 - [eza](https://github.com/eza-community/eza) as `ls` replacement.
 - [fzf](https://github.com/junegunn/fzf) as a fuzzy finder.
 - [lazygit](https://github.com/jesseduffield/lazygit) as a simple terminal UI for git commands.
+- [lazydocker](https://github.com/jesseduffield/lazydocker) as a simple terminal UI for docker commands.
 - [Starship](https://starship.rs/) as shell prompt.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)

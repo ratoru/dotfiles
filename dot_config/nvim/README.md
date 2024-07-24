@@ -43,6 +43,8 @@ The plugins I added can be found in `/lua/custom/plugins`. Some that stand out:
 - `leap.nvim`. - jump to any two letter combination.
 - `harpoon.nvim`. - fast switching between buffers.
 
+Additionally, I added some `mini` plugins in `init.lua`: `mini.move`, `mini.starter`, `mini.bufremove`.
+
 ### Color Schemes
 
 Aside from the usual `onedark`, I discovered a few other color schemes that I really enjoy.
@@ -50,8 +52,6 @@ Aside from the usual `onedark`, I discovered a few other color schemes that I re
 - [nordic.nvim](https://github.com/AlexvZyl/nordic.nvim) - a slightly darker Nord. This is currently my default.
 - [monokai-pro.nvim](https://github.com/loctvl842/monokai-pro.nvim)
 - [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim) - specifically the `carbonfox` variant.
-
-Additionally, I added some `mini` plugins in `init.lua`: `mini.move`, `mini.starter`, `mini.bufremove`.
 
 ## Future Changes
 
