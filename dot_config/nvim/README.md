@@ -55,10 +55,25 @@ Aside from the usual `onedark`, I discovered a few other color schemes that I re
 - [nordic.nvim](https://github.com/AlexvZyl/nordic.nvim) - a slightly darker Nord. This is currently my default.
 - [monokai-pro.nvim](https://github.com/loctvl842/monokai-pro.nvim)
 - [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim) - specifically the `carbonfox` variant.
+- [catpuccin](https://github.com/catppuccin/nvim)
+
+### AI
+
+I am using `copilot.lua` and `CopilotChat` as coding assistants. While this is probably the weakest point of `nvim` at the moment,
+I hope that they will be sufficient.
 
 ## Future Changes
 
-- I am still figuring out what the optimal keybindings for `harpoon` are.
-- I am still looking for AI code completion similar to Cursor.
-- I have not added all the LSPs that I need.
+- I am still figuring out what the optimal keybindings for `harpoon` are. They are currently under `j` for `jump`.
+- I am currently trying `CopilotChat` for Cursor-like functionality.
+- I might add LSPs in the future.
+
+## Things I wish I knew sooner
+
+- The most impactful thing you can do is getting good at vim motions. All this setup is largely for fun.
+- Read the [window docs](https://neovim.io/doc/user/windows.html) to understand what buffers and windows are.
+- Run `:Lazy` to see what plugins you have installed. If something is broken, you might have to update your plugins.
+- Run `:Mason` to permanently delete LSPs you installed.
+- Commands (starting with `:`) can be autocompleted using `tab`.
+- Explore the keymaps by pressing `space` and reading all the options.
 

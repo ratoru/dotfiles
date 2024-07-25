@@ -282,9 +282,11 @@ require('lazy').setup({
 
       -- Document existing key chains
       require('which-key').add {
+        { '<leader>a', group = '[A]i' },
         { '<leader>b', group = '[B]uffer' },
         { '<leader>c', group = '[C]ode' },
-        { '<leader>D', group = '[D]ocument' },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>j', group = '[J]ump' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
@@ -498,7 +500,7 @@ require('lazy').setup({
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
           --  Used to be "<leader>ws"
-          map('<leader>w/', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace Symbols')
+          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
