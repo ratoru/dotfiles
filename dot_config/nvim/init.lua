@@ -493,7 +493,7 @@ require('lazy').setup({
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('<leader>Ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
@@ -576,14 +576,15 @@ require('lazy').setup({
             '--offset-encoding=utf-16',
           },
         },
-        -- gopls = {},
+        -- Markdown
         -- typos_lsp = {},
         marksman = {},
 
+        -- Python
         pyright = {},
         ruff = {},
 
-        astro = {},
+        -- Rust
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -591,8 +592,13 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
-        --
+
+        -- Web Development
+        -- I am using typescript-tools!
+        tailwindcss = {},
+        prettierd = {},
+        eslint = {},
+        astro = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -658,6 +664,10 @@ require('lazy').setup({
     opts = {
       notify_on_error = false,
       format_on_save = function(bufnr)
+        -- Disable with a global or buffer-local variable
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          return
+        end
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
@@ -669,6 +679,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        markdown = { 'marksman' },
         rust = { 'rustfmt' },
         python = {
           -- To fix auto-fixable lint errors.
@@ -683,7 +694,13 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
+        typescript = { { 'prettierd', 'prettier' } },
+        typescriptreact = { { 'prettierd', 'prettier' } },
+        javascript = { { 'prettierd', 'prettier' } },
+        javascriptreact = { { 'prettierd', 'prettier' } },
+        json = { { 'prettierd', 'prettier' } },
+        html = { { 'prettierd', 'prettier' } },
+        css = { { 'prettierd', 'prettier' } },
       },
     },
   },
@@ -848,20 +865,6 @@ require('lazy').setup({
             return vim_item
           end,
           expandable_indicator = true,
-          -- format = function(entry, vim_item)
-          --   -- Kind icons
-          --   vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
-          --   -- Source
-          --   vim_item.menu = ({
-          --     buffer = '[Buffer]',
-          --     nvim_lsp = '[LSP]',
-          --     luasnip = '[LuaSnip]',
-          --     nvim_lua = '[Lua]',
-          --     latex_symbols = '[LaTeX]',
-          --     copilot = '[Copilot]',
-          --   })[entry.source.name]
-          --   return vim_item
-          -- end,
         },
       }
     end,
@@ -876,8 +879,8 @@ require('lazy').setup({
     -- 'olimorris/onedarkpro.nvim',
     -- 'EdenEast/nightfox.nvim',
     -- 'loctvl842/monokai-pro.nvim',
-    -- 'catppuccin/nvim',
-    'AlexvZyl/nordic.nvim',
+    'catppuccin/nvim',
+    -- 'AlexvZyl/nordic.nvim',
     -- 'ribru17/bamboo.nvim',
     -- 'ratoru/monokai-pro.nvim',
     -- branch = 'mini-statusline',
@@ -885,13 +888,13 @@ require('lazy').setup({
     priority = 1000, -- Make sure to load this before all the other start plugins.
 
     -- Nordic options
-    opts = {
-      cursorline = {
-        -- Available styles: 'dark', 'light'.
-        theme = 'light',
-      },
-    },
-
+    -- opts = {
+    --   cursorline = {
+    --     -- Available styles: 'dark', 'light'.
+    --     theme = 'light',
+    --   },
+    -- },
+    --
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
@@ -899,9 +902,9 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'onedark'
       -- vim.cmd.colorscheme 'nightfox'
       -- vim.cmd.colorscheme 'monokai-pro-spectrum'
-      -- vim.cmd.colorscheme 'catppuccin'
+      vim.cmd.colorscheme 'catppuccin'
       -- vim.cmd.colorscheme 'bamboo'
-      vim.cmd.colorscheme 'nordic'
+      -- vim.cmd.colorscheme 'nordic'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -986,7 +989,25 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'dockerfile',
+        'html',
+        'javascript',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'python',
+        'query',
+        'rust',
+        'typescript',
+        'tsx',
+        'vim',
+        'vimdoc',
+      },
 
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -1027,7 +1048,7 @@ require('lazy').setup({
   --
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps

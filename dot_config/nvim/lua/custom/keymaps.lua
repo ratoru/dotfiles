@@ -1,7 +1,7 @@
 -- This remap allows you to paste text over a highlighted text
 -- while keeping the original text in the yanked register.
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = '[p]aste and keep yanked text' })
-vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = '[d]elete without register' })
+vim.keymap.set({ 'n', 'v' }, '<leader>dd', [["_d]], { desc = '[d]elete without register' })
 
 -- System Clipboard Management
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[y]ank to system clipboard' })

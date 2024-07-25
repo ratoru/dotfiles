@@ -1,6 +1,8 @@
 # My nvim config
 
-My config is built on top of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim). I recommend trying it first before adding more plugins. `kickstart`'s `README` and `init.lua` do a great job of explaining how to configure `nvim`.
+My config is built on top of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim). 
+I recommend trying it first before adding more plugins. `kickstart`'s `README` and `init.lua` 
+do a great job of explaining how to configure `nvim`.
 
 ## Installation
 
@@ -8,7 +10,8 @@ My config is built on top of [kickstart.nvim](https://github.com/nvim-lua/kickst
 - Install `git`.
 - Install a Nerd Font.
 - Install all the languages you want to use (npm, go, ...).
-- Copy this folder into `~/.config/nvim/`. Alternatively, head over to [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) and follow the install instructions.
+- Copy this folder into `~/.config/nvim/`. Alternatively, head over to [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 
+and follow the install instructions.
 
 ### Post Installation
 
