@@ -12,6 +12,7 @@ return {
           ['<C-j>'] = false,
           ['<M-h>'] = 'actions.select_split',
         },
+        delete_to_trash = true,
         view_options = {
           show_hidden = true,
         },

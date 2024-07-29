@@ -15,7 +15,7 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 ### Config Files
 
 - [chezmoi](https://www.chezmoi.io/) for dotfile management.
-- [nvim](https://github.com/nvim-lua/kickstart.nvim) as primary editor. Configured using `kickstart`.
+- [nvim](./dot_config/nvim/) as primary editor. Configured using `kickstart`.
 - [yazi](https://yazi-rs.github.io/) as terminal file manager. Also evaluating [broot](https://github.com/Canop/broot) as an alternative.
 - [bat](https://github.com/sharkdp/bat) as `cat` replacement.
 

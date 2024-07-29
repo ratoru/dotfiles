@@ -43,7 +43,7 @@ Read through `keymaps.lua` and `commands.lua` in `/lua/custom/` to see what I ad
 The plugins I added can be found in `/lua/custom/plugins`. Some that stand out:
 
 - `oil.nvim`. - file explorer with great interface.
-- `leap.nvim`. - jump to any two letter combination.
+- `flash.nvim`. - jump to any letter combination.
 - `harpoon.nvim`. - fast switching between buffers.
 
 Additionally, I added some `mini` plugins in `init.lua`: `mini.move`, `mini.starter`, `mini.bufremove`.
@@ -65,7 +65,10 @@ I hope that they will be sufficient.
 ## Future Changes
 
 - I am still figuring out what the optimal keybindings for `harpoon` are. They are currently under `j` for `jump`.
+- I am going to change document symbols ` ds` and workspace symbols ` ws` somehow.
 - I am currently trying `CopilotChat` for Cursor-like functionality.
+- I might remove `neo-tree` again.
+- I might add `neo-git`.
 - I might add LSPs in the future.
 
 ## Things I wish I knew sooner
@@ -76,4 +79,5 @@ I hope that they will be sufficient.
 - Run `:Mason` to permanently delete LSPs you installed.
 - Commands (starting with `:`) can be autocompleted using `tab`.
 - Explore the keymaps by pressing `space` and reading all the options.
+- Select visual area, type `:` and then `s/<find>/<replace>/g` to replace text in a certain area.
 
