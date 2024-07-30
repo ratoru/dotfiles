@@ -1,0 +1,343 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Defines the different sections that can be displayed in the prompt
+# This is the default format with a fill after version control.
+# Therefore, defines sections even if the module isn't enabled.
+# The fill seperates the prompt into left and right.
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$fill\ 
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
+$character"""
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+palette = "snazzy"
+
+[fill]
+symbol = ' '
+
+# Use nerd fonts for the prompt symbols.
+# Defines the symbols even if the module isn't enabled.
+# Removes 'via' from the prompt. Possible replacements: "-∙"
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[crystal]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[deno]
+format = '[](bright-black) [$symbol($version )]($style)'
+
+[directory]
+read_only = " 󰌾"
+
+[docker_context]
+format = '[](bright-black) [$symbol$context ]($style)'
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fennel]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+format = '[](bright-black) [$symbol($version )]($style)'
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[hostname]
+ssh_symbol = " "
+
+[java]
+format = '[](bright-black) [${symbol}(${version} )]($style)'
+symbol = " "
+
+[julia]
+symbol = " "
+
+[kotlin]
+symbol = " "
+
+[lua]
+format = '[](bright-black) [$symbol($version )]($style)'
+symbol = " "
+
+[memory_usage]
+format = '[](bright-black) $symbol [${ram}( | ${swap})]($style) '
+symbol = "󰍛 "
+disabled = false
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+format = '[](bright-black) [$symbol($version )]($style)'
+symbol = " "
+
+[ocaml]
+symbol = " "
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+AlmaLinux = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Kali = " "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+RockyLinux = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Void = " "
+Windows = "󰍲 "
+
+[package]
+symbol = "󰏗 "
+disabled = true
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[pijul_channel]
+symbol = " "
+
+[python]
+format = '[](bright-black) [${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+symbol = " "
+
+[rlang]
+format = '[](bright-black) [$symbol($version )]($style)'
+symbol = "󰟔 "
+
+[ruby]
+format = '[](bright-black) [$symbol($version )]($style)'
+symbol = " "
+
+[rust]
+format = '[](bright-black) [$symbol($version )]($style)'
+symbol = "󱘗 "
+
+[scala]
+symbol = " "
+
+[swift]
+format = '[](bright-black) [$symbol($version )]($style)'
+symbol = " "
+
+[zig]
+symbol = " "
+
+# Colorschemes
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+[palettes.snazzy]
+background = "#282a36"
+cursor-background = "#282a36"
+cursor-foreground = "#97979b"
+selection-background = "#97979b33"
+foreground = "#eff0eb"
+black = "#282a36"
+red = "#ff5c57"
+green = "#5af78e"
+yellow = "#f3f99d"
+blue = "#57c7ff"
+magenta = "#ff6ac1"
+cyan = "#9aedfe"
+white = "#f1f1f0"
+bright-black = "#686868"
+bright-red = "#ff5c57"
+bright-green = "#5af78e"
+bright-yellow = "#f3f99d"
+bright-blue = "#57c7ff"
+bright-magenta = "#ff6ac1"
+bright-cyan = "#9aedfe"
+bright-white = "#eff0eb"
