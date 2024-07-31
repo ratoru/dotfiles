@@ -14,5 +14,11 @@ hyperlink.apply_to_config(config)
 -- This sets up tmux like functionality and other keybindings.
 keymaps.apply_to_config(config)
 
+-- Events
+local update = require 'events.update-status'
+local tab_title = require 'events.format-tab-title'
+wezterm.on('update-status', update.fancy_status)
+wezterm.on('format-tab-title', tab_title.format_tab_title)
+
 -- and finally, return the configuration to wezterm
 return config
