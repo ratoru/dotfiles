@@ -10,20 +10,21 @@ local icons = require 'utils.icons'
 ---@class Layout
 local StatusBar = require 'utils.layout'
 
-local color_extras = require('utils.colors').color_extras
+local colors = require 'utils.colors'
 
 local M = {}
 
 -- Shows a fancy status line with mode indicators, leader indicator, battery, water reminder and time icon.
 function M.fancy_status(window, _)
-  local extra_colors = color_extras['Catppuccin Mocha']
-  local theme = wez.color.get_builtin_schemes()['Catppuccin Mocha']
+  local theme = colors[fun.get_scheme()]
   local modes = {
     copy_mode = { text = ' 󰆏 COPY ', bg = theme.brights[3] },
     search_mode = { text = ' 󰍉 SEARCH ', bg = theme.brights[4] },
     window_mode = { text = ' 󱂬 WINDOW ', bg = theme.ansi[6] },
     font_mode = { text = ' 󰛖 FONT ', bg = theme.indexed[16] or theme.ansi[8] },
     lock_mode = { text = '  LOCK ', bg = theme.ansi[8] },
+    resize_pane = { text = ' 󰘕 RESIZE ', bg = theme.brights[5] },
+    move_tab = { text = ' 󰁁 MOVE ', bg = theme.brights[7] },
   }
 
   local bg = theme.ansi[5]
@@ -35,12 +36,12 @@ function M.fancy_status(window, _)
   if window:leader_is_active() then
     local leader = ' ' .. '🌊' -- utf8.char(0x1f30a) -- ocean wave
     local leader_fill = '' -- utf9.char(0xe0b2)
-    local leader_fill_color = extra_colors.status_fill_active
+    local leader_fill_color = theme.tab_bar.active_tab.bg_color
     if window:active_tab():tab_id() ~= 0 then
-      leader_fill_color = extra_colors.status_fill_inactive
+      leader_fill_color = theme.tab_bar.inactive_tab.bg_color
     end
-    LeftStatus:push(extra_colors.status_bg, theme.background, leader)
-    LeftStatus:push(extra_colors.status_bg, leader_fill_color, leader_fill)
+    LeftStatus:push(theme.leader_bg, theme.background, leader)
+    LeftStatus:push(theme.leader_bg, leader_fill_color, leader_fill)
   end
   -- Add mode indicator
   if name and modes[name] then

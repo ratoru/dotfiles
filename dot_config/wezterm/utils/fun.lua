@@ -44,4 +44,11 @@ M.basename = function(path)
   return index and trimmed_path:sub(index) or trimmed_path
 end
 
+--- Returns the name of the color scheme
+---@return string scheme name
+M.get_scheme = function()
+  -- return 'Snazzy (Gogh)'
+  return 'Catppuccin Mocha'
+end
+
 return M

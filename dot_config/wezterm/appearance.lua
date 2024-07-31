@@ -1,5 +1,6 @@
 local wezterm = require 'wezterm'
-local enhanced_snazzy = require('utils.colors').enhanced_snazzy
+local colors = require 'utils.colors' ---@class CachedColors
+local fun = require 'utils.fun' ---@class Fun
 
 -- This is the module table that we will export
 local module = {}
@@ -16,11 +17,11 @@ function module.apply_to_config(config)
   -- Define your color scheme here. I am a big fan of:
   --   - 'Snazzy (Gogh)'
   --   - 'Catppuccin Mocha'
-  -- Color scheme enhancements
-  -- config.color_schemes = { ['Snazzy (Gogh)'] = enhanced_snazzy }
-  config.color_scheme = 'Catppuccin Mocha'
-  local theme = wezterm.color.get_builtin_schemes()['Catppuccin Mocha']
-  -- local theme = enhanced_snazzy
+  -- This setup is overly complicated to avoid hardcoding
+  -- colors or expensive operations.
+  -- The actual color scheme is defined by `fun.get_scheme`.
+  config.color_scheme = fun.get_scheme()
+  local theme = colors[fun.get_scheme()]
 
   config.command_palette_bg_color = theme.brights[7]
   config.command_palette_fg_color = theme.background
@@ -40,6 +41,7 @@ function module.apply_to_config(config)
   config.window_padding = { top = 3, bottom = 0 }
 
   -- Tab bar settings
+  config.enable_tab_bar = true
   config.hide_tab_bar_if_only_one_tab = false
   config.tab_bar_at_bottom = true
   config.use_fancy_tab_bar = false

@@ -1,6 +1,7 @@
 local wez = require 'wezterm' ---@class WezTerm
 local fun = require 'utils.fun' ---@class Fun
 local icons = require 'utils.icons' ---@class Icons
+local colors = require 'utils.colors' ---@class CachedColors
 
 local M = {}
 
@@ -9,7 +10,7 @@ function M.format_tab_title(tab, _, _, config, hover, max_width)
     return
   end
 
-  local theme = wez.color.get_builtin_schemes()['Catppuccin Mocha']
+  local theme = colors[fun.get_scheme()]
   local bg = theme.tab_bar.background
   local fg
 
@@ -32,13 +33,13 @@ function M.format_tab_title(tab, _, _, config, hover, max_width)
   end
 
   -- Check if any pane has unseen output
-  local unseen_output = false
-  for _, p in ipairs(tab.panes) do
-    if p.has_unseen_output then
-      unseen_output = true
-      break
-    end
-  end
+  -- local unseen_output = false
+  -- for _, p in ipairs(tab.panes) do
+  --   if p.has_unseen_output then
+  --     unseen_output = true
+  --     break
+  --   end
+  -- end
 
   -- Add any custom icons you want to use instead of the name here
   local title = pane.title and fun.basename(pane.title) or ''
@@ -60,7 +61,8 @@ function M.format_tab_title(tab, _, _, config, hover, max_width)
   end
 
   -- add the tab number. can be substituted by the `has_unseen_output` notification
-  TabTitle:push(bg, fg, ' ' .. (unseen_output and icons.UnseenNotification or tab_idx + 1 or '') .. ' ', attributes)
+  -- TabTitle:push(bg, fg, ' ' .. (unseen_output and icons.UnseenNotification or tab_idx + 1 or '') .. ' ', attributes)
+  TabTitle:push(bg, fg, ' ' .. tab_idx + 1 .. ' ', attributes)
 
   -- the formatted tab title
   TabTitle:push(bg, fg, title .. ' ', attributes)
