@@ -1,11 +1,45 @@
+# ---------------------------------------
 # Aliases for common commands
+# ---------------------------------------
+# Fast navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+# Aliases for tools.
 alias ls='eza --icons=auto -F -H --group-directories-first --git -1'
 alias ll='ls -alF'
 alias lg='lazygit'
 alias lzd='lazydocker'
 
+# Empty the Trash on all mounted volumes and the main HDD.
+# Also, clear Apple’s System Logs to improve shell startup speed.
+# Finally, clear download history from quarantine. https://mths.be/bum
+# alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+
+# Hide/show all desktop icons (useful when presenting) -- macOS only
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# Sleep (when going AFK) -- macOS only
+# Can lock the screen if system setting is set to require password immediately after sleep.
+alias afk="pmset displaysleepnow"
+
+# One of @janmoesen’s ProTip™s
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+    alias "${method}"="lwp-request -m '${method}'"
+done
+
+# ---------------------------------------
+# Functions
+# ---------------------------------------
 # bindkey '^[[A' history-search-backward
 # bindkey '^[[B' history-search-forward
+
+# Change working directory to the top-most Finder window location -- macOS only
+function cdf() { # short for `cdfinder`
+    cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
+}
 
 # Yazi - change directory on quit
 function ya() {
@@ -17,6 +51,9 @@ function ya() {
     rm -f -- "$tmp"
 }
 
+# ---------------------------------------
+# Set up other tools
+# ---------------------------------------
 # Broot - navigate directories
 source /Users/raphael/.config/broot/launcher/bash/br
 
@@ -32,6 +69,7 @@ eval "$(fnm env --use-on-cd)"
 # Pyenv
 eval "$(pyenv init -)"
 
+# Might delete in favor of `uv`.
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export WORKON_HOME=$HOME/.virtualenvs
 pyenv virtualenvwrapper_lazy
@@ -44,4 +82,3 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # zsh syntax highlighting. Must be at the end of the file.
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
