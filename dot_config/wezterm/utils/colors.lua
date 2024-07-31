@@ -175,6 +175,8 @@ local cached_colors = {
       '#eff0eb', -- white
     },
 
+    indexed = { [16] = '#ff6ac1', [17] = '#9aedfe' },
+
     tab_bar = {
       -- The color of the strip that goes along the top of the window
       background = '#282a36',
