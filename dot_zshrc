@@ -36,6 +36,11 @@ done
 # bindkey '^[[A' history-search-backward
 # bindkey '^[[B' history-search-forward
 
+# Create a new directory and enter it
+function mkd() {
+	mkdir -p "$@" && cd "$_";
+}
+
 # Change working directory to the top-most Finder window location -- macOS only
 function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
