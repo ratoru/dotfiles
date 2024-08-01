@@ -7,8 +7,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>dd', [["_d]], { desc = '[d]elete without r
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[y]ank to system clipboard' })
 vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank to system clipboard' })
 
--- vim.keymap.set('n', ';', '<Nop>')
-
 -- Indent while remaining in visual mode.
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')

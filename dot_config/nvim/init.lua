@@ -889,22 +889,23 @@ require('lazy').setup({
     -- 'EdenEast/nightfox.nvim',
     -- 'loctvl842/monokai-pro.nvim',
     'catppuccin/nvim',
-    -- 'AlexvZyl/nordic.nvim',
     -- 'ribru17/bamboo.nvim',
     -- 'ratoru/monokai-pro.nvim',
     -- branch = 'mini-statusline',
 
     priority = 1000, -- Make sure to load this before all the other start plugins.
 
-    -- Nordic options
-    -- opts = {
-    --   cursorline = {
-    --     -- Available styles: 'dark', 'light'.
-    --     theme = 'light',
-    --   },
-    -- },
-    --
-    init = function()
+    config = function()
+      require('catppuccin').setup {
+        flavor = 'mocha',
+        extensions = {
+          flash = true,
+          harpoon = true,
+          neotree = true,
+          lsp_trouble = true,
+          which_key = true,
+        },
+      }
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
@@ -913,11 +914,24 @@ require('lazy').setup({
       -- vim.cmd.colorscheme 'monokai-pro-spectrum'
       vim.cmd.colorscheme 'catppuccin'
       -- vim.cmd.colorscheme 'bamboo'
-      -- vim.cmd.colorscheme 'nordic'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
+  },
+
+  {
+    -- Install another colorscheme. I switched back and forth too often.
+    -- Lazy loading this one is okay.
+    'AlexvZyl/nordic.nvim',
+    opts = {
+      cursorline = {
+        theme = 'light',
+      },
+      reduced_blue = true,
+      swap_backgrounds = true,
+    },
+    lazy = true,
   },
 
   -- Highlight todo, notes, etc in comments
@@ -984,13 +998,13 @@ require('lazy').setup({
       -- Show a greeting screen when opening neovim without a file
       require('mini.starter').setup {
         footer = '',
+        -- Removed `-` to allow oil activation.
+        -- Do not add `:` as it allows you to go into command mode.
+        query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_.',
       }
 
       -- Clear buffers
       require('mini.bufremove').setup()
-      -- vim.keymap.set('n', '<leader>bd', function()
-      --   require('mini.bufremove').delete(0, false)
-      -- end, { desc = '[D]elete buffer' })
 
       -- Session management
       require('mini.sessions').setup {
@@ -1092,10 +1106,11 @@ require('lazy').setup({
   },
   -- My additions
   install = {
-    colorscheme = { 'nordic', 'onedark', 'catppuccin' },
+    colorscheme = { 'catppuccin', 'nordic', 'onedark' },
   },
   checker = {
     enabled = true, -- automatically check for updates
+    notify = false,
     concurrency = 1, -- check slowly
     frequency = 3600 * 4, -- every 4 hours
   },

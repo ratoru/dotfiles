@@ -46,6 +46,11 @@ function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
+# Jump to a directory and open nvim
+function zn() {
+	z "$@" && nvim;
+}
+
 # Yazi - change directory on quit
 function ya() {
     local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
