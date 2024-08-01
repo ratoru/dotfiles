@@ -37,7 +37,8 @@ function M.fancy_status(window, _)
     local leader = ' ' .. '🌊' -- utf8.char(0x1f30a) -- ocean wave
     local leader_fill = '' -- utf9.char(0xe0b2)
     local leader_fill_color = theme.tab_bar.active_tab.bg_color
-    if window:active_tab():tab_id() ~= 0 then
+    local tabs = window:mux_window():tabs_with_info()
+    if #tabs > 0 and tabs[1].index ~= 0 then
       leader_fill_color = theme.tab_bar.inactive_tab.bg_color
     end
     LeftStatus:push(theme.leader_bg, theme.background, leader)
@@ -69,14 +70,28 @@ function M.fancy_status(window, _)
   local current_hour = tonumber(wez.strftime '%H')
   local time_icon = icons.Time[current_hour]
 
+  -- Workspace
+  local workspace = window:active_workspace()
+  if workspace == 'default' then
+    workspace = ''
+  elseif #workspace > 5 then
+    workspace = wez.truncate_right(workspace, 5)
+  end
+
   -- Drink water reminder
   local current_minute = tonumber(wez.strftime '%M')
   if current_minute <= 5 or current_minute == 30 then
-    RightStatus:push(colors[3], theme.tab_bar.background, ' ' .. icons.Water .. ' ')
+    RightStatus:push(colors[4], theme.tab_bar.background, ' ' .. icons.Water .. ' ')
   end
 
-  RightStatus:push(colors[2], theme.tab_bar.background, ' ' .. time_icon .. ' ')
-  RightStatus:push(colors[1], theme.tab_bar.background, ' ' .. battery.ico .. ' ')
+  -- Stretch reminder
+  if current_minute == 20 or current_minute == 40 then
+    RightStatus:push(colors[4], theme.tab_bar.background, ' ' .. icons.Stretch .. ' ')
+  end
+
+  RightStatus:push(colors[3], theme.tab_bar.background, ' ' .. time_icon .. ' ')
+  RightStatus:push(colors[2], theme.tab_bar.background, ' ' .. battery.ico .. ' ')
+  RightStatus:push(colors[1], theme.tab_bar.background, ' ' .. workspace .. ' ')
 
   window:set_right_status(wez.format(RightStatus))
   -- }}}

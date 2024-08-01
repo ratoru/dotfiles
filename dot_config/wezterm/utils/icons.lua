@@ -25,6 +25,8 @@ M.UnseenNotification = wez.nerdfonts.cod_circle_small_filled
 
 M.Water = '󰆫'
 
+M.Stretch = ''
+
 ---@class BatteryIcons: table, table
 ---@field charging table Icons for charging battery in increments of 10
 ---@field normal   table Icons for non-charging battery in increments of 10
@@ -82,7 +84,7 @@ M.Time = {
   [17] = wez.nerdfonts.fa_code,
   [18] = wez.nerdfonts.fa_code,
   [19] = wez.nerdfonts.md_food_fork_drink,
-  [20] = wez.nerdfonts.md_cup_water,
+  [20] = '󰖛',
   [21] = wez.nerdfonts.fa_code,
   [22] = wez.nerdfonts.fa_code,
   [23] = wez.nerdfonts.fa_code,

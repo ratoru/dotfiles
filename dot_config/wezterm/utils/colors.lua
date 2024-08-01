@@ -31,42 +31,78 @@ local mocha = {
 }
 
 local nordic = {
+
   none = 'NONE',
+
+  -- Blacks. Not in base Nord.
   black0 = '#191D24',
   black1 = '#1E222A',
+  -- Slightly darker than bg.  Very useful for certain popups
   black2 = '#222630',
-  gray0 = '#242933',
+
+  -- Grays
+  -- This color is used on their website's dark theme.
+  gray0 = '#242933', -- bg
+  -- Polar Night.
   gray1 = '#2E3440',
   gray2 = '#3B4252',
   gray3 = '#434C5E',
   gray4 = '#4C566A',
+
+  -- A light blue/gray.
+  -- From @nightfox.nvim.
   gray5 = '#60728A',
+
+  -- Dim white.
+  -- default fg, has a blue tint.
   white0_normal = '#BBC3D4',
+  -- less blue tint
   white0_reduce_blue = '#C0C8D8',
+
+  -- Snow storm.
   white1 = '#D8DEE9',
   white2 = '#E5E9F0',
   white3 = '#ECEFF4',
+
+  -- Frost.
   blue0 = '#5E81AC',
   blue1 = '#81A1C1',
   blue2 = '#88C0D0',
-  cyan = '#8FBCBB',
-  cyan_bright = '#9FC6C5',
-  cyan_dim = '#80B3B2',
-  red = '#BF616A',
-  red_bright = '#C5727A',
-  red_dim = '#B74E58',
-  orange = '#D08770',
-  orange_bright = '#D79784',
-  orange_dim = '#CB775D',
-  yellow = '#EBCB8B',
-  yellow_bright = '#EFD49F',
-  yellow_dim = '#E7C173',
-  green = '#A3BE8C',
-  green_bright = '#B1C89D',
-  green_dim = '#97B67C',
-  magenta = '#B48EAD',
-  magenta_bright = '#BE9DB8',
-  magenta_dim = '#A97EA1',
+
+  cyan = {
+    base = '#8FBCBB',
+    bright = '#9FC6C5',
+    dim = '#80B3B2',
+  },
+
+  -- Aurora.
+  -- These colors are used a lot, so we need variations for them.
+  -- Base colors are from original Nord palette.
+  red = {
+    base = '#BF616A',
+    bright = '#C5727A',
+    dim = '#B74E58',
+  },
+  orange = {
+    base = '#D08770',
+    bright = '#D79784',
+    dim = '#CB775D',
+  },
+  yellow = {
+    base = '#EBCB8B',
+    bright = '#EFD49F',
+    dim = '#E7C173',
+  },
+  green = {
+    base = '#A3BE8C',
+    bright = '#B1C89D',
+    dim = '#97B67C',
+  },
+  magenta = {
+    base = '#B48EAD',
+    bright = '#BE9DB8',
+    dim = '#A97EA1',
+  },
 }
 
 --- @class CachedColors
@@ -210,6 +246,79 @@ local cached_colors = {
       },
     },
     leader_bg = '#9aedfe',
+  },
+  ['Nordic'] = {
+    foreground = nordic.white0_normal,
+    background = nordic.black1,
+
+    cursor_fg = nordic.black0,
+    cursor_bg = nordic.gray1,
+    cursor_border = nordic.gray5,
+
+    selection_fg = nordic.white1,
+    selection_bg = '#272c36', -- U.blend(C.gray2, C.black0, 0.4)
+
+    scrollbar_thumb = nordic.gray4,
+
+    split = nordic.gray0,
+
+    ansi = {
+      nordic.gray2,
+      nordic.red.base,
+      nordic.green.base,
+      nordic.yellow.base,
+      nordic.blue0,
+      nordic.magenta.base,
+      nordic.orange.base,
+      nordic.cyan.base,
+    },
+
+    brights = {
+      nordic.gray3,
+      nordic.red.bright,
+      nordic.green.bright,
+      nordic.yellow.bright,
+      nordic.blue1,
+      nordic.magenta.bright,
+      nordic.orange.bright,
+      nordic.cyan.bright,
+    },
+
+    indexed = { [16] = nordic.gray4, [17] = nordic.gray5 },
+
+    -- nightbuild only
+    compose_cursor = nordic.white3,
+
+    tab_bar = {
+      background = nordic.black0,
+      active_tab = {
+        bg_color = nordic.blue2,
+        fg_color = nordic.white1,
+      },
+      inactive_tab = {
+        bg_color = nordic.gray1,
+        fg_color = nordic.white0_normal,
+      },
+      inactive_tab_hover = {
+        bg_color = nordic.gray2,
+        fg_color = nordic.white0_normal,
+      },
+      new_tab = {
+        bg_color = nordic.gray0,
+        fg_color = nordic.white0_normal,
+      },
+      new_tab_hover = {
+        bg_color = nordic.gray1,
+        fg_color = nordic.white0_normal,
+      },
+      -- fancy tab bar
+      inactive_tab_edge = nordic.black1,
+    },
+
+    visual_bell = nordic.black1,
+
+    -- Leader key indicator
+    -- leader_bg = nordic.blue2,
   },
 }
 

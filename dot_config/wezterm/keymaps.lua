@@ -6,7 +6,8 @@ local module = {}
 function module.apply_to_config(config)
   local act = wezterm.action
   -- Keys
-  config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2500 }
+  -- config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2500 }
+  config.leader = { key = 'phys:Space', mods = 'SHIFT', timeout_milliseconds = 2500 }
   config.keys = {
     -- Send C-a when pressing C-a twice
     { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
@@ -54,8 +55,22 @@ function module.apply_to_config(config)
     { key = '{', mods = 'LEADER|SHIFT', action = act.MoveTabRelative(-1) },
     { key = '}', mods = 'LEADER|SHIFT', action = act.MoveTabRelative(1) },
 
-    -- Lastly, workspace
+    -- Workspace
     { key = 'w', mods = 'LEADER', action = act.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' } },
+    { key = 'Tab', mods = 'LEADER', action = act.SwitchWorkspaceRelative(1) },
+    { key = 'Tab', mods = 'LEADER|SHIFT', action = act.SwitchWorkspaceRelative(-1) },
+
+    -- Open config in the default system editor with Cmd+, (the Apple way)
+    {
+      key = ',',
+      mods = 'SUPER',
+      domain = { DomainName = 'local' },
+      action = wezterm.action.SpawnCommandInNewWindow {
+        label = 'Edit Wezterm Config',
+        cwd = os.getenv 'WEZTERM_CONFIG_DIR',
+        args = { '/opt/homebrew/bin/nvim', 'wezterm.lua' },
+      },
+    },
   }
   -- I can use the tab navigator (Leader t), but I also want to quickly navigate tabs with index
   for i = 1, 9 do

@@ -17,9 +17,11 @@ function module.apply_to_config(config)
   -- Define your color scheme here. I am a big fan of:
   --   - 'Snazzy (Gogh)'
   --   - 'Catppuccin Mocha'
+  --   - 'Nordic'
   -- This setup is overly complicated to avoid hardcoding
   -- colors or expensive operations.
   -- The actual color scheme is defined by `fun.get_scheme`.
+  config.color_schemes = { ['Nordic'] = colors['Nordic'] }
   config.color_scheme = fun.get_scheme()
   local theme = colors[fun.get_scheme()]
 
@@ -49,6 +51,8 @@ function module.apply_to_config(config)
 
   -- Apple macOS style symbols
   config.ui_key_cap_rendering = 'AppleSymbols'
+
+  config.pane_focus_follows_mouse = true
 end
 
 -- return our module table
