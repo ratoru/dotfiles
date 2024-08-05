@@ -10,7 +10,8 @@ function module.apply_to_config(config)
   config.leader = { key = 'phys:Space', mods = 'SHIFT', timeout_milliseconds = 2500 }
   config.keys = {
     -- Send C-a when pressing C-a twice
-    { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
+    -- { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
+    { key = 'phys:Space', mods = 'LEADER|SHIFT', action = act.SendKey { key = 'Space' } },
     { key = 'c', mods = 'LEADER', action = act.ActivateCopyMode },
     { key = 'phys:Space', mods = 'LEADER', action = act.ActivateCommandPalette },
 
@@ -87,6 +88,10 @@ function module.apply_to_config(config)
       { key = 'j', action = act.AdjustPaneSize { 'Down', 1 } },
       { key = 'k', action = act.AdjustPaneSize { 'Up', 1 } },
       { key = 'l', action = act.AdjustPaneSize { 'Right', 1 } },
+      { key = 'h', mods = 'SHIFT', action = act.AdjustPaneSize { 'Left', 5 } },
+      { key = 'j', mods = 'SHIFT', action = act.AdjustPaneSize { 'Down', 5 } },
+      { key = 'k', mods = 'SHIFT', action = act.AdjustPaneSize { 'Up', 5 } },
+      { key = 'l', mods = 'SHIFT', action = act.AdjustPaneSize { 'Right', 5 } },
       { key = 'Escape', action = 'PopKeyTable' },
       { key = 'Enter', action = 'PopKeyTable' },
     },
