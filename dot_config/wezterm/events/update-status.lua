@@ -50,6 +50,18 @@ function M.fancy_status(window, _)
     bg = modes[name].bg
     LeftStatus:push(bg, theme.background, txt, { 'Bold' })
   end
+  -- Add zoom indicator
+  local is_zoomed = false
+  local cur_tab = window:active_tab()
+  for _, pane in ipairs(cur_tab:panes_with_info()) do
+    if pane.is_zoomed then
+      is_zoomed = true
+      break
+    end
+  end
+  if is_zoomed then
+    LeftStatus:push(theme.brights[6], theme.background, ' 󱅻 ', { 'Bold' })
+  end
 
   window:set_left_status(wez.format(LeftStatus))
   -- }}}
