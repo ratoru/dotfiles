@@ -21,10 +21,10 @@ function M.fancy_status(window, _)
     copy_mode = { text = ' 󰆏 COPY ', bg = theme.brights[3] },
     search_mode = { text = ' 󰍉 SEARCH ', bg = theme.brights[4] },
     window_mode = { text = ' 󱂬 WINDOW ', bg = theme.ansi[6] },
-    font_mode = { text = ' 󰛖 FONT ', bg = theme.indexed[16] or theme.ansi[8] },
     lock_mode = { text = '  LOCK ', bg = theme.ansi[8] },
     resize_pane = { text = ' 󰘕 RESIZE ', bg = theme.brights[5] },
     move_tab = { text = ' 󰁁 MOVE ', bg = theme.brights[7] },
+    resize_font = { text = ' 󰛖 FONT ', bg = theme.indexed[16] or theme.ansi[8] },
   }
 
   local bg = theme.ansi[5]

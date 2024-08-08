@@ -25,9 +25,20 @@ function module.apply_to_config(config)
     { key = 'q', mods = 'LEADER', action = act.CloseCurrentPane { confirm = true } },
     { key = 'z', mods = 'LEADER', action = act.TogglePaneZoomState },
     { key = 'o', mods = 'LEADER', action = act.RotatePanes 'Clockwise' },
+
     -- We can make separate keybindings for resizing panes
     -- But Wezterm offers custom "mode" in the name of "KeyTable"
     { key = 'r', mods = 'LEADER', action = act.ActivateKeyTable { name = 'resize_pane', one_shot = false } },
+
+    -- Font size key table
+    {
+      key = 'f',
+      mods = 'LEADER',
+      action = act.ActivateKeyTable {
+        name = 'resize_font',
+        one_shot = false,
+      },
+    },
 
     -- Tab keybindings
     { key = 't', mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' },
@@ -102,6 +113,13 @@ function module.apply_to_config(config)
       { key = 'l', action = act.MoveTabRelative(1) },
       { key = 'Escape', action = 'PopKeyTable' },
       { key = 'Enter', action = 'PopKeyTable' },
+    },
+    resize_font = {
+      { key = 'k', action = act.IncreaseFontSize },
+      { key = 'j', action = act.DecreaseFontSize },
+      { key = 'r', action = act.ResetFontSize },
+      { key = 'Escape', action = 'PopKeyTable' },
+      { key = 'q', action = 'PopKeyTable' },
     },
   }
 end
