@@ -6,14 +6,16 @@ local module = {}
 function module.apply_to_config(config)
   local act = wezterm.action
   -- Keys
-  -- config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2500 }
+  -- Configure this as you like. A common one is ctrl+a.
   config.leader = { key = 'phys:Space', mods = 'SHIFT', timeout_milliseconds = 2500 }
   config.keys = {
-    -- Send C-a when pressing C-a twice
-    -- { key = 'a', mods = 'LEADER|CTRL', action = act.SendKey { key = 'a', mods = 'CTRL' } },
+    -- Send Shift-Space when pressing Shift-Space twice
     { key = 'phys:Space', mods = 'LEADER|SHIFT', action = act.SendKey { key = 'Space' } },
     { key = 'c', mods = 'LEADER', action = act.ActivateCopyMode },
     { key = 'phys:Space', mods = 'LEADER', action = act.ActivateCommandPalette },
+
+    -- Search case insensitive by default
+    { key = 'f', mods = 'CMD', action = act.Search { CaseInSensitiveString = '' } },
 
     -- Pane keybindings
     { key = 's', mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
@@ -29,16 +31,6 @@ function module.apply_to_config(config)
     -- We can make separate keybindings for resizing panes
     -- But Wezterm offers custom "mode" in the name of "KeyTable"
     { key = 'r', mods = 'LEADER', action = act.ActivateKeyTable { name = 'resize_pane', one_shot = false } },
-
-    -- Font size key table
-    {
-      key = 'f',
-      mods = 'LEADER',
-      action = act.ActivateKeyTable {
-        name = 'resize_font',
-        one_shot = false,
-      },
-    },
 
     -- Tab keybindings
     { key = 't', mods = 'LEADER', action = act.SpawnTab 'CurrentPaneDomain' },
@@ -113,13 +105,6 @@ function module.apply_to_config(config)
       { key = 'l', action = act.MoveTabRelative(1) },
       { key = 'Escape', action = 'PopKeyTable' },
       { key = 'Enter', action = 'PopKeyTable' },
-    },
-    resize_font = {
-      { key = 'k', action = act.IncreaseFontSize },
-      { key = 'j', action = act.DecreaseFontSize },
-      { key = 'r', action = act.ResetFontSize },
-      { key = 'Escape', action = 'PopKeyTable' },
-      { key = 'q', action = 'PopKeyTable' },
     },
   }
 end
