@@ -61,6 +61,20 @@ M.Battery = {
     ['90'] = wez.nerdfonts.md_battery_90,
     ['100'] = wez.nerdfonts.md_battery,
   },
+
+  Unknown = {
+    ['00'] = wez.nerdfonts.md_battery_outline,
+    ['10'] = wez.nerdfonts.md_battery_10,
+    ['20'] = wez.nerdfonts.md_battery_20,
+    ['30'] = wez.nerdfonts.md_battery_30,
+    ['40'] = wez.nerdfonts.md_battery_40,
+    ['50'] = wez.nerdfonts.md_battery_50,
+    ['60'] = wez.nerdfonts.md_battery_60,
+    ['70'] = wez.nerdfonts.md_battery_70,
+    ['80'] = wez.nerdfonts.md_battery_80,
+    ['90'] = wez.nerdfonts.md_battery_90,
+    ['100'] = wez.nerdfonts.md_battery,
+  },
 }
 
 M.Time = {

@@ -1,5 +1,6 @@
 -- Inspired by https://github.com/theopn/dotfiles/blob/main/wezterm/wezterm.lua
 local wezterm = require 'wezterm'
+local projects = require 'projects'
 
 local module = {}
 
@@ -13,6 +14,19 @@ function module.apply_to_config(config)
     { key = 'phys:Space', mods = 'LEADER|SHIFT', action = act.SendKey { key = 'Space' } },
     { key = 'c', mods = 'LEADER', action = act.ActivateCopyMode },
     { key = 'phys:Space', mods = 'LEADER', action = act.ActivateCommandPalette },
+
+    -- Sends ESC + b and ESC + f sequence, which is used
+    -- for telling your shell to jump back/forward.
+    {
+      key = 'LeftArrow',
+      mods = 'OPT',
+      action = wezterm.action.SendString '\x1bb',
+    },
+    {
+      key = 'RightArrow',
+      mods = 'OPT',
+      action = wezterm.action.SendString '\x1bf',
+    },
 
     -- Search case insensitive by default
     { key = 'f', mods = 'CMD', action = act.Search { CaseInSensitiveString = '' } },
@@ -60,9 +74,20 @@ function module.apply_to_config(config)
     { key = '}', mods = 'LEADER|SHIFT', action = act.MoveTabRelative(1) },
 
     -- Workspace
-    { key = 'w', mods = 'LEADER', action = act.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' } },
+    {
+      key = 'w',
+      mods = 'LEADER',
+      -- Present a list of existing workspaces
+      action = act.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' },
+    },
     { key = 'Tab', mods = 'LEADER', action = act.SwitchWorkspaceRelative(1) },
     { key = 'Tab', mods = 'LEADER|SHIFT', action = act.SwitchWorkspaceRelative(-1) },
+    {
+      key = 'p',
+      mods = 'LEADER',
+      -- Present in to our project picker
+      action = projects.choose_project(),
+    },
 
     -- Open config in the default system editor with Cmd+, (the Apple way)
     {
