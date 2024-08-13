@@ -5,17 +5,27 @@
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias .....="cd ../../../.."
 
 # Aliases for tools.
-alias ls='eza --icons=auto -F -H --group-directories-first --git -1'
-alias ll='ls -alF'
+if command -v eza &>/dev/null; then
+    alias ls='eza --icons=auto -F -H --group-directories-first --git -1'
+    alias ll='ls -alF'
+    # Long form, groups, mark file types, order by last modified
+    alias lt="eza -lgF -s oldest --icons"
+else
+    alias ll = 'ls -alF'
+    alias lt="ls -lFt"
+fi
+
 alias lg='lazygit'
 alias lzd='lazydocker'
+
 
 # Empty the Trash on all mounted volumes and the main HDD.
 # Also, clear Apple’s System Logs to improve shell startup speed.
 # Finally, clear download history from quarantine. https://mths.be/bum
-# alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
 
 # Hide/show all desktop icons (useful when presenting) -- macOS only
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
@@ -29,6 +39,9 @@ alias afk="pmset displaysleepnow"
 for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
     alias "${method}"="lwp-request -m '${method}'"
 done
+
+# Install updates for Homebrew (+ packages), npm (+ packages), and Rust.
+alias update='brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; rustup update'
 
 # ---------------------------------------
 # Functions
@@ -46,9 +59,62 @@ function cdf() { # short for `cdfinder`
     cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
 }
 
+# Determine size of a file or total size of a directory
+function fs() {
+    if du -b /dev/null >/dev/null 2>&1; then
+	local arg=-sbh
+    else
+	local arg=-sh
+    fi
+    if [[ -n "$@" ]]; then
+	du $arg -- "$@"
+    else
+	du $arg .[^.]* ./*
+    fi
+}
+
+# Create a data URL from a file
+function dataurl() {
+    local mimeType=$(file -b --mime-type "$1")
+    if [[ $mimeType == text/* ]]; then
+	mimeType="${mimeType};charset=utf-8"
+    fi
+    echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
+}
+
+# Recursively delete files that match a certain pattern
+# (by default delete all `.DS_Store` files)
+# Thanks @wilto - github.com/Wilto/dotfiles/blob/master/bash/functions/cleanup
+function cleanup() {
+    local q="${1:-*.DS_Store}"
+    find . -type f -name "$q" -ls -delete
+}
+
+# README: Combine ripgrep, fzf, bat for very fancy CLI searching
+# https://junegunn.github.io/fzf/tips/ripgrep-integration/
+# ripgrep->fzf->vim [QUERY]
+function rfv() (
+    RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+    OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            nvim {1} +{2}     # No selection. Open the current line in Vim.
+          else
+            nvim +cw -q {+f}  # Build quickfix list for the selected items.
+          fi'
+    fzf </dev/null \
+	--disabled --ansi --multi \
+	--bind "start:$RELOAD" --bind "change:$RELOAD" \
+	--bind "enter:become:$OPENER" \
+	--bind "ctrl-o:execute:$OPENER" \
+	--bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+	--delimiter : \
+	--preview 'bat --style=full --color=always --highlight-line {2} {1}' \
+	--preview-window '~4,+{2}+4/3,<80(up)' \
+	--query "$*"
+)
+
 # Jump to a directory and open nvim
 function zn() {
-	z "$@" && nvim;
+    z "$@" && nvim;
 }
 
 # Yazi - change directory on quit

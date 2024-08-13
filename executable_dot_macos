@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+###############################################################################
+# Dock & Hot Corners                                                          #
+###############################################################################
+
+# Autohide the Dock when the mouse is out
+defaults write com.apple.dock "autohide" -bool "true"
+
+# Make Dock icons of hidden applications translucent
+defaults write com.apple.dock showhidden -bool true
+
+# Group windows by application in Mission Control.
+defaults write com.apple.dock "expose-group-apps" -bool "true"
+
+# Scroll up on a Dock icon to show all Space's opened windows for an app, or open stack.
+defaults write com.apple.dock "scroll-to-open" -bool "true"
+
+# Make sure changes take effect
+killall Dock
+
+# Hot corners
+# Possible values:
+# 0: No Option
+# 2: Mission Control
+# 3: Show application windows
+# 4: Desktop
+# 5: Start screen saver
+# 6: Disable screen saver
+# 7: Dashboard
+# 10: Put display to sleep
+# 11: Launchpad
+# 12: Notification Center
+# 13: Lock Screen
+# Modifiers:
+# 0: No Modifier
+# 131072: Shift Key
+# 262144: Control Key
+# 524288: Option Key
+# 1048576: Command Key
+# Top right screen corner → Desktop
+defaults write com.apple.dock wvous-tr-corner -int 4
+defaults write com.apple.dock wvous-tr-modifier -int 0
+# Bottom br -> Nothing
+defaults write com.apple.dock wvous-br-corner -int 0
+
+###############################################################################
+# Finder                                                                      #
+###############################################################################
+
+# Show path bar in Finder
+defaults write com.apple.finder "ShowPathbar" -bool "true" && killall Finder
+
+# Keep folders on top when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+
+###############################################################################
+# Printer                                                                     #
+###############################################################################
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+
+###############################################################################
+# Track Pad                                                                   #
+###############################################################################
+
+# Trackpad: enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+
+# Enable 3-finger drag. (Moving with 3 fingers in any window "chrome" moves the window.)
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
+defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool "true"
+
+
+###############################################################################
+# Messages                                                                    #
+###############################################################################
+
+# # Disable automatic emoji substitution (i.e. use plain text smileys)
+defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
+
+
+###############################################################################
+# Other                                                                       #
+###############################################################################
+echo 'Next, we will set the screen to lock after 5 seconds after screen saver starts or display is turned off.'
+sysadminctl -screenLock 5 seconds -password -
+
+
+echo "Done! Note that some of these changes require a logout/restart to take effect."
