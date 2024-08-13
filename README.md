@@ -30,6 +30,7 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 - [Starship](https://starship.rs/) as shell prompt.
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- A lot of functions and aliases to make my life easier.
 
 ### Fonts & Themes
 
@@ -50,9 +51,4 @@ Read through [`.macos`](./executable_dot_macos) to see if you would like to use 
 
 - [Glance](https://github.com/glanceapp/glance) as a simple website overview.
 - [Maybe](https://github.com/maybe-finance/maybe) as a finance tracker.
-
-## Future Changes
-
-- I'm looking to get a more powerful tab bar for Wezterm.
-- I will be adding more features to my `.zshrc`.
 

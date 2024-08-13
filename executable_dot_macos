@@ -101,7 +101,7 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 # Other                                                                       #
 ###############################################################################
 echo 'Next, we will set the screen to lock after 5 seconds after screen saver starts or display is turned off.'
-sysadminctl -screenLock 5 seconds -password -
+sysadminctl -screenLock 5 -password -
 
 
 echo "Done! Note that some of these changes require a logout/restart to take effect."
