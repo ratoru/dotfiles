@@ -41,6 +41,11 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 - [pyenv](https://github.com/pyenv/pyenv) and [uv](https://github.com/astral-sh/uv) for Python.
 - [fnm](https://github.com/Schniz/fnm) for Node.js.
 
+## MacOS Settings
+
+I also included a small script that uses `default` to automatically configure my settings.
+Read through [`.macos`](./executable_dot_macos) to see if you would like to use the same settings.
+
 ## Docker Apps
 
 - [Glance](https://github.com/glanceapp/glance) as a simple website overview.
