@@ -52,3 +52,7 @@ Read through [`.macos`](./executable_dot_macos) to see if you would like to use 
 - [Glance](https://github.com/glanceapp/glance) as a simple website overview.
 - [Maybe](https://github.com/maybe-finance/maybe) as a finance tracker.
 
+## Future changes
+
+- Check out [Aerospace](https://github.com/nikitabobko/AeroSpace?tab=readme-ov-file).
+

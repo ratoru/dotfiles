@@ -9,7 +9,7 @@ do a great job of explaining how to configure `nvim`.
 - Install Neovim. A lot of plugins only support the latest version.
 - Install `git`.
 - Install a Nerd Font.
-- Install all the languages you want to use (npm, go, ...).
+- Install `ripgrep` and all the languages you want to use (npm, go, ...).
 - Copy this folder into `~/.config/nvim/`. Alternatively, head over to [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 
 and follow the install instructions.
 
@@ -35,7 +35,7 @@ examples of adding popularly requested plugins.
 Read through `keymaps.lua` and `commands.lua` in `/lua/custom/` to see what I added. Some of the key features:
 
 - Better clipboard handling.
-- Smoother indentig.
+- Smoother indenting.
 - Smarter auto-continuation of comments.
 
 ### Plugins
@@ -52,10 +52,10 @@ Additionally, I added some `mini` plugins in `init.lua`: `mini.move`, `mini.star
 
 Aside from the usual `onedark`, I discovered a few other color schemes that I really enjoy.
 
+- [Catppuccin](https://github.com/catppuccin/nvim) - has the best support across plugins and apps.
 - [nordic.nvim](https://github.com/AlexvZyl/nordic.nvim) - a slightly darker Nord. This is currently my default.
 - [monokai-pro.nvim](https://github.com/loctvl842/monokai-pro.nvim)
 - [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim) - specifically the `carbonfox` variant.
-- [catpuccin](https://github.com/catppuccin/nvim)
 
 ### AI
 
@@ -66,7 +66,10 @@ I hope that they will be sufficient.
 
 - I am still figuring out what the optimal keybindings for `harpoon` are. They are currently under `j` for `jump`.
 - I am going to change document symbols ` ds` and workspace symbols ` ws` somehow.
-- I am currently trying `CopilotChat` for Cursor-like functionality.
+- I am currently trying `CopilotChat` for Cursor-like functionality. Other things to try:
+    - gp.nvim
+    - neocodeium
+    - supermaven
 - I might remove `neo-tree` again.
 - I might add `neo-git`.
 - I might add LSPs in the future.
