@@ -1,0 +1,92 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // put key-bindings here if you want them to work in normal & visual mode
+      // Navigation
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+
+      // Searching
+      "space space": "file_finder::Toggle",
+      "space s g": "pane::DeploySearch",
+      "g r": "editor::FindAllReferences",
+
+      // Diagnostics
+      "space q": "diagnostics::Deploy",
+
+      // Jumping
+      "] b": "pane::ActivateNextItem",
+      "[ b": "pane::ActivatePrevItem",
+      "space 1": ["pane::ActivateItem", 0],
+      "space 2": ["pane::ActivateItem", 1],
+      "space 3": ["pane::ActivateItem", 2],
+      "space 4": ["pane::ActivateItem", 3],
+      "space 5": ["pane::ActivateItem", 4],
+      "space 6": ["pane::ActivateItem", 5],
+      "space 7": ["pane::ActivateItem", 6],
+      "space 8": ["pane::ActivateItem", 7],
+      "space 9": ["pane::ActivateItem", 8],
+      "space 0": "pane::ActivateLastItem",
+      "space b d": "pane::CloseActiveItem",
+
+      // Code actions
+      "space c a": "editor::ToggleCodeActions",
+
+      // Toggles
+      "\\": "workspace::ToggleLeftDock",
+      "space t h": "editor::ToggleInlayHints",
+
+      // Zed Tasks
+      "space r t": "task::Spawn",
+      "space r a": "task::Rerun"
+    }
+  },
+  {
+    "context": "vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore" // remap jk in insert mode to escape.
+    }
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      // Moving lines
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp",
+      // Better indenting
+      ">": "editor::Indent",
+      "<": "editor::Outdent"
+    }
+  },
+  {
+    "context": "EmptyPane || SharedScreen",
+    "bindings": {
+      // put key-bindings here (in addition to above) if you want them to
+      // work when no editor exists
+      "space space": "file_finder::Toggle",
+      "space s g": "workspace::NewSearch"
+    }
+  },
+  {
+    "context": "Dock",
+    "bindings": {
+      // Send normal key code when leader is pressed twice.
+      "shift-space shift-space": ["workspace::SendKeystrokes", "space"],
+      // Navigation
+      "shift-space h": ["workspace::ActivatePaneInDirection", "Left"],
+      "shift-space l": ["workspace::ActivatePaneInDirection", "Right"],
+      "shift-space k": ["workspace::ActivatePaneInDirection", "Up"],
+      "shift-space j": ["workspace::ActivatePaneInDirection", "Down"]
+    }
+  }
+]

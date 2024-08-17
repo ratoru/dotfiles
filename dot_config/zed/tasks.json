@@ -1,0 +1,12 @@
+// Static tasks configuration.
+//
+// Example:
+[
+  {
+    "label": "Run Lazygit",
+    "command": "if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then lazygit; fi",
+    "tags": ["git"],
+    "use_new_terminal": true,
+    "hide": "on_success"
+  }
+]

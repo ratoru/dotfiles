@@ -1,0 +1,59 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `zed: Open Default Settings` command
+// from the command palette
+{
+  "theme": {
+    "mode": "dark",
+    "light": "Solarized Light",
+    "dark": "Catppuccin Mocha - No Italics"
+  },
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "on_yank",
+    // Lets `f` and `t` motions extend across multiple lines
+    "use_multiline_find": true
+  },
+  "relative_line_numbers": true,
+  "soft_wrap": "editor_width",
+  "auto_signature_help": true,
+  "calls": {
+    "mute_on_join": true
+  },
+  "vertical_scroll_margin": 5,
+  "inlay_hints": {
+    "enabled": true
+  },
+  "tabs": {
+    "git_status": true
+  },
+  "terminal": {
+    "font_fallbacks": ["Hack Nerd Font Mono"]
+  },
+  "journal": {
+    "path": "~/Documents/Notes/400 Daily Notes",
+    "hour_format": "hour24"
+  },
+  "languages": {
+    "Python": {
+      "format_on_save": "on",
+      "formatter": [
+        {
+          "code_actions": {
+            "source.organizeImports.ruff": true,
+            "source.fixAll.ruff": true
+          }
+        },
+        {
+          "language_server": {
+            "name": "ruff"
+          }
+        }
+      ]
+    }
+  }
+}

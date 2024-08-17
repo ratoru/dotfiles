@@ -4,3 +4,6 @@ README.md
 /**/dot_DS_Store
 /**/github-copilot/hosts.json
 /**/imgs
+/**/zed/conversations
+/**/zed/embeddings
+/**/zed/prompts
