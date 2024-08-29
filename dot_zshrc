@@ -142,14 +142,6 @@ eval "$(starship init zsh)"
 # fnm (for Node)
 eval "$(fnm env --use-on-cd)"
 
-# Pyenv
-eval "$(pyenv init -)"
-
-# Might delete in favor of `uv`.
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-export WORKON_HOME=$HOME/.virtualenvs
-pyenv virtualenvwrapper_lazy
-
 # Zoxide directory jumping
 eval "$(zoxide init zsh)"
 

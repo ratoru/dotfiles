@@ -39,7 +39,7 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 
 ### Environments
 
-- [pyenv](https://github.com/pyenv/pyenv) and [uv](https://github.com/astral-sh/uv) for Python.
+- [uv](https://github.com/astral-sh/uv) for Python.
 - [fnm](https://github.com/Schniz/fnm) for Node.js.
 
 ## MacOS Settings
