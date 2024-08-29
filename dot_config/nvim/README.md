@@ -62,6 +62,10 @@ Aside from the usual `onedark`, I discovered a few other color schemes that I re
 I am using `copilot.lua` and `CopilotChat` as coding assistants. While this is probably the weakest point of `nvim` at the moment,
 I hope that they will be sufficient.
 
+## Uninstalling
+
+For information how to uninstall refer to the kickstart repository or go directly to [lazy.nvim](https://lazy.folke.io/usage#-uninstalling).
+
 ## Future Changes
 
 - I am still figuring out what the optimal keybindings for `harpoon` are. They are currently under `j` for `jump`.

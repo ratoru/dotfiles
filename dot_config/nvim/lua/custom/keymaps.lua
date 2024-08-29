@@ -11,6 +11,10 @@ vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank to system clipboard' 
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
+-- Move selected line / block of text in visual mode
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
 -- Execute macro over visual region.
 vim.keymap.set('x', '@', function()
   return ':norm @' .. vim.fn.getcharstr() .. '<cr>'
