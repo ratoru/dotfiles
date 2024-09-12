@@ -9,5 +9,9 @@ return {
     -- setup for usage with cmp
     suggestion = { enabled = false },
     panel = { enabled = false },
+    filetypes = {
+      beancount = false,
+      ledger = false,
+    },
   },
 }

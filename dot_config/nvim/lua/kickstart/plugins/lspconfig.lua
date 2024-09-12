@@ -174,6 +174,8 @@ return {
         --   },
         -- },
         -- gopls = {},
+        -- Bash and Shell
+        shfmt = {},
 
         -- Markdown
         marksman = {},
@@ -193,7 +195,7 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
 
         -- Web Development
         -- I am using typescript-tools!

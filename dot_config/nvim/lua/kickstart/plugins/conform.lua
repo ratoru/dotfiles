@@ -33,7 +33,9 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        markdown = { 'marksman' },
+        markdown = { 'marksman', 'prettierd' },
+        bash = { 'shfmt' },
+        sh = { 'shfmt' },
         rust = { 'rustfmt' },
         python = {
           -- To fix auto-fixable lint errors.
