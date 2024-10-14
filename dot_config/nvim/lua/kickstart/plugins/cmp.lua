@@ -70,16 +70,6 @@ return {
         Copilot = '',
       }
 
-      -- Source: https://github.com/zbirenbaum/copilot-cmp?tab=readme-ov-file#tab-completion-configuration-highly-recommended
-      -- For better tab suggestions.
-      -- local has_words_before = function()
-      --   if vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
-      --     return false
-      --   end
-      --   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-      --   return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match '^%s*$' == nil
-      -- end
-
       cmp.setup {
         snippet = {
           expand = function(args)
@@ -141,7 +131,6 @@ return {
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
-          { name = 'copilot' }, -- Added for copilot support.
           {
             name = 'lazydev',
             -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it

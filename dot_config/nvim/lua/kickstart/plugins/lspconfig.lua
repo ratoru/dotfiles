@@ -173,7 +173,10 @@ return {
         --     '--offset-encoding=utf-16',
         --   },
         -- },
-        -- gopls = {},
+
+        -- Golang
+        gopls = {},
+
         -- Bash and Shell
         shfmt = {},
 
@@ -195,7 +198,7 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
+        ts_ls = {},
 
         -- Web Development
         -- I am using typescript-tools!

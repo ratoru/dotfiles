@@ -65,6 +65,8 @@ vim.opt.scrolloff = 10
 -- [[ My settings ]]
 -- Convert tabs to spaces
 vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.termguicolors = true -- for bufferline
 
 -- vim: ts=2 sts=2 sw=2 et

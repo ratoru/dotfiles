@@ -4,11 +4,15 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
-  config = function()
-    require('refactoring').setup {}
-
-    vim.keymap.set({ 'n', 'x' }, '<leader>cr', function()
-      require('refactoring').select_refactor {}
-    end)
-  end,
+  opts = {},
+  keys = {
+    {
+      '<leader>cr',
+      function()
+        require('refactoring').select_refactor {}
+      end,
+      mode = { 'n', 'x' },
+      desc = '[R]efactor',
+    },
+  },
 }
