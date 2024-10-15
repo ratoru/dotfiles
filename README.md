@@ -1,6 +1,6 @@
 # dotfiles
 
-These dotfiles are designed to strike a good balance between minimalism and great features. 
+These dotfiles are designed to strike a good balance between minimalism and great features.
 
 ![preview](./imgs/full-setup.png)
 
@@ -47,12 +47,7 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 I also included a small script that uses `default` to automatically configure my settings.
 Read through [`.macos`](./executable_dot_macos) to see if you would like to use the same settings.
 
-## Docker Apps
-
-- [Glance](https://github.com/glanceapp/glance) as a simple website overview.
-- [Maybe](https://github.com/maybe-finance/maybe) as a finance tracker.
-
 ## Future changes
 
 - Check out [Aerospace](https://github.com/nikitabobko/AeroSpace?tab=readme-ov-file).
-
+- Add AI chat assistant.
