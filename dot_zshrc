@@ -31,8 +31,9 @@ else
     alias lt="ls -lFt"
 fi
 
-alias lg='lazygit'
-alias lzd='lazydocker'
+alias n="nvim"
+alias lg="lazygit"
+alias lzd="lazydocker"
 
 
 # Empty the Trash on all mounted volumes and the main HDD.
