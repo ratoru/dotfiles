@@ -33,7 +33,7 @@ return {
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        markdown = { 'marksman', 'prettierd' },
+        markdown = { 'marksman' },
         bash = { 'shfmt' },
         sh = { 'shfmt' },
         rust = { 'rustfmt' },
@@ -45,17 +45,9 @@ return {
           -- To organize the imports.
           'ruff_organize_imports',
         },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
+        json = { 'jq' },
+        terraform = { 'terraformls' },
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-        json = { 'prettierd', 'prettier', stop_after_first = true },
-        html = { 'prettierd', 'prettier', stop_after_first = true },
-        css = { 'prettierd', 'prettier', stop_after_first = true },
       },
     },
   },
