@@ -7,15 +7,13 @@ return {
     -- local actions = require 'fzf-lua.actions'
 
     fzf.setup {
+      'max-perf',
       winopts = {
         preview = {
           default = 'bat',
         },
       },
       fzf_colors = true,
-      oldfiles = {
-        include_current_session = true,
-      },
       previewers = {
         bat = {
           theme = 'Catppuccin Mocha',
@@ -52,7 +50,8 @@ return {
 
     -- LSPs in `lspconfig.lua`
     -- Misc
-    map('<leader>sc', fzf.resume, '[S]earch [C]ontinue')
+    map('<leader>sc', fzf.resume, '[S]earch [c]ontinue')
+    map('<leader>sC', fzf.colorschemes, '[S]earch [C]olorschmes')
     map('<leader>sh', fzf.helptags, '[S]earch [H]elp tags')
     map('<leader>sk', fzf.keymaps, '[S]earch [K]eymaps')
     map("<leader>s'", fzf.marks, "[S]earch ['] (marks)")

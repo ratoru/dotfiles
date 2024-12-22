@@ -58,13 +58,13 @@ return {
 
       require('mini.align').setup()
 
-      -- Show a greeting screen when opening neovim without a file
-      require('mini.starter').setup {
-        footer = '',
-        -- Removed `-` to allow oil activation.
-        -- Do not add `:` as it allows you to go into command mode.
-        query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_.',
-      }
+      -- -- Show a greeting screen when opening neovim without a file
+      -- require('mini.starter').setup {
+      --   footer = '',
+      --   -- Removed `-` to allow oil activation.
+      --   -- Do not add `:` as it allows you to go into command mode.
+      --   query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_.',
+      -- }
 
       -- Clear buffers
       require('mini.bufremove').setup()
