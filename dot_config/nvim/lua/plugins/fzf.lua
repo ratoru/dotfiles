@@ -14,11 +14,14 @@ return {
         },
       },
       fzf_colors = true,
-      previewers = {
-        bat = {
-          theme = 'Catppuccin Mocha',
-        },
-      },
+      files = { prompt = '   ' },
+      grep = { prompt = ' 󰱼  ' },
+      buffers = { prompt = '   ' },
+      lsp = { code_actions = { prompt = '   ' } },
+      oldfiles = { prompt = '   ' },
+      helptags = { prompt = '   ' },
+      manpages = { prompt = '   ' },
+      highlights = { prompt = '   ' },
     }
 
     ---@param lhs string

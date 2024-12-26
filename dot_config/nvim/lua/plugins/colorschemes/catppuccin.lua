@@ -1,18 +1,11 @@
 return {
   'catppuccin/nvim',
-  priority = 1000, -- Make sure to load this before all the other start plugins.
+  -- Make sure to load this before all the other start plugins.
+  -- priority = 1000,
 
   config = function()
     require('catppuccin').setup {
       flavor = 'mocha',
-      -- custom_highlights = function(colors)
-      --   return {
-      --     VertSplit = { fg = colors.surface0 },
-      --     WinSeparator = {
-      --       fg = colors.lavender,
-      --     },
-      --   }
-      -- end,
       integrations = {
         flash = true,
         harpoon = true,
@@ -29,10 +22,10 @@ return {
     -- vim.cmd.colorscheme 'onedark'
     -- vim.cmd.colorscheme 'nightfox'
     -- vim.cmd.colorscheme 'monokai-pro-spectrum'
-    vim.cmd.colorscheme 'catppuccin'
+    -- vim.cmd.colorscheme 'catppuccin'
     -- vim.cmd.colorscheme 'bamboo'
 
     -- You can configure highlights by doing something like:
-    vim.cmd.hi 'Comment gui=none'
+    -- vim.cmd.hi 'Comment gui=none'
   end,
 }

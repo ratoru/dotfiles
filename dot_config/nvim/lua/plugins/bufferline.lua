@@ -15,49 +15,26 @@ return {
         diagnostics = 'nvim_lsp',
       },
     },
-    config = function(_, opts)
-      local mocha = require('catppuccin.palettes').get_palette 'mocha'
-
-      opts.highlights = require('catppuccin.groups.integrations.bufferline').get {
-        styles = { 'italic', 'bold' },
-        custom = {
-          all = {
-            fill = { bg = '#000000' },
-          },
-          mocha = {
-            background = { fg = mocha.text },
-          },
-          latte = {
-            background = { fg = '#000000' },
-          },
-        },
-      }
-      require('bufferline').setup(opts)
-
-      -- Buffer navigation.
-      vim.keymap.set('n', '[b', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Previous buffer' })
-      vim.keymap.set('n', ']b', '<cmd>BufferLineCycleNext<cr>', { desc = 'Next buffer' })
-      require('which-key').add {
-        -- { '<leader>bc', '<cmd>BufferLinePickClose<cr>', desc = 'Select a buffer to close' },
-        {
-          '<leader>bd',
-          function()
-            require('mini.bufremove').delete(0, true)
-          end,
-          desc = 'Delete current buffer',
-        },
-        { '<leader>bl', '<cmd>BufferLineCloseLeft<cr>', desc = 'Close buffers to the left' },
-        -- { '<leader>bo', '<cmd>BufferLinePick<cr>', desc = 'Select a buffer to open' },
-        { '<leader>bp', '<cmd>BufferLineTogglePin<cr>', desc = 'Pin buffer' },
-        { '<leader>br', '<cmd>BufferLineCloseRight<cr>', desc = 'Close buffers to the right' },
-        { '<leader>1', '<cmd>BufferLineGoToBuffer 1<cr>', desc = 'Go to first buffer in view', hidden = true },
-        { '<leader>2', '<cmd>BufferLineGoToBuffer 2<cr>', desc = 'Go to first buffer in view', hidden = true },
-        { '<leader>3', '<cmd>BufferLineGoToBuffer 3<cr>', desc = 'Go to first buffer in view', hidden = true },
-        { '<leader>4', '<cmd>BufferLineGoToBuffer 4<cr>', desc = 'Go to first buffer in view', hidden = true },
-        { '<leader>5', '<cmd>BufferLineGoToBuffer 5<cr>', desc = 'Go to first buffer in view', hidden = true },
-        { '<leader>6', '<cmd>BufferLineGoToBuffer 6<cr>', desc = 'Go to first buffer in view', hidden = true },
-        { '<leader>7', '<cmd>BufferLineGoToBuffer 7<cr>', desc = 'Go to first buffer in view', hidden = true },
-      }
-    end,
+    keys = {
+      { '[b', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Previous buffer' }, mode = 'n' },
+      { ']b', '<cmd>BufferLineCycleNext<cr>', { desc = 'Next buffer' }, mode = 'n' },
+      {
+        '<leader>bd',
+        function()
+          require('mini.bufremove').delete(0, true)
+        end,
+        desc = 'Delete current buffer',
+      },
+      { '<leader>bl', '<cmd>BufferLineCloseLeft<cr>', desc = 'Close buffers to the left' },
+      { '<leader>bp', '<cmd>BufferLineTogglePin<cr>', desc = 'Pin buffer' },
+      { '<leader>br', '<cmd>BufferLineCloseRight<cr>', desc = 'Close buffers to the right' },
+      { '<leader>1', '<cmd>BufferLineGoToBuffer 1<cr>', desc = 'which_key_ignore' },
+      { '<leader>2', '<cmd>BufferLineGoToBuffer 2<cr>', desc = 'which_key_ignore' },
+      { '<leader>3', '<cmd>BufferLineGoToBuffer 3<cr>', desc = 'which_key_ignore' },
+      { '<leader>4', '<cmd>BufferLineGoToBuffer 4<cr>', desc = 'which_key_ignore' },
+      { '<leader>5', '<cmd>BufferLineGoToBuffer 5<cr>', desc = 'which_key_ignore' },
+      { '<leader>6', '<cmd>BufferLineGoToBuffer 6<cr>', desc = 'which_key_ignore' },
+      { '<leader>7', '<cmd>BufferLineGoToBuffer 7<cr>', desc = 'which_key_ignore' },
+    },
   },
 }

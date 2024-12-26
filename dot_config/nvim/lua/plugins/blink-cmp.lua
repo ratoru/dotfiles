@@ -1,4 +1,3 @@
---- @diagnostic disable: missing-fields
 local fancy_border = {
   menu = { '󱐋', 'WarningMsg' },
   info = { '', 'DiagnosticHint' },
@@ -38,22 +37,22 @@ return {
     -- elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
-      providers = {
-        -- copilot = {
-        --   name = 'copilot',
-        --   module = 'blink-cmp-copilot',
-        -- },
-      },
+      -- providers = {
+      -- copilot = {
+      --   name = 'copilot',
+      --   module = 'blink-cmp-copilot',
+      -- },
+      -- },
     },
 
     -- experimental auto-brackets support
     completion = {
       accept = { auto_brackets = { enabled = true } },
+
+      list = { selection = 'auto_insert' },
+
       menu = {
         draw = {
-          align_to_component = 'label',
-          padding = 1,
-          gap = 1,
           columns = {
             { 'kind_icon', gap = 1 },
             { 'label', 'label_description', gap = 1 },
@@ -70,6 +69,9 @@ return {
           border = { fancy_border.info, unpack(fancy_border.body) },
         },
       },
+
+      -- Displays a preview of the selected item on the current line
+      ghost_text = { enabled = true },
     },
 
     -- experimental signature help support
@@ -79,8 +81,11 @@ return {
         border = { fancy_border.info, unpack(fancy_border.body) },
       },
     },
+
+    fuzzy = {
+      prebuilt_binaries = {
+        download = false,
+      },
+    },
   },
-  -- allows extending the providers array elsewhere in your config
-  -- without having to redefine it
-  opts_extend = { 'sources.default' },
 }

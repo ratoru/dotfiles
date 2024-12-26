@@ -27,6 +27,7 @@ require('lazy').setup({
   require 'plugins/blink-cmp',
   require 'plugins/bufferline',
   require 'plugins/colorschemes/catppuccin',
+  require 'plugins/colorschemes/tokyonight',
   require 'plugins/colorschemes/kanagawa',
   require 'plugins/colorschemes/nordic',
   require 'plugins/conform',
