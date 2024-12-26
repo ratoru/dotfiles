@@ -1,0 +1,34 @@
+################
+# Settings     #
+################
+font-family = Iosevka Term SS14
+font-size = 16
+font-style = Extended
+
+theme = tokyonight
+
+link-url = true
+
+window-padding-x = 8
+window-padding-color = extend
+
+quit-after-last-window-closed = true
+
+macos-titlebar-proxy-icon = hidden
+macos-option-as-alt = left
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+
+macos-icon = custom-style
+macos-icon-ghost-color = c0caf5
+macos-icon-screen-color = 1a1b26
+
+auto-update = check
+
+################
+# Keybinds     #
+################
+# I could make it global: ?
+keybind = super+e=toggle_quick_terminal
+keybind = super+down=jump_to_prompt:1
+keybind = super+up=jump_to_prompt:-1
