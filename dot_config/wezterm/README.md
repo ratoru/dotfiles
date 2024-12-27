@@ -3,6 +3,8 @@
 Wezterm is an amazing terminal that is highly customizable. I especially
 love that Wezterm supports the most important tmux features and I can write my own tab bar.
 
+![wezterm-preview](../../imgs/wezterm-setup.png)
+
 ## Features
 
 - Vim-like keybindings for tab and pane navigation.

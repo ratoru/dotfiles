@@ -2,7 +2,7 @@
 
 These dotfiles are designed to strike a good balance between minimalism and great features.
 
-![preview](./imgs/full-setup.png)
+![preview](./imgs/ghostty-setup.png)
 
 ## ⚡Getting Started
 
