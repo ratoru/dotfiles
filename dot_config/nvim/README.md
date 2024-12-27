@@ -52,8 +52,9 @@ Additionally, I added some `mini` plugins in `init.lua`: `mini.move`, `mini.star
 
 Aside from the usual `onedark`, I discovered a few other color schemes that I really enjoy.
 
-- [Catppuccin](https://github.com/catppuccin/nvim) - has the best support across plugins and apps.
-- [nordic.nvim](https://github.com/AlexvZyl/nordic.nvim) - a slightly darker Nord. This is currently my default.
+- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
+- [Catppuccin](https://github.com/catppuccin/nvim)
+- [nordic.nvim](https://github.com/AlexvZyl/nordic.nvim) - a slightly darker Nord.
 - [monokai-pro.nvim](https://github.com/loctvl842/monokai-pro.nvim)
 - [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim) - specifically the `carbonfox` variant.
 - [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)

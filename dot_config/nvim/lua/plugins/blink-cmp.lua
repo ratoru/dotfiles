@@ -54,9 +54,8 @@ return {
       menu = {
         draw = {
           columns = {
-            { 'kind_icon', gap = 1 },
             { 'label', 'label_description', gap = 1 },
-            { 'kind' },
+            { 'kind_icon', 'kind', gap = 1 },
           },
         },
         border = { fancy_border.menu, unpack(fancy_border.body) },

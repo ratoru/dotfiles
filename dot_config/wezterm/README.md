@@ -19,6 +19,8 @@ If the terminal is very slow, it is worth investigating the `tab-title` event.
 ## Futur changes
 
 - I might want to set up a workspace upon launch and add more workspace keybindings.
+    - [resurrect.wezterm](https://github.com/MLFlexer/resurrect.wezterm)
+    - [smart_workspace_switcher.wezterm](https://github.com/MLFlexer/smart_workspace_switcher.wezterm)
 - Investigate multiplexing over a unix socket.
 
 ## Similar Configs
