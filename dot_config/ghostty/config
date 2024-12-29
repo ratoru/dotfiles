@@ -1,11 +1,16 @@
 ################
 # Settings     #
 ################
+font-family = Zed Mono
 font-family = Iosevka Term SS14
 font-size = 16
 font-style = Extended
 
 theme = tokyonight
+cursor-invert-fg-bg = true
+
+cursor-click-to-move = true
+mouse-hide-while-typing = true
 
 link-url = true
 
