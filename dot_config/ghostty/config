@@ -1,7 +1,6 @@
 ################
 # Settings     #
 ################
-font-family = Zed Mono
 font-family = Iosevka Term SS14
 font-size = 16
 font-style = Extended
@@ -19,7 +18,7 @@ window-padding-color = extend
 
 quit-after-last-window-closed = true
 
-quick-terminal-position = right
+quick-terminal-position = center
 
 macos-titlebar-proxy-icon = hidden
 macos-option-as-alt = left
