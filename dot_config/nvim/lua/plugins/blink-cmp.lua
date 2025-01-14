@@ -49,8 +49,6 @@ return {
     completion = {
       accept = { auto_brackets = { enabled = true } },
 
-      list = { selection = 'auto_insert' },
-
       menu = {
         draw = {
           columns = {

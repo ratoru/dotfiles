@@ -69,4 +69,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.termguicolors = true -- for bufferline
 
+-- Reduce size of `~/.local/state/nvim/lsp.log`
+vim.lsp.set_log_level 'OFF'
+
 -- vim: ts=2 sts=2 sw=2 et

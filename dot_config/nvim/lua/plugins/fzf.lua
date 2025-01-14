@@ -37,28 +37,39 @@ return {
       fzf.blines { winopts = { preview = { hidden = 'hidden' } } }
     end, '[/] Fuzzy search current buffer')
     map('<leader>?', fzf.lines, '[?] Fuzzy search open buffers')
-    map('<leader>sf', fzf.files, '[S]earch [F]iles')
-    map('<leader>s.', fzf.oldfiles, '[S]earch Recent Files ("." for repeat)')
+    map('<leader>sf', fzf.files, 'Search files')
+    map('<leader>sd', function()
+      local buffer_path = vim.api.nvim_buf_get_name(0)
+      if buffer_path == '' then
+        print '[fzf-lua] No buffer is currently open.'
+        return
+      end
+      local buffer_dir = vim.fn.fnamemodify(buffer_path, ':h')
+      fzf.files {
+        cwd = buffer_dir,
+      }
+    end, 'Search buffer directory')
+    map('<leader>s.', fzf.oldfiles, 'Search recent files ("." for repeat)')
     map('<leader>sn', function()
       fzf.files { cwd = vim.fn.stdpath 'config' }
-    end, '[S]earch [N]eovim files')
+    end, 'Search neovim files')
 
     -- Search
-    map('<leader>sg', fzf.live_grep_native, '[S]each by [G]rep')
-    map('<leader>sw', fzf.grep_cword, '[S]each Current [w]ord')
-    map('<leader>sW', fzf.grep_cWORD, '[S]earch Current [W]ORD')
+    map('<leader>sg', fzf.live_grep_native, 'Search by grep')
+    map('<leader>sw', fzf.grep_cword, 'Search current word')
+    map('<leader>sW', fzf.grep_cWORD, 'Search current WORD')
 
     -- Git
-    map('<leader>sG', fzf.git_status, '[S]each [G]it status')
+    map('<leader>sm', fzf.git_status, 'Search git status')
 
     -- LSPs in `lspconfig.lua`
     -- Misc
-    map('<leader>sc', fzf.resume, '[S]earch [c]ontinue')
-    map('<leader>sC', fzf.colorschemes, '[S]earch [C]olorschmes')
-    map('<leader>sh', fzf.helptags, '[S]earch [H]elp tags')
-    map('<leader>sk', fzf.keymaps, '[S]earch [K]eymaps')
-    map("<leader>s'", fzf.marks, "[S]earch ['] (marks)")
-    map('<leader>s"', fzf.registers, '[S]earch ["] (registers)')
-    map('<leader>sj', fzf.jumps, '[S]earch [J]umps')
+    map('<leader>sc', fzf.resume, 'Search continue')
+    map('<leader>sC', fzf.colorschemes, 'Search Colorschmes')
+    map('<leader>sh', fzf.helptags, 'Search help tags')
+    map('<leader>sk', fzf.keymaps, 'Search keymaps')
+    map("<leader>s'", fzf.marks, "Search ['] (marks)")
+    map('<leader>s"', fzf.registers, 'Search ["] (registers)')
+    map('<leader>sj', fzf.jumps, 'Search jumps')
   end,
 }

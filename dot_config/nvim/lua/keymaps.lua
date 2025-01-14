@@ -6,7 +6,7 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -27,12 +27,12 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- This remap allows you to paste text over a highlighted text
 -- while keeping the original text in the yanked register.
-vim.keymap.set('x', '<leader>p', [["_dP]], { desc = '[p]aste and keep yanked text' })
-vim.keymap.set({ 'n', 'v' }, '<leader>dd', [["_d]], { desc = '[d]elete without register' })
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste and keep yanked text' })
+vim.keymap.set({ 'n', 'v' }, '<leader>dd', [["_d]], { desc = 'Delete without register' })
 
 -- System Clipboard Management
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = '[y]ank to system clipboard' })
-vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = '[Y]ank to system clipboard' })
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'yank to system clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Yank to system clipboard' })
 
 -- Indent while remaining in visual mode.
 vim.keymap.set('v', '<', '<gv')
@@ -57,6 +57,6 @@ vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next result' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous result' })
 
 -- Window management
-vim.keymap.set('n', '<leader>be', '<C-w>=', { desc = 'Make windows [E]qual size' })
+vim.keymap.set('n', '<leader>be', '<C-w>=', { desc = 'Make windows Equal size' })
 
 -- vim: ts=2 sts=2 sw=2 et
