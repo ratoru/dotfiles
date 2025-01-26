@@ -1,0 +1,8 @@
+theme = Atom
+
+macos-icon = custom-style
+macos-icon-ghost-color = abb2bf
+macos-icon-screen-color = 282c34
+
+
+# vim: ft=config

@@ -42,6 +42,6 @@ font-size = 16
 # For more info how to change these on the fly please read the README.
 # Reloading the icon requires a restart of Ghostty.
 config-file = font/maple-mono
-config-file = theme/snazzy
+config-file = theme/tokyonight
 
 # vim: ft=config
