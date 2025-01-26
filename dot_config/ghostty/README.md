@@ -14,7 +14,7 @@ The contents of the configuration files in the directories `font` and `theme` co
 ├── config
 ├── font
 │   ├── iosevka-14
-    └── maple-mono
+│   └── maple-mono
 └── theme
     ├── catppuccin-mocha
     ├── default

@@ -1,14 +1,11 @@
-local fancy_border = {
-  menu = { '󱐋', 'WarningMsg' },
-  info = { '', 'DiagnosticHint' },
-  body = { '─', '╮', '│', '╯', '─', '╰', '│' },
-}
-
 return {
   'saghen/blink.cmp',
   lazy = false, -- lazy loading handled internally
   -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = {
+    'rafamadriz/friendly-snippets',
+    -- 'fang2hou/blink-copilot',
+  },
 
   -- Build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
   build = 'cargo build --release',
@@ -31,6 +28,9 @@ return {
       -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = 'mono',
+      kind_icons = {
+        Copilot = '',
+      },
     },
 
     -- default list of enabled providers defined so that you can extend it
@@ -48,10 +48,16 @@ return {
         return 0
       end,
       -- providers = {
-      -- copilot = {
-      --   name = 'copilot',
-      --   module = 'blink-cmp-copilot',
-      -- },
+      --   copilot = {
+      --     name = 'copilot',
+      --     module = 'blink-copilot',
+      --     score_offset = 100,
+      --     async = true,
+      --     opts = {
+      --       max_completions = 3,
+      --       max_attempts = 4,
+      --     },
+      --   },
       -- },
     },
 
@@ -66,14 +72,14 @@ return {
             { 'kind_icon', 'kind', gap = 1 },
           },
         },
-        border = { fancy_border.menu, unpack(fancy_border.body) },
+        border = 'rounded',
       },
 
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 200,
         window = {
-          border = { fancy_border.info, unpack(fancy_border.body) },
+          border = 'rounded',
         },
       },
 
@@ -85,7 +91,7 @@ return {
     signature = {
       enabled = true,
       window = {
-        border = { fancy_border.info, unpack(fancy_border.body) },
+        border = 'rounded',
       },
     },
 
