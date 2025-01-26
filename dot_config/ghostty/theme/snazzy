@@ -1,0 +1,8 @@
+theme = Snazzy
+
+macos-icon = custom-style
+macos-icon-ghost-color = eff0eb
+macos-icon-screen-color = 282a36
+
+
+# vim: ft=config

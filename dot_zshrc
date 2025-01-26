@@ -126,6 +126,25 @@ function rfv() (
 	--query "$*"
 )
 
+# Change ghostty config on the fly.
+function ghosttyc {
+  local GHOSTTY_DIR="$HOME/.config/ghostty"
+  local CMD="sed -i '' 's:\(config-file = {1}\)/.*:\1/{2}:' $GHOSTTY_DIR/config && osascript -so -e 'tell application \"Ghostty\" to activate' -e 'tell application \"System Events\" to keystroke \",\" using {command down, shift down}'"
+  fd \
+    --type f \
+    --exclude 'config' \
+    --exclude 'README.md' \
+    --base-directory $GHOSTTY_DIR \
+  | fzf \
+    --style full \
+    --layout=reverse \
+    --list-label=" Settings " \
+    --preview "bat --color=always --style=numbers -l INI $GHOSTTY_DIR/{}" \
+    --preview-label=" Preview " \
+    --delimiter=/ \
+    --bind="enter:become:$CMD"
+}
+
 # Tree replacement using broot.
 function tree {
     br -c :pt "$@"
@@ -134,16 +153,6 @@ function tree {
 # Jump to a directory and open nvim
 function zn() {
     z "$@" && nvim;
-}
-
-# Yazi - change directory on quit
-function ya() {
-    local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        cd -- "$cwd"
-    fi
-    rm -f -- "$tmp"
 }
 
 # ---------------------------------------

@@ -1,0 +1,8 @@
+theme = catppuccin-mocha
+
+macos-icon = custom-style
+macos-icon-ghost-color = cfd6f1
+macos-icon-screen-color = 1e1e2d
+
+
+# vim: ft=config

@@ -1,0 +1,8 @@
+theme = GruvboxDarkHard
+
+macos-icon = custom-style
+macos-icon-ghost-color = e8dcb7
+macos-icon-screen-color = 1b1b1b
+
+
+# vim: ft=config

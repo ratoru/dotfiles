@@ -1,11 +1,6 @@
 ################
 # Settings     #
 ################
-font-family = Iosevka Term SS14
-font-size = 16
-font-style = Extended
-
-theme = tokyonight
 cursor-invert-fg-bg = true
 
 cursor-click-to-move = true
@@ -15,6 +10,8 @@ link-url = true
 
 window-padding-x = 8
 window-padding-color = extend
+
+clipboard-paste-protection = true
 
 copy-on-select = true
 
@@ -28,10 +25,6 @@ macos-option-as-alt = left
 macos-auto-secure-input = true
 macos-secure-input-indication = true
 
-macos-icon = custom-style
-macos-icon-ghost-color = c0caf5
-macos-icon-screen-color = 1a1b26
-
 auto-update = check
 
 ################
@@ -41,3 +34,14 @@ auto-update = check
 keybind = super+e=toggle_quick_terminal
 keybind = super+down=jump_to_prompt:1
 keybind = super+up=jump_to_prompt:-1
+
+###################################
+# Font & Theme - Hotswappable     #
+###################################
+font-size = 16
+# For more info how to change these on the fly please read the README.
+# Reloading the icon requires a restart of Ghostty.
+config-file = font/maple-mono
+config-file = theme/snazzy
+
+# vim: ft=config

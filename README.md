@@ -12,11 +12,15 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 
 ## 🔨 Featured Tools
 
+> [!NOTE]
+> While a lot of these tools will be useful to you out of the box,
+> I can highly recommend reading the respective docs and watching a showcase.
+
 ### Config Files
 
 - [chezmoi](https://www.chezmoi.io/) for dotfile management.
 - [nvim](./dot_config/nvim/) as primary editor. Configured using `kickstart`.
-- [wezterm](./dot_config/wezterm/) as a configurable, cross-platform terminal.
+- [ghostty](./dot_config/ghostty/) as a configurable, cross-platform terminal. I added support for changing the font and theme on the fly.
 - [yazi](https://yazi-rs.github.io/) as terminal file manager. Also evaluating [broot](https://github.com/Canop/broot) as an alternative.
 - [bat](https://github.com/sharkdp/bat) as `cat` replacement.
 
@@ -25,6 +29,7 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 - [zoxide](https://github.com/ajeetdsouza/zoxide) for jumping around using `z`.
 - [eza](https://github.com/eza-community/eza) as `ls` replacement.
 - [fzf](https://github.com/junegunn/fzf) as a fuzzy finder.
+- [jq](https://github.com/jqlang/jq) as a JSON processor.
 - [lazygit](https://github.com/jesseduffield/lazygit) as a simple terminal UI for git commands.
 - [lazydocker](https://github.com/jesseduffield/lazydocker) as a simple terminal UI for docker commands.
 - [Starship](https://starship.rs/) as shell prompt.
@@ -32,9 +37,18 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - A lot of functions and aliases to make my life easier.
 
-### Fonts & Themes
+### Fonts
 
-- [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md) or [Iosevka](https://github.com/be5invis/Iosevka/tree/v30.3.3). To use Iosevka, go to the repo, pick the font variant you like (e.g. SS14), and download the term variant. In iTerm pick the Extended variant and use a Nerd Font like Meslo for non ascii characters.
+To make Neovim and some of the other CLI tools look good you will need a Nerdfont. Some terminals like Ghostty already have Nerdfont icons packaged. This means you will not need to patch your fonts.
+
+- [Iosevka](https://github.com/be5invis/Iosevka/tree/v30.3.3). To use Iosevka, go to the repo, pick the font variant you like (e.g. SS14), and download the term variant. In iTerm pick the Extended variant and use a Nerd Font like Meslo for non ascii characters.
+- [Maple Mono](https://github.com/subframe7536/maple-font). This font is a lot more playful than Iosevka.
+- [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
+
+### Themes
+
+- Tokyonight
+- GruvboxDarkHard
 - [Snazzy Terminal Theme](https://github.com/sindresorhus/iterm2-snazzy)
 
 ### Environments
@@ -49,5 +63,4 @@ Read through [`.macos`](./executable_dot_macos) to see if you would like to use 
 
 ## Future changes
 
-- Check out [Aerospace](https://github.com/nikitabobko/AeroSpace?tab=readme-ov-file).
 - Add AI chat assistant.
