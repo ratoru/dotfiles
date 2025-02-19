@@ -1,7 +1,7 @@
 # My nvim config
 
-My config is built on top of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim). 
-I recommend trying it first before adding more plugins. `kickstart`'s `README` and `init.lua` 
+My config is built on top of [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).
+I recommend trying it first before adding more plugins. `kickstart`'s `README` and `init.lua`
 do a great job of explaining how to configure `nvim`.
 
 ## Installation
@@ -10,8 +10,8 @@ do a great job of explaining how to configure `nvim`.
 - Install `git`.
 - Install a Nerd Font.
 - Install `ripgrep`, `fzf`, `fd`, and all the languages you want to use (npm, go, ...).
-- Copy this folder into `~/.config/nvim/`. Alternatively, head over to [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 
-and follow the install instructions.
+- Copy this folder into `~/.config/nvim/`. Alternatively, head over to [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
+  and follow the install instructions.
 
 ### Post Installation
 
@@ -73,9 +73,9 @@ For information how to uninstall refer to the kickstart repository or go directl
 - I am still figuring out what the optimal keybindings for `harpoon` are. They are currently under `j` for `jump`.
 - I am going to change document symbols ` ds` and workspace symbols ` ws` somehow.
 - I am currently trying `CopilotChat` for Cursor-like functionality. Other things to try:
-    - gp.nvim
-    - neocodeium
-    - supermaven
+  - gp.nvim
+  - neocodeium
+  - supermaven
 
 ## Things I wish I knew sooner
 
@@ -87,4 +87,3 @@ For information how to uninstall refer to the kickstart repository or go directl
 - Explore the keymaps by pressing `space` and reading all the options.
 - Select visual area, type `:` and then `s/<find>/<replace>/g` to replace text in a certain area.
 - Take some time to read [LazyVim for Ambitious Devs](https://lazyvim-ambitious-devs.phillips.codes/course/chapter-1/) and [You don't grok Vi](https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118).
-

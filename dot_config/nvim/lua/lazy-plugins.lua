@@ -35,7 +35,7 @@ require('lazy').setup({
   -- require 'plugins/copilot',
   require 'plugins/diffview',
   require 'plugins/flash',
-  require 'plugins/fzf',
+  -- require 'plugins/fzf',
   require 'plugins/gitsigns',
   require 'plugins/grug-far',
   require 'plugins/harpoon',
@@ -55,6 +55,7 @@ require('lazy').setup({
   require 'plugins/undotree',
   require 'plugins/which-key',
   require 'plugins/zenmode',
+  require 'plugins/zk',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
