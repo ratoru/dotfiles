@@ -87,3 +87,4 @@ For information how to uninstall refer to the kickstart repository or go directl
 - Explore the keymaps by pressing `space` and reading all the options.
 - Select visual area, type `:` and then `s/<find>/<replace>/g` to replace text in a certain area.
 - Take some time to read [LazyVim for Ambitious Devs](https://lazyvim-ambitious-devs.phillips.codes/course/chapter-1/) and [You don't grok Vi](https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118).
+- What the quickfix list is and how to use `cdo`.

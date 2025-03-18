@@ -1,182 +1,82 @@
 # ---------------------------------------
-# QoL - Work
+# Options
 # ---------------------------------------
-# Assume AWS profile for current terminal session
-function aws-prof() {
-    if [ -z "$1" ]; then
-	echo ${AWS_PROFILE}
-    else
-	export AWS_PROFILE=$@
-    fi
-}
+# ----- History -----
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+
+# ----- Other -----
+setopt AUTO_CD              # Go to folder path without using cd.
+setopt CORRECT              # Spelling correction
+
+# ---------------------------------------
+# Completion
+# ---------------------------------------
+source $HOME/.config/zsh/completion.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+# ---------------------------------------
+# Vim like editing
+# ---------------------------------------
+source $HOME/.config/zsh/vim-mode.zsh
 
 # ---------------------------------------
 # Aliases for common commands
 # ---------------------------------------
-# Fast navigation
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-
-# Aliases for tools.
-if command -v eza &>/dev/null; then
-    alias ls="eza --icons=auto -F -H --group-directories-first --git -1"
-    alias ll="ls -alF"
-    # Long form, groups, mark file types, order by last modified
-    alias lt="eza -lgF -s oldest --icons"
-else
-    alias ll="ls -alF"
-    alias lt="ls -lFt"
-fi
-
-alias n="nvim"
-alias lg="lazygit"
-alias lzd="lazydocker"
-
-
-# Empty the Trash on all mounted volumes and the main HDD.
-# Also, clear Apple’s System Logs to improve shell startup speed.
-# Finally, clear download history from quarantine. https://mths.be/bum
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
-
-# Hide/show all desktop icons (useful when presenting) -- macOS only
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-# Sleep (when going AFK) -- macOS only
-# Can lock the screen if system setting is set to require password immediately after sleep.
-alias afk="pmset displaysleepnow"
-
-# One of @janmoesen’s ProTip™s
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-    alias "${method}"="lwp-request -m '${method}'"
-done
-
-# Install updates for Homebrew (+ packages), npm (+ packages), and Rust.
-alias update='brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; rustup update'
+source $HOME/.config/zsh/aliases.zsh
 
 # ---------------------------------------
-# Functions
+# Utility Functions
 # ---------------------------------------
-# bindkey '^[[A' history-search-backward
-# bindkey '^[[B' history-search-forward
-
-# Create a new directory and enter it
-function mkd() {
-	mkdir -p "$@" && cd "$_";
-}
-
-# Change working directory to the top-most Finder window location -- macOS only
-function cdf() { # short for `cdfinder`
-    cd "$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')";
-}
-
-# Determine size of a file or total size of a directory
-function fs() {
-    if du -b /dev/null >/dev/null 2>&1; then
-	local arg=-sbh
-    else
-	local arg=-sh
-    fi
-    if [[ -n "$@" ]]; then
-	du $arg -- "$@"
-    else
-	du $arg .[^.]* ./*
-    fi
-}
-
-# Create a data URL from a file
-function dataurl() {
-    local mimeType=$(file -b --mime-type "$1")
-    if [[ $mimeType == text/* ]]; then
-	mimeType="${mimeType};charset=utf-8"
-    fi
-    echo "data:${mimeType};base64,$(openssl base64 -in "$1" | tr -d '\n')"
-}
-
-# Recursively delete files that match a certain pattern
-# (by default delete all `.DS_Store` files)
-# Thanks @wilto - github.com/Wilto/dotfiles/blob/master/bash/functions/cleanup
-function cleanup() {
-    local q="${1:-*.DS_Store}"
-    find . -type f -name "$q" -ls -delete
-}
-
-# README: Combine ripgrep, fzf, bat for very fancy CLI searching
-# https://junegunn.github.io/fzf/tips/ripgrep-integration/
-# ripgrep->fzf->vim [QUERY]
-function rfv() (
-    RELOAD='reload:rg --column --color=always --smart-case {q} || :'
-    OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-            nvim {1} +{2}     # No selection. Open the current line in Vim.
-          else
-            nvim +cw -q {+f}  # Build quickfix list for the selected items.
-          fi'
-    fzf </dev/null \
-	--disabled --ansi --multi \
-	--bind "start:$RELOAD" --bind "change:$RELOAD" \
-	--bind "enter:become:$OPENER" \
-	--bind "ctrl-o:execute:$OPENER" \
-	--bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
-	--delimiter : \
-	--preview 'bat --style=full --color=always --highlight-line {2} {1}' \
-	--preview-window '~4,+{2}+4/3,<80(up)' \
-	--query "$*"
-)
-
-# Change ghostty config on the fly.
-function ghosttyc {
-  local GHOSTTY_DIR="$HOME/.config/ghostty"
-  local CMD="sed -i '' 's:\(config-file = {1}\)/.*:\1/{2}:' $GHOSTTY_DIR/config && osascript -so -e 'tell application \"Ghostty\" to activate' -e 'tell application \"System Events\" to keystroke \",\" using {command down, shift down}'"
-  fd \
-    --type f \
-    --exclude 'config' \
-    --exclude 'README.md' \
-    --base-directory $GHOSTTY_DIR \
-  | fzf \
-    --style full \
-    --layout=reverse \
-    --list-label=" Settings " \
-    --preview "bat --color=always --style=numbers -l INI $GHOSTTY_DIR/{}" \
-    --preview-label=" Preview " \
-    --delimiter=/ \
-    --bind="enter:become:$CMD"
-}
-
-# Tree replacement using broot.
-function tree {
-    br -c :pt "$@"
-}
-
-# Jump to a directory and open nvim
-function zn() {
-    z "$@" && nvim;
-}
+source $HOME/.config/zsh/scripts.zsh
+source $HOME/.config/zsh/plugins/gitit.zsh
 
 # ---------------------------------------
-# Set up other tools
+# Navigation
 # ---------------------------------------
-# Broot - navigate directories
-source /Users/raphael/.config/broot/launcher/bash/br
-
-# Starship
-eval "$(starship init zsh)"
-
-# fzf finder
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# fnm (for Node)
-eval "$(fnm env --use-on-cd)"
-
+source $HOME/.config/zsh/plugins/bd.zsh
+# Broot
+source $HOME/.config/broot/launcher/bash/br
 # Zoxide directory jumping
 eval "$(zoxide init zsh)"
 
-# zsh autosuggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# zsh syntax highlighting. Must be at the end of the file.
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# ---------------------------------------
+# Other tools
+# ---------------------------------------
+# ----- Version Managment -----
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 [ -f "/Users/raphael/.ghcup/env" ] && . "/Users/raphael/.ghcup/env" # ghcup-env
+
+# ---------------------------------------
+# Prompt
+# ---------------------------------------
+# Starship
+# See https://github.com/starship/starship/issues/3418
+if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
+      "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
+    zle -N zle-keymap-select "";
+fi
+eval "$(starship init zsh)"
+
+# Autosuggestions
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Highlighting. Needs to be at the end of the file!
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# History substring search. Needs to be after zsh-syntax-highlighting!
+source $HOME/.config/zsh/plugins/history-substring-search.zsh
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_TIMEOUT=0.3
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
