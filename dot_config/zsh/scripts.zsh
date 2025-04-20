@@ -113,3 +113,38 @@ function promptspeed {
 function ports {
     sudo netstat -tulpn | grep LISTEN | fzf;
 }
+
+# Start timer and send MacOS notification.
+# Useful to remember to take eye-breaks.
+# You will have to enable notifications for 'Script Editor'.
+function timer() {
+  local input=$1
+  local seconds=0
+
+  # Default to minutes if no unit is given
+  if [[ "$input" =~ ^[0-9]+$ ]]; then
+    seconds=$((input * 60))
+  elif [[ "$input" =~ ^([0-9]+)([smh])$ ]]; then
+    local value=${match[1]}
+    local unit=${match[2]}
+    case $unit in
+      s) seconds=$value ;;
+      m) seconds=$((value * 60)) ;;
+      h) seconds=$((value * 3600)) ;;
+      *) echo "Unknown time unit."; return 1 ;;
+    esac
+  else
+    echo "Usage: timer <number>[s|m|h] (e.g., 30s, 20m, 1h). Default unit is minutes."
+    return 1
+  fi
+
+  echo "Timer set for $seconds seconds."
+  echo "Press Ctrl+T to view progress."
+  sleep $seconds
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+      osascript -e 'display notification "Your timer has elapsed." with title "Time is up" sound name "Morse"'
+  else
+    echo -e "\a"
+    echo "Time is up!"
+  fi
+}
