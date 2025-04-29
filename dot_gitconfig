@@ -1,0 +1,24 @@
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
+[remote "origin"]
+	prune = true
+[init]
+	defaultBranch = main
+[diff]
+	algorithm = histogram
+[merge]
+	conflictstyle = zdiff3
+[branch]
+	sort = -committerdate
+[alias]
+	# short aliases
+	st = status 
+	co = checkout
+	ci = commit
+	br = branch
+	df = diff
+	lg = log -p
+	rso = remote show origin
+
+	unstage = reset HEAD --
+	last = log -1 HEAD
