@@ -11,22 +11,21 @@
     "bindings": {
       // put key-bindings here if you want them to work in normal & visual mode
       // Navigation
-      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
 
       // Searching
       "space space": "file_finder::Toggle",
-      "space s g": "pane::DeploySearch",
-      "g r": "editor::FindAllReferences",
+      "space /": "pane::DeploySearch",
 
       // Diagnostics
       "space q": "diagnostics::Deploy",
 
       // Jumping
       "] b": "pane::ActivateNextItem",
-      "[ b": "pane::ActivatePrevItem",
+      "[ b": "pane::ActivatePreviousItem",
       "space 1": ["pane::ActivateItem", 0],
       "space 2": ["pane::ActivateItem", 1],
       "space 3": ["pane::ActivateItem", 2],
@@ -48,13 +47,23 @@
 
       // Zed Tasks
       "space r t": "task::Spawn",
-      "space r a": "task::Rerun"
+      "space r a": "task::Rerun",
+
+      // Git
+      "space g g": [
+        "task::Spawn",
+        { "task_name": "start lazygit", "reveal_target": "center" }
+      ],
+      "space g f": [
+        "task::Spawn",
+        { "task_name": "start lazygit file log", "reveal_target": "center" }
+      ]
     }
   },
   {
-    "context": "vim_mode == insert",
+    "context": "vim_mode == normal && !menu",
     "bindings": {
-      // "j k": "vim::NormalBefore" // remap jk in insert mode to escape.
+      "shift-y": ["workspace::SendKeystrokes", "y $"] // Use neovim's yank behavior: yank to end of line.
     }
   },
   {
@@ -74,19 +83,26 @@
       // put key-bindings here (in addition to above) if you want them to
       // work when no editor exists
       "space space": "file_finder::Toggle",
-      "space s g": "workspace::NewSearch"
+      "space /": "workspace::NewSearch",
+      "\\": "workspace::ToggleLeftDock"
     }
   },
   {
     "context": "Dock",
     "bindings": {
-      // Send normal key code when leader is pressed twice.
-      "shift-space shift-space": ["workspace::SendKeystrokes", "space"],
       // Navigation
-      "shift-space h": ["workspace::ActivatePaneInDirection", "Left"],
-      "shift-space l": ["workspace::ActivatePaneInDirection", "Right"],
-      "shift-space k": ["workspace::ActivatePaneInDirection", "Up"],
-      "shift-space j": ["workspace::ActivatePaneInDirection", "Down"]
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "\\": "workspace::ToggleLeftDock"
+    }
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward"
     }
   }
 ]

@@ -9,17 +9,40 @@
 {
   "theme": {
     "mode": "dark",
-    "light": "Solarized Light",
-    "dark": "Catppuccin Mocha - No Italics"
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  },
+  "buffer_font_fallbacks": ["Hack Nerd Font Mono"],
+  "confirm_quit": true,
+  "cursor_blink": false,
+  "tabs": {
+    "git_status": true
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "use_smartcase_search": true,
+  "soft_wrap": "editor_width",
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": true
+  },
+  "terminal": {
+    "copy_on_select": true
   },
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "on_yank",
     // Lets `f` and `t` motions extend across multiple lines
-    "use_multiline_find": true
+    "use_multiline_find": true,
+    "toggle_relative_line_numbers": true
+  },
+  "project_panel": {
+    "entry_spacing": "comfortable"
   },
   "relative_line_numbers": true,
-  "soft_wrap": "editor_width",
   "auto_signature_help": true,
   "calls": {
     "mute_on_join": true
@@ -27,16 +50,6 @@
   "vertical_scroll_margin": 5,
   "inlay_hints": {
     "enabled": true
-  },
-  "tabs": {
-    "git_status": true
-  },
-  "terminal": {
-    "font_fallbacks": ["Hack Nerd Font Mono"]
-  },
-  "journal": {
-    "path": "~/Documents/Notes/400 Daily Notes",
-    "hour_format": "hour24"
   },
   "languages": {
     "Python": {
