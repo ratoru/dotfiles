@@ -6,6 +6,7 @@
 	defaultBranch = main
 [diff]
 	algorithm = histogram
+	colorMoved = default
 [merge]
 	conflictstyle = zdiff3
 [branch]
@@ -21,4 +22,10 @@
 	rso = remote show origin
 
 	unstage = reset HEAD --
+	undo = reset --soft HEAD~1
 	last = log -1 HEAD
+
+	# difftastic commands
+	dl = -c diff.external=difft log -p --ext-diff
+	ds = -c diff.external=difft show --ext-diff
+	dft = -c diff.external=difft diff
