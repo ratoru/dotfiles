@@ -14,7 +14,7 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 
 > [!NOTE]
 > While a lot of these tools will be useful to you out of the box,
-> I can highly recommend reading the respective docs and watching a showcase.
+> I highly recommend reading the respective docs and watching a showcase.
 
 ### Config Files
 
@@ -45,16 +45,19 @@ To make Neovim and some of the other CLI tools look good you will need a Nerdfon
 - [Maple Mono](https://github.com/subframe7536/maple-font). This font is a lot more playful than Iosevka.
 - [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
 
+For note taking I am a big fan of [Atkinson Hyperlegible Next](https://www.brailleinstitute.org/about-us/news/braille-institute-launches-enhanced-atkinson-hyperlegible-font-to-make-reading-easier/).
+
 ### Themes
 
 - Tokyonight
 - GruvboxDarkHard
 - [Snazzy Terminal Theme](https://github.com/sindresorhus/iterm2-snazzy)
+- [Vague](https://github.com/vague2k/vague.nvim)
 
 ### Environments
 
 - [uv](https://github.com/astral-sh/uv) for Python.
-- [fnm](https://github.com/Schniz/fnm) for Node.js.
+- [mise](https://mise.jdx.dev/) for Node.js and Go.
 
 ## MacOS Settings
 
@@ -65,4 +68,4 @@ Read through [`.macos`](./executable_dot_macos) to see if you would like to use 
 
 - Add AI chat assistant.
 - Learn `tee` and [GNU parallel](https://blog.ronin.cloud/gnu-parallel/).
-    - It's called tee because it makes a T. Data flows across the top of the T (from stdin to stdout), but also gets duplicated out the bottom (to a file). 
+  - It's called tee because it makes a T. Data flows across the top of the T (from stdin to stdout), but also gets duplicated out the bottom (to a file).
