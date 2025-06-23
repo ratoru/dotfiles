@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "author": "ratoru",
+  "contributors": [
+    "Max Stoiber <contact@mxstbr.com>"
+  ],
+  "license": "MIT",
+  "compilerOptions": {
+    "strict": true
+  },
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": false,
+    "proseWrap": "preserve"
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "tasks": {
+    "build": "deno run --allow-read --allow-write rules.ts",
+    "watch": "deno run --allow-read --allow-write --watch rules.ts"
+  }
+}

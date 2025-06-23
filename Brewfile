@@ -15,3 +15,7 @@ brew "zoxide"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "jesseduffield/lazygit/lazygit"
+
+# Casks (GUI applications)
+cask "karabiner-elements"
+cask "obsidian"
