@@ -64,6 +64,10 @@ For note taking I am a big fan of [Atkinson Hyperlegible Next](https://www.brail
 I also included a small script that uses `default` to automatically configure my settings.
 Read through [`.macos`](./executable_dot_macos) to see if you would like to use the same settings.
 
+### Productive Keyboard Setup
+
+I use [Karabiner Elements](./dot_config/private_karabiner/) to optimize my built-in keyboard.
+
 ## Future changes
 
 - Add AI chat assistant.

@@ -140,6 +140,8 @@ const rules: KarabinerRules[] = [
       semicolon: mapTo("fastforward"),
       // 'v'oice
       v: mapTo("spacebar", ["left_option"]),
+      // "T"heme
+      t: open(`raycast://extensions/raycast/system/toggle-system-appearance`),
     },
 
     // a = "nAv" layer
@@ -185,6 +187,28 @@ const rules: KarabinerRules[] = [
       ),
       // Paste clipboard into new note
       v: open(`"obsidian://new?vault=${OBSIDIAN_VAULT}&clipboard&append"`),
+    },
+
+    // r = "Raycast"
+    r: {
+      c: open(
+        "raycast://extensions/thomas/color-picker/pick-color?launchType=background",
+      ),
+      e: open(
+        "raycast://extensions/raycast/emoji-symbols/search-emoji-symbols",
+      ),
+      p: open(
+        "raycast://extensions/raycast/raycast/confetti?launchType=background",
+      ),
+      h: open(
+        "raycast://extensions/raycast/clipboard-history/clipboard-history",
+      ),
+      1: open(
+        "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-1",
+      ),
+      2: open(
+        "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2",
+      ),
     },
   }),
 ];
