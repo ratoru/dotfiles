@@ -13,7 +13,7 @@ window-padding-color = extend
 
 clipboard-paste-protection = true
 
-copy-on-select = true
+copy-on-select = clipboard
 
 quit-after-last-window-closed = true
 
@@ -32,6 +32,7 @@ auto-update = check
 ################
 # I could make it global: ?
 keybind = super+e=toggle_quick_terminal
+keybind = global:cmd+opt+ctrl+shift+t=toggle_quick_terminal
 keybind = super+down=jump_to_prompt:1
 keybind = super+up=jump_to_prompt:-1
 
@@ -42,6 +43,6 @@ font-size = 16
 # For more info how to change these on the fly please read the README.
 # Reloading the icon requires a restart of Ghostty.
 config-file = font/maple-mono
-config-file = theme/tokyonight
+config-file = theme/vague
 
 # vim: ft=config

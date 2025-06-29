@@ -1,8 +1,4 @@
 font-family = Maple Mono
-font-style = Regular
-font-style-bold = ExtraBold
-font-style-italic = Italic
-font-style-bold-italic = ExtraBold Italic
 font-feature = cv35
 adjust-cell-height = 4
 adjust-cursor-height = 4
