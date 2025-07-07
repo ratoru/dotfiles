@@ -36,9 +36,9 @@ Make sure you have [Karabiner Elements](https://karabiner-elements.pqrs.org/) an
 - **Option 2**:
   - Install & start Karabiner Elements
   - Clone this repository
-  - Delete the default ~/.config/karabiner folder
-  - Create a symlink with ln -s ~/github/mxstbr/karabiner ~/.config (where ~/github/mxstbr/karabiner is your local path to where you cloned the repository)
-  - Restart karabiner_console_user_server with launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server
+  - Delete the default `~/.config/karabiner` folder
+  - Create a symlink with `ln -s ~/github/mxstbr/karabiner ~/.config` (where `~/github/mxstbr/karabiner` is your local path to where you cloned the repository)
+  - Restart karabiner_console_user_server with `launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server`
 
 ### Commands
 

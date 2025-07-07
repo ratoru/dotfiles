@@ -1,7 +1,7 @@
 import { KarabinerRules } from "./types.ts";
 import {
   app,
-  createHyperSubLayers,
+  createSubLayers,
   mapTo,
   open,
   shell as _shell,
@@ -11,12 +11,12 @@ import {
 const OBSIDIAN_VAULT = "1ca51b502102e7b3";
 
 const rules: KarabinerRules[] = [
-  // Define the Hyper key itself
+  // Define the Layer key itself
   {
-    description: "Hyper Key (⌃⌥⇧⌘)",
+    description: "Layer Key (Right Command)",
     manipulators: [
       {
-        description: "Right Command -> Hyper Key",
+        description: "Right Command -> Layer Key",
         from: {
           key_code: "right_command",
           modifiers: {
@@ -26,7 +26,7 @@ const rules: KarabinerRules[] = [
         to: [
           {
             set_variable: {
-              name: "hyper",
+              name: "layer",
               value: 1,
             },
           },
@@ -34,7 +34,7 @@ const rules: KarabinerRules[] = [
         to_after_key_up: [
           {
             set_variable: {
-              name: "hyper",
+              name: "layer",
               value: 0,
             },
           },
@@ -74,16 +74,18 @@ const rules: KarabinerRules[] = [
     ],
   },
 
-  ...createHyperSubLayers({
+  ...createSubLayers({
     // Obsidian URIs need to be quoted since the URI format is non-standard.
     spacebar: open(
       `"obsidian://adv-uri?vault=${OBSIDIAN_VAULT}&commandid=zk-prefixer"`,
     ),
     // b = "B"rowse
     b: {
-      c: open("https://leetcode.com/problemset/"),
+      c: open("https://claude.ai/new"),
       e: open("https://gmail.com"),
       g: open("https://github.com"),
+      h: open("https://ratoru.com/blog"),
+      l: open("https://leetcode.com/problemset/"),
       r: open("https://reddit.com"),
     },
     // o = "Open" applications
@@ -210,6 +212,12 @@ const rules: KarabinerRules[] = [
         "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2",
       ),
     },
+    v: mapTo("v", [
+      "left_control",
+      "left_shift",
+      "left_option",
+      "left_command",
+    ]),
   }),
 ];
 

@@ -9,10 +9,10 @@
       "complex_modifications": {
         "rules": [
           {
-            "description": "Hyper Key (⌃⌥⇧⌘)",
+            "description": "Layer Key (Right Command)",
             "manipulators": [
               {
-                "description": "Right Command -> Hyper Key",
+                "description": "Right Command -> Layer Key",
                 "from": {
                   "key_code": "right_command",
                   "modifiers": {
@@ -24,7 +24,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper",
+                      "name": "layer",
                       "value": 1
                     }
                   }
@@ -32,7 +32,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper",
+                      "name": "layer",
                       "value": 0
                     }
                   }
@@ -74,7 +74,7 @@
             ]
           },
           {
-            "description": "Hyper Key + spacebar",
+            "description": "Layer Key + spacebar",
             "manipulators": [
               {
                 "to": [
@@ -95,52 +95,57 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper",
+                    "name": "layer",
                     "value": 1
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_spacebar",
+                    "name": "sublayer_spacebar",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_v",
                     "value": 0
                   }
                 ]
@@ -148,10 +153,10 @@
             ]
           },
           {
-            "description": "Hyper Key sublayer \"b\"",
+            "description": "Layer Key sublayer \"b\"",
             "manipulators": [
               {
-                "description": "Toggle Hyper sublayer b",
+                "description": "Toggle sublayer b",
                 "type": "basic",
                 "from": {
                   "key_code": "b",
@@ -164,7 +169,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_b",
+                      "name": "sublayer_b",
                       "value": 0
                     }
                   }
@@ -172,7 +177,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_b",
+                      "name": "sublayer_b",
                       "value": 1
                     }
                   }
@@ -180,47 +185,52 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_spacebar",
+                    "name": "sublayer_spacebar",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper",
+                    "name": "sublayer_v",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "layer",
                     "value": 1
                   }
                 ]
@@ -228,10 +238,10 @@
               {
                 "to": [
                   {
-                    "shell_command": "open https://leetcode.com/problemset/"
+                    "shell_command": "open https://claude.ai/new"
                   }
                 ],
-                "description": "Open https://leetcode.com/problemset/",
+                "description": "Open https://claude.ai/new",
                 "type": "basic",
                 "from": {
                   "key_code": "c",
@@ -244,7 +254,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 1
                   }
                 ]
@@ -268,7 +278,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 1
                   }
                 ]
@@ -292,7 +302,55 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open https://ratoru.com/blog"
+                  }
+                ],
+                "description": "Open https://ratoru.com/blog",
+                "type": "basic",
+                "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_b",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "to": [
+                  {
+                    "shell_command": "open https://leetcode.com/problemset/"
+                  }
+                ],
+                "description": "Open https://leetcode.com/problemset/",
+                "type": "basic",
+                "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_b",
                     "value": 1
                   }
                 ]
@@ -316,7 +374,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 1
                   }
                 ]
@@ -324,10 +382,10 @@
             ]
           },
           {
-            "description": "Hyper Key sublayer \"o\"",
+            "description": "Layer Key sublayer \"o\"",
             "manipulators": [
               {
-                "description": "Toggle Hyper sublayer o",
+                "description": "Toggle sublayer o",
                 "type": "basic",
                 "from": {
                   "key_code": "o",
@@ -340,7 +398,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_o",
+                      "name": "sublayer_o",
                       "value": 0
                     }
                   }
@@ -348,7 +406,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_o",
+                      "name": "sublayer_o",
                       "value": 1
                     }
                   }
@@ -356,47 +414,52 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_spacebar",
+                    "name": "sublayer_spacebar",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper",
+                    "name": "sublayer_v",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "layer",
                     "value": 1
                   }
                 ]
@@ -420,7 +483,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -444,7 +507,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -468,7 +531,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -492,7 +555,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -516,7 +579,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -540,7 +603,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -564,7 +627,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -588,7 +651,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -612,7 +675,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -636,7 +699,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -660,7 +723,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -684,7 +747,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -708,7 +771,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -732,7 +795,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 1
                   }
                 ]
@@ -740,10 +803,10 @@
             ]
           },
           {
-            "description": "Hyper Key sublayer \"w\"",
+            "description": "Layer Key sublayer \"w\"",
             "manipulators": [
               {
-                "description": "Toggle Hyper sublayer w",
+                "description": "Toggle sublayer w",
                 "type": "basic",
                 "from": {
                   "key_code": "w",
@@ -756,7 +819,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_w",
+                      "name": "sublayer_w",
                       "value": 0
                     }
                   }
@@ -764,7 +827,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_w",
+                      "name": "sublayer_w",
                       "value": 1
                     }
                   }
@@ -772,47 +835,52 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_spacebar",
+                    "name": "sublayer_spacebar",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper",
+                    "name": "sublayer_v",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "layer",
                     "value": 1
                   }
                 ]
@@ -839,7 +907,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -863,7 +931,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -887,7 +955,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -911,7 +979,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -935,7 +1003,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -959,7 +1027,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -983,7 +1051,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -1007,7 +1075,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -1031,7 +1099,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -1059,7 +1127,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -1086,7 +1154,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -1113,7 +1181,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -1140,7 +1208,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -1167,7 +1235,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 1
                   }
                 ]
@@ -1175,10 +1243,10 @@
             ]
           },
           {
-            "description": "Hyper Key sublayer \"s\"",
+            "description": "Layer Key sublayer \"s\"",
             "manipulators": [
               {
-                "description": "Toggle Hyper sublayer s",
+                "description": "Toggle sublayer s",
                 "type": "basic",
                 "from": {
                   "key_code": "s",
@@ -1191,7 +1259,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_s",
+                      "name": "sublayer_s",
                       "value": 0
                     }
                   }
@@ -1199,7 +1267,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_s",
+                      "name": "sublayer_s",
                       "value": 1
                     }
                   }
@@ -1207,47 +1275,52 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_spacebar",
+                    "name": "sublayer_spacebar",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper",
+                    "name": "sublayer_v",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "layer",
                     "value": 1
                   }
                 ]
@@ -1270,7 +1343,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 1
                   }
                 ]
@@ -1293,7 +1366,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 1
                   }
                 ]
@@ -1316,7 +1389,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 1
                   }
                 ]
@@ -1339,7 +1412,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 1
                   }
                 ]
@@ -1367,7 +1440,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 1
                   }
                 ]
@@ -1390,7 +1463,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 1
                   }
                 ]
@@ -1413,7 +1486,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 1
                   }
                 ]
@@ -1439,7 +1512,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 1
                   }
                 ]
@@ -1463,7 +1536,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 1
                   }
                 ]
@@ -1471,10 +1544,10 @@
             ]
           },
           {
-            "description": "Hyper Key sublayer \"a\"",
+            "description": "Layer Key sublayer \"a\"",
             "manipulators": [
               {
-                "description": "Toggle Hyper sublayer a",
+                "description": "Toggle sublayer a",
                 "type": "basic",
                 "from": {
                   "key_code": "a",
@@ -1487,7 +1560,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_a",
+                      "name": "sublayer_a",
                       "value": 0
                     }
                   }
@@ -1495,7 +1568,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_a",
+                      "name": "sublayer_a",
                       "value": 1
                     }
                   }
@@ -1503,47 +1576,52 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_spacebar",
+                    "name": "sublayer_spacebar",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper",
+                    "name": "sublayer_v",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "layer",
                     "value": 1
                   }
                 ]
@@ -1566,7 +1644,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1589,7 +1667,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1612,7 +1690,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1635,7 +1713,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1658,7 +1736,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1681,7 +1759,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1704,7 +1782,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1727,7 +1805,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1750,7 +1828,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1773,7 +1851,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1796,7 +1874,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1822,7 +1900,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1848,7 +1926,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 1
                   }
                 ]
@@ -1856,10 +1934,10 @@
             ]
           },
           {
-            "description": "Hyper Key sublayer \"c\"",
+            "description": "Layer Key sublayer \"c\"",
             "manipulators": [
               {
-                "description": "Toggle Hyper sublayer c",
+                "description": "Toggle sublayer c",
                 "type": "basic",
                 "from": {
                   "key_code": "c",
@@ -1872,7 +1950,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_c",
+                      "name": "sublayer_c",
                       "value": 0
                     }
                   }
@@ -1880,7 +1958,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_c",
+                      "name": "sublayer_c",
                       "value": 1
                     }
                   }
@@ -1888,47 +1966,52 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_spacebar",
+                    "name": "sublayer_spacebar",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper",
+                    "name": "sublayer_v",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "layer",
                     "value": 1
                   }
                 ]
@@ -1951,7 +2034,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 1
                   }
                 ]
@@ -1974,7 +2057,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 1
                   }
                 ]
@@ -1997,7 +2080,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 1
                   }
                 ]
@@ -2005,10 +2088,10 @@
             ]
           },
           {
-            "description": "Hyper Key sublayer \"n\"",
+            "description": "Layer Key sublayer \"n\"",
             "manipulators": [
               {
-                "description": "Toggle Hyper sublayer n",
+                "description": "Toggle sublayer n",
                 "type": "basic",
                 "from": {
                   "key_code": "n",
@@ -2021,7 +2104,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_n",
+                      "name": "sublayer_n",
                       "value": 0
                     }
                   }
@@ -2029,7 +2112,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_n",
+                      "name": "sublayer_n",
                       "value": 1
                     }
                   }
@@ -2037,47 +2120,52 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_spacebar",
+                    "name": "sublayer_spacebar",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper",
+                    "name": "sublayer_v",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "layer",
                     "value": 1
                   }
                 ]
@@ -2101,7 +2189,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 1
                   }
                 ]
@@ -2125,7 +2213,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 1
                   }
                 ]
@@ -2149,7 +2237,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 1
                   }
                 ]
@@ -2173,7 +2261,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 1
                   }
                 ]
@@ -2181,10 +2269,10 @@
             ]
           },
           {
-            "description": "Hyper Key sublayer \"r\"",
+            "description": "Layer Key sublayer \"r\"",
             "manipulators": [
               {
-                "description": "Toggle Hyper sublayer r",
+                "description": "Toggle sublayer r",
                 "type": "basic",
                 "from": {
                   "key_code": "r",
@@ -2197,7 +2285,7 @@
                 "to_after_key_up": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_r",
+                      "name": "sublayer_r",
                       "value": 0
                     }
                   }
@@ -2205,7 +2293,7 @@
                 "to": [
                   {
                     "set_variable": {
-                      "name": "hyper_sublayer_r",
+                      "name": "sublayer_r",
                       "value": 1
                     }
                   }
@@ -2213,47 +2301,52 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_spacebar",
+                    "name": "sublayer_spacebar",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_b",
+                    "name": "sublayer_b",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_o",
+                    "name": "sublayer_o",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_w",
+                    "name": "sublayer_w",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_s",
+                    "name": "sublayer_s",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_a",
+                    "name": "sublayer_a",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_c",
+                    "name": "sublayer_c",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_n",
+                    "name": "sublayer_n",
                     "value": 0
                   },
                   {
                     "type": "variable_if",
-                    "name": "hyper",
+                    "name": "sublayer_v",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "layer",
                     "value": 1
                   }
                 ]
@@ -2277,7 +2370,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 1
                   }
                 ]
@@ -2301,7 +2394,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 1
                   }
                 ]
@@ -2325,7 +2418,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 1
                   }
                 ]
@@ -2349,7 +2442,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 1
                   }
                 ]
@@ -2373,7 +2466,7 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 1
                   }
                 ]
@@ -2397,8 +2490,92 @@
                 "conditions": [
                   {
                     "type": "variable_if",
-                    "name": "hyper_sublayer_r",
+                    "name": "sublayer_r",
                     "value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Layer Key + v",
+            "manipulators": [
+              {
+                "to": [
+                  {
+                    "key_code": "v",
+                    "modifiers": [
+                      "left_control",
+                      "left_shift",
+                      "left_option",
+                      "left_command"
+                    ]
+                  }
+                ],
+                "type": "basic",
+                "from": {
+                  "key_code": "v",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "conditions": [
+                  {
+                    "type": "variable_if",
+                    "name": "layer",
+                    "value": 1
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_spacebar",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_b",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_o",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_w",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_s",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_a",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_c",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_n",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_r",
+                    "value": 0
+                  },
+                  {
+                    "type": "variable_if",
+                    "name": "sublayer_v",
+                    "value": 0
                   }
                 ]
               }
