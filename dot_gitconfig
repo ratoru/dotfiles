@@ -20,10 +20,17 @@
 	df = diff
 	lg = log -p
 	rso = remote show origin
+	rpo = remote prune origin
 
 	unstage = reset HEAD --
 	undo = reset --soft HEAD~1
 	last = log -1 HEAD
+
+	aliases = config --get-regexp alias
+	# Switch to a branch, creating it if necessary.
+	go = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+	# Credit an author on the latest commit.
+	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
 	# difftastic commands
 	dl = -c diff.external=difft log -p --ext-diff
