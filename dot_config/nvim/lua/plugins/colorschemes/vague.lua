@@ -1,6 +1,6 @@
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  'rebelot/kanagawa.nvim',
+  'vague2k/vague.nvim',
   lazy = true,
 }

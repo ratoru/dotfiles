@@ -1,3 +1,5 @@
+---@module 'lazy'
+---@type LazySpec
 return {
   'ThePrimeagen/harpoon',
   branch = 'harpoon2',
@@ -84,76 +86,50 @@ return {
       mode = { 'n' },
       desc = 'Open [n]ext harpoon file',
     },
+    {
+      '<C-E>',
+      function()
+        local harpoon = require 'harpoon'
+
+        local function normalize_list(t)
+          local normalized = {}
+          for _, v in pairs(t) do
+            if v ~= nil then
+              table.insert(normalized, v)
+            end
+          end
+          return normalized
+        end
+
+        Snacks.picker {
+          finder = function()
+            local file_paths = {}
+            local list = normalize_list(harpoon:list().items)
+            for _, item in ipairs(list) do
+              table.insert(file_paths, { text = item.value, file = item.value })
+            end
+            return file_paths
+          end,
+          win = {
+            input = {
+              keys = { ['dd'] = { 'harpoon_delete', mode = { 'n', 'x' } } },
+            },
+            list = {
+              keys = { ['dd'] = { 'harpoon_delete', mode = { 'n', 'x' } } },
+            },
+          },
+          actions = {
+            harpoon_delete = function(picker, item)
+              local to_remove = item or picker:selected()
+              harpoon:list():remove { value = to_remove.text }
+              harpoon:list().items = normalize_list(harpoon:list().items)
+              picker:find { refresh = true }
+            end,
+          },
+        }
+      end,
+      mode = { 'n' },
+      desc = 'Open harpoon window',
+    },
   },
-  -- basic telescope configuration
-  -- local conf = require('telescope.config').values
-  -- local function toggle_telescope(harpoon_files)
-  --   local file_paths = {}
-  --   for _, item in ipairs(harpoon_files.items) do
-  --     table.insert(file_paths, item.value)
-  --   end
-  --
-  --   local make_finder = function()
-  --     local paths = {}
-  --
-  --     for _, item in ipairs(harpoon_files.items) do
-  --       table.insert(paths, item.value)
-  --     end
-  --
-  --     return require('telescope.finders').new_table {
-  --       results = paths,
-  --     }
-  --   end
-  --
-  --   require('telescope.pickers')
-  --     .new({}, {
-  --       prompt_title = 'Harpoon',
-  --       finder = require('telescope.finders').new_table {
-  --         results = file_paths,
-  --       },
-  --       previewer = conf.file_previewer {},
-  --       sorter = conf.generic_sorter {},
-  --       -- Use control-d to remove selected entry
-  --       attach_mappings = function(prompt_buffer_number, map)
-  --         map('i', '<c-d>', function()
-  --           local state = require 'telescope.actions.state'
-  --           local selected_entry = state.get_selected_entry()
-  --           local current_picker = state.get_current_picker(prompt_buffer_number)
-  --
-  --           harpoon:list():remove(selected_entry)
-  --           current_picker:refresh(make_finder())
-  --         end)
-  --
-  --         return true
-  --       end,
-  --     })
-  --     :find()
-  -- end
-
-  -- vim.keymap.set('n', '<C-e>', function()
-  --   toggle_telescope(harpoon:list())
-  -- end, { desc = 'Open harpoon window' })
-  -- vim.keymap.set('n', '<leader>jo', function()
-  --   toggle_telescope(harpoon:list())
-  -- end, { desc = 'Open harpoon window' })
-
-  -- Toggle previous & next buffers stored within Harpoon list
-  -- vim.keymap.set('n', '<C-S-P>', function()
-  --   harpoon:list():prev()
-  -- end, { desc = 'Switch to prev harpoon file' })
-  -- vim.keymap.set('n', '<C-S-N>', function()
-  --   harpoon:list():next()
-  -- end, { desc = 'Switch to next harpoon file' })
-
-  -- vim.keymap.set('n', ';x', function()
-  --   -- Doesn't work if you are removing first mark?
-  --   local buf_name = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
-  --   local name = require('plenary.path'):new(buf_name):make_relative(vim.loop.cwd())
-  --   local _, index = harpoon:list():get_by_value(name)
-  --   if index == nil then
-  --     return
-  --   end
-  --   harpoon:list():remove_at(index)
-  --   require('mini.bufremove').delete(0, false)
-  -- end, { desc = 'Delete cur harpoon window' })
 }

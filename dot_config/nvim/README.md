@@ -46,7 +46,7 @@ The plugins I added can be found in `/lua/plugins`. Some that stand out:
 - `flash.nvim`. - jump to any letter combination.
 - `harpoon.nvim`. - fast switching between buffers.
 
-Additionally, I added some `mini` plugins in `init.lua`: `mini.move`, `mini.starter`, `mini.bufremove`.
+Additionally, I added some `mini` plugins in `init.lua`.
 
 ### Color Schemes
 

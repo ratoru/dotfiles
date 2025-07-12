@@ -1,3 +1,5 @@
+---@module 'lazy'
+---@type LazySpec
 return {
   'ibhagwan/fzf-lua',
   -- optional for icon support

@@ -1,4 +1,6 @@
 return {
+  ---@module 'lazy'
+  ---@type LazySpec
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
@@ -31,21 +33,6 @@ return {
         },
       }
 
-      -- Simple and easy statusline.
-      --  You could remove this setup call if you don't like it,
-      --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
-      -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
 
@@ -57,17 +44,6 @@ return {
       require('mini.move').setup()
 
       require('mini.align').setup()
-
-      -- -- Show a greeting screen when opening neovim without a file
-      -- require('mini.starter').setup {
-      --   footer = '',
-      --   -- Removed `-` to allow oil activation.
-      --   -- Do not add `:` as it allows you to go into command mode.
-      --   query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_.',
-      -- }
-
-      -- Clear buffers
-      require('mini.bufremove').setup()
     end,
   },
 }

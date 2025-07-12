@@ -1,3 +1,5 @@
+---@module 'lazy'
+---@type LazySpec
 return {
   'folke/snacks.nvim',
   priority = 1000,
@@ -60,6 +62,13 @@ return {
         Snacks.lazygit()
       end,
       desc = 'lazygit',
+    },
+    {
+      '<leader>bd',
+      function()
+        Snacks.bufdelete()
+      end,
+      desc = 'Close buffer',
     },
     -- Top Pickers & Explorer
     {

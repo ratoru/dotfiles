@@ -11,7 +11,7 @@
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -25,28 +25,29 @@ require('lazy').setup({
 
   require 'plugins/autopairs',
   require 'plugins/blink-cmp',
-  require 'plugins/bufferline',
   require 'plugins/colorschemes/catppuccin',
   require 'plugins/colorschemes/gruvbox',
-  require 'plugins/colorschemes/tokyonight',
   require 'plugins/colorschemes/kanagawa',
-  require 'plugins/colorschemes/nordic',
+  require 'plugins/colorschemes/tokyonight',
+  require 'plugins/colorschemes/vague',
   require 'plugins/conform',
   -- require 'plugins/copilot',
   require 'plugins/diffview',
+  require 'plugins/dropbar',
   require 'plugins/flash',
   -- require 'plugins/fzf',
   require 'plugins/gitsigns',
+  require 'plugins/grapple',
   require 'plugins/grug-far',
-  require 'plugins/harpoon',
+  -- require 'plugins/harpoon',
   require 'plugins/lint',
   require 'plugins/lspconfig',
+  require 'plugins/lualine',
   require 'plugins/mini',
   require 'plugins/neogen',
   require 'plugins/oil',
   require 'plugins/refactoring',
   require 'plugins/snacks',
-  -- require 'plugins/telescope',
   require 'plugins/todo-comments',
   require 'plugins/treesitter',
   require 'plugins/treesitter-context',
@@ -55,7 +56,6 @@ require('lazy').setup({
   require 'plugins/undotree',
   require 'plugins/which-key',
   require 'plugins/zenmode',
-  require 'plugins/zk',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -78,7 +78,7 @@ require('lazy').setup({
   },
   -- My additions
   install = {
-    colorscheme = { 'catppuccin', 'nordic', 'onedark' },
+    colorscheme = { 'tokyonight' },
   },
 })
 

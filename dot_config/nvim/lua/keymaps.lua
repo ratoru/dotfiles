@@ -27,7 +27,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- This remap allows you to paste text over a highlighted text
 -- while keeping the original text in the yanked register.
-vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste and keep yanked text' })
 vim.keymap.set({ 'n', 'v' }, '<leader>dd', [["_d]], { desc = 'Delete without register' })
 
 -- System Clipboard Management
