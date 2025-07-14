@@ -6,10 +6,14 @@ cursor-invert-fg-bg = true
 cursor-click-to-move = true
 mouse-hide-while-typing = true
 
+unfocused-split-opacity = 0.9
+
 link-url = true
 
+maximize = true
 window-padding-x = 8
 window-padding-color = extend
+window-save-state = always
 
 clipboard-paste-protection = true
 
@@ -18,7 +22,7 @@ copy-on-select = clipboard
 quit-after-last-window-closed = true
 
 quick-terminal-position = center
-quick-terminal-animation-duration = 0.08
+quick-terminal-animation-duration = 0
 
 macos-titlebar-proxy-icon = hidden
 macos-option-as-alt = left
@@ -30,11 +34,27 @@ auto-update = check
 ################
 # Keybinds     #
 ################
-# I could make it global: ?
-keybind = super+e=toggle_quick_terminal
-keybind = global:cmd+opt+ctrl+shift+t=toggle_quick_terminal
+keybind = super+j=toggle_quick_terminal
 keybind = super+down=jump_to_prompt:1
 keybind = super+up=jump_to_prompt:-1
+
+keybind = performable:opt+left=goto_split:left
+keybind = performable:opt+down=goto_split:bottom
+keybind = performable:opt+up=goto_split:top
+keybind = performable:opt+right=goto_split:right
+
+keybind = ctrl+a>h=new_split:left
+keybind = ctrl+a>j=new_split:down
+keybind = ctrl+a>k=new_split:up
+keybind = ctrl+a>l=new_split:right
+keybind = ctrl+a>left=new_split:left
+keybind = ctrl+a>down=new_split:down
+keybind = ctrl+a>up=new_split:up
+keybind = ctrl+a>right=new_split:right
+
+keybind = ctrl+a>f=toggle_split_zoom
+keybind = ctrl+a>n=next_tab
+keybind = ctrl+a>p=previous_tab
 
 ###################################
 # Font & Theme - Hotswappable     #
