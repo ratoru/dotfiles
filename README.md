@@ -21,13 +21,12 @@ For my complete setup read [My clean and simple terminal setup](https://ratoru.c
 - [chezmoi](https://www.chezmoi.io/) for dotfile management.
 - [nvim](./dot_config/nvim/) as primary editor. Configured using `kickstart`.
 - [ghostty](./dot_config/ghostty/) as a configurable, cross-platform terminal. I added support for changing the font and theme on the fly.
-- [yazi](https://yazi-rs.github.io/) as terminal file manager. Also evaluating [broot](https://github.com/Canop/broot) as an alternative.
-- [bat](https://github.com/sharkdp/bat) as `cat` replacement.
 
 ### Mentioned in `.zshrc`
 
 - [zoxide](https://github.com/ajeetdsouza/zoxide) for jumping around using `z`.
 - [eza](https://github.com/eza-community/eza) as `ls` replacement.
+- [bat](https://github.com/sharkdp/bat) as `cat` replacement.
 - [fzf](https://github.com/junegunn/fzf) as a fuzzy finder.
 - [jq](https://github.com/jqlang/jq) as a JSON processor.
 - [lazygit](https://github.com/jesseduffield/lazygit) as a simple terminal UI for git commands.

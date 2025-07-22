@@ -43,8 +43,6 @@ source $HOME/.config/zsh/plugins/gitit.zsh
 # Navigation
 # ---------------------------------------
 source $HOME/.config/zsh/plugins/bd.zsh
-# Broot
-source $HOME/.config/broot/launcher/bash/br
 # Zoxide directory jumping
 eval "$(zoxide init zsh)"
 

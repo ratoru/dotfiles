@@ -1,6 +1,5 @@
 tap "jesseduffield/lazygit"
 brew "bat"
-brew "broot"
 brew "chezmoi"
 brew "difftastic"
 brew "eza"
