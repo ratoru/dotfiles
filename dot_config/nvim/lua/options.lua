@@ -68,6 +68,8 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 
 -- [[ My settings ]]
+-- Set terminal title
+vim.o.title = true
 -- Convert tabs to spaces
 vim.o.expandtab = true
 vim.o.tabstop = 4
