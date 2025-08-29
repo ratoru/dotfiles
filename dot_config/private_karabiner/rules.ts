@@ -93,14 +93,14 @@ const rules: KarabinerRules[] = [
       1: app("1Password"),
       b: app("Brave Browser"),
       c: app("Notion Calendar"),
-      d: app("Discord"),
+      d: app("Things3"),
       e: app("Microsoft Outlook"),
-      f: app("Finder"),
+      f: app("FaceTime"),
       // "i"Message
       i: app("Messages"),
+      m: app("Spotify"),
       // "N"otes
       n: app("Obsidian"),
-      p: app("Spotify"),
       s: app("Slack"),
       t: app("Ghostty"),
       v: app("Zed"),
@@ -131,8 +131,8 @@ const rules: KarabinerRules[] = [
       m: mapTo("close_bracket", ["right_command"], "Window: Forward"),
     },
 
-    // s = "System"
-    s: {
+    // s = "systEm"
+    e: {
       u: mapTo("volume_increment"),
       j: mapTo("volume_decrement"),
       i: mapTo("display_brightness_increment"),
@@ -146,25 +146,21 @@ const rules: KarabinerRules[] = [
       t: open(`raycast://extensions/raycast/system/toggle-system-appearance`),
     },
 
-    // a = "nAv" layer
-    // A typical nav layer. Uses "a" so that sdf are comfortable modifiers.
-    a: {
-      h: mapTo("left_arrow"),
-      j: mapTo("down_arrow"),
-      k: mapTo("up_arrow"),
-      l: mapTo("right_arrow"),
-      u: mapTo("page_down"),
-      i: mapTo("page_up"),
-      semicolon: mapTo("delete_or_backspace"),
-      p: mapTo("delete_forward"),
-      f: mapTo("left_shift"),
-      d: mapTo("left_command"),
-      s: mapTo("left_option"),
-      // Magicmove via homerow.app
-      m: mapTo("f", ["right_control"]),
-      // Scroll mode via homerow.app
-      comma: mapTo("j", ["right_control"]),
-    },
+    // A typical nav layer. Not nested since this is one of the most common operations.
+    j: mapTo("left_arrow"),
+    k: mapTo("down_arrow"),
+    i: mapTo("up_arrow"),
+    l: mapTo("right_arrow"),
+    h: mapTo("page_down"),
+    y: mapTo("page_up"),
+    semicolon: mapTo("delete_or_backspace"),
+    f: mapTo("left_shift"),
+    d: mapTo("left_command"),
+    s: mapTo("left_option"),
+    // Magicmove via homerow.app
+    m: mapTo("m", ["left_control", "left_option", "left_shift"]),
+    // Scroll mode via homerow.app
+    comma: mapTo("comma", ["left_control", "left_option", "left_shift"]),
 
     // c = Musi*c* which isn't "m" because we want it to be on the left hand
     c: {
