@@ -11,20 +11,55 @@ If you like TypeScript and want your Karabiner configuration maintainable & type
 
 ## My keymap
 
-Caps Lock becomes a mod tap key. Tapping it sends Escape. Holding it acts as a layer key (referred to as "Hyper Key" in the code for historical reasons).
+**Right Command** acts as the primary layer key, enabling access to various sublayers and direct mappings. **Caps Lock** is mapped to Left Control when held (with Escape on tap alone).
 
-> [!IMPORTANT]
-> Despite the naming throughout the codebase, this is **not** a true "Hyper Key" (⌃⌥⇧⌘). Instead, it implements a **layer key system** where Right Command switches between different keyboard layers without sending modifier keys.
+The system supports two types of layers:
 
-The magic happens with **nested layers**: `Right Command + O` activates the "Open" layer, then `G` opens Google Chrome. So `Right Command + O + G` = open Chrome.
+1. **Direct mappings**: Right Command + key triggers immediate actions (e.g., Right Command + J = Left Arrow)
+2. **Sticky sublayers**: Right Command + sublayer key activates a persistent mode until a final key is pressed
 
-Key layers:
+### Sticky Sublayers (persistent until final key pressed)
 
-- `O` → Open apps (G=Chrome, T=Terminal, etc.)
-- `W` → Window management (F=fullscreen, H=left half, etc.)
-- `S` → System (U=volume up, L=lock screen, etc.)
-- `B` → Browse websites (C=Leetcode, R=Reddit, etc.)
-- `V` → Movement (H/J/K/L for vim-like arrows)
+- `B` → Browse websites (A=Claude.ai, G=GitHub, R=Reddit, etc.)
+- `G` → GitHub repositories (H=homepage, D=dotfiles, K=QMK userspace)
+- `N` → Notes/Obsidian (A=add note, F=find notes, C=contact note, V=paste clipboard)
+- `O` → Open applications (G=Chrome, T=Ghostty, V=Zed, etc.)
+- `R` → Raycast extensions (C=color picker, E=emoji, P=confetti, H=clipboard history)
+
+### Window Management Layer (`W`)
+
+- `F` → Maximize, `G` → Almost maximize
+- `H/J/K/L` → Left/Bottom/Top/Right half
+- `M/,/.` → First/Center/Last third
+- `Y/O` → Previous/Next display
+- `U/I` → Previous/Next tab
+- `N` → Next window
+- `[/]` → Back/Forward
+
+### System Controls Layer (`E`)
+
+- `U/J` → Volume up/down
+- `I/K` → Brightness up/down  
+- `L` → Lock screen
+- `P` → Play/pause
+- `;` → Fast forward
+- `V` → Voice command (Option+Space)
+- `T` → Toggle system appearance (dark/light)
+
+### Music Controls Layer (`C`)
+
+- `P` → Play/pause
+- `N` → Next track
+- `B` → Previous track
+
+### Direct Navigation Mappings (no sublayer)
+
+- `J/K/I/L` → Left/Down/Up/Right arrows
+- `H/Y` → Page down/up
+- `;/P` → Backspace/Delete
+- `F/D/S/A` → Shift/Cmd/Option/Control modifiers
+- `M` → Magicmove (via homerow.app)
+- `,` → Scroll mode (via homerow.app)
 
 ## Development
 
@@ -36,9 +71,9 @@ Make sure you have [Karabiner Elements](https://karabiner-elements.pqrs.org/) an
 - **Option 2**:
   - Install & start Karabiner Elements
   - Clone this repository
-  - Delete the default `~/.config/karabiner` folder
-  - Create a symlink with `ln -s ~/github/mxstbr/karabiner ~/.config` (where `~/github/mxstbr/karabiner` is your local path to where you cloned the repository)
-  - Restart karabiner_console_user_server with `launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server`
+  - Delete the default ~/.config/karabiner folder
+  - Create a symlink with ln -s ~/github/mxstbr/karabiner ~/.config (where ~/github/mxstbr/karabiner is your local path to where you cloned the repository)
+  - Restart karabiner_console_user_server with launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server
 
 ### Commands
 

@@ -1,7 +1,9 @@
 import { KarabinerRules } from "./types.ts";
 import {
   app,
-  createSubLayers,
+  createLayerSubLayers,
+  createStickyLayerSubLayers,
+  generateSubLayerVariableName,
   mapTo,
   open,
   shell as _shell,
@@ -13,7 +15,7 @@ const OBSIDIAN_VAULT = "1ca51b502102e7b3";
 const rules: KarabinerRules[] = [
   // Define the Layer key itself
   {
-    description: "Layer Key (Right Command)",
+    description: "Action Layer Key",
     manipulators: [
       {
         description: "Right Command -> Layer Key",
@@ -26,7 +28,7 @@ const rules: KarabinerRules[] = [
         to: [
           {
             set_variable: {
-              name: "layer",
+              name: "action_layer",
               value: 1,
             },
           },
@@ -34,7 +36,7 @@ const rules: KarabinerRules[] = [
         to_after_key_up: [
           {
             set_variable: {
-              name: "layer",
+              name: "action_layer",
               value: 0,
             },
           },
@@ -49,10 +51,10 @@ const rules: KarabinerRules[] = [
     ],
   },
   {
-    description: "MT(Escape, Left Control)",
+    description: "Power Caps Lock",
     manipulators: [
       {
-        description: "Caps Lock -> Left Control",
+        description: "Tap -> Escape, Hold -> Left Control",
         from: {
           key_code: "caps_lock",
           modifiers: {
@@ -69,69 +71,62 @@ const rules: KarabinerRules[] = [
             key_code: "escape",
           },
         ],
+        conditions: [
+          // Only allow caps lock -> control when sticky sublayers are inactive
+          // This ensures caps lock can cancel active sticky sublayers (o, n, r)
+          // NOTE: If you add more sticky sublayers, add them here too.
+          ...(["b", "g", "o", "n", "r"] as const).map((key) => ({
+            type: "variable_if" as const,
+            name: generateSubLayerVariableName(key),
+            value: 0,
+          })),
+        ],
         type: "basic",
       },
     ],
   },
 
-  ...createSubLayers({
+  ...createLayerSubLayers({
     // Obsidian URIs need to be quoted since the URI format is non-standard.
     spacebar: open(
       `"obsidian://adv-uri?vault=${OBSIDIAN_VAULT}&commandid=zk-prefixer"`,
     ),
-    // b = "B"rowse
-    b: {
-      c: open("https://claude.ai/new"),
-      e: open("https://gmail.com"),
-      g: open("https://github.com"),
-      h: open("https://ratoru.com/blog"),
-      l: open("https://leetcode.com/problemset/"),
-      r: open("https://reddit.com"),
-    },
-    // o = "Open" applications
-    o: {
-      1: app("1Password"),
-      b: app("Brave Browser"),
-      c: app("Notion Calendar"),
-      d: app("Things3"),
-      e: app("Microsoft Outlook"),
-      f: app("FaceTime"),
-      // "i"Message
-      i: app("Messages"),
-      m: app("Spotify"),
-      // "N"otes
-      n: app("Obsidian"),
-      s: app("Slack"),
-      t: app("Ghostty"),
-      v: app("Zed"),
-      w: open("WhatsApp"),
-      z: app("zoom.us"),
-    },
 
     // w = "Window"
     w: {
       semicolon: mapTo("h", ["right_command"], "Window: Hide"),
       y: window("previous-display"),
       o: window("next-display"),
+      u: mapTo("tab", ["right_control", "right_shift"], "Window: Previous Tab"),
+      i: mapTo("tab", ["right_control"], "Window: Next Tab"),
+
       k: window("top-half"),
       j: window("bottom-half"),
       h: window("left-half"),
       l: window("right-half"),
+
       f: window("maximize"),
       g: window("almost-maximize"),
-      u: mapTo("tab", ["right_control", "right_shift"], "Window: Previous Tab"),
-      i: mapTo("tab", ["right_control"], "Window: Next Tab"),
+
       n: mapTo(
         "grave_accent_and_tilde",
         ["right_command"],
         "Window: Next Window",
       ),
-      b: mapTo("open_bracket", ["right_command"], "Window: Back"),
+      open_bracket: mapTo("open_bracket", ["right_command"], "Window: Back"),
       // Note: No literal connection. Both f and n are already taken.
-      m: mapTo("close_bracket", ["right_command"], "Window: Forward"),
+      close_bracket: mapTo(
+        "close_bracket",
+        ["right_command"],
+        "Window: Forward",
+      ),
+
+      m: window("first-third"),
+      comma: window("center-third"),
+      period: window("last-third"),
     },
 
-    // s = "systEm"
+    // s = "System"
     e: {
       u: mapTo("volume_increment"),
       j: mapTo("volume_decrement"),
@@ -146,7 +141,13 @@ const rules: KarabinerRules[] = [
       t: open(`raycast://extensions/raycast/system/toggle-system-appearance`),
     },
 
-    // A typical nav layer. Not nested since this is one of the most common operations.
+    // c = Musi*c* which isn't "m" because we want it to be on the left hand
+    c: {
+      p: mapTo("play_or_pause"),
+      n: mapTo("fastforward"),
+      b: mapTo("rewind"),
+    },
+
     j: mapTo("left_arrow"),
     k: mapTo("down_arrow"),
     i: mapTo("up_arrow"),
@@ -154,19 +155,37 @@ const rules: KarabinerRules[] = [
     h: mapTo("page_down"),
     y: mapTo("page_up"),
     semicolon: mapTo("delete_or_backspace"),
+    p: mapTo("delete_forward"),
     f: mapTo("left_shift"),
     d: mapTo("left_command"),
     s: mapTo("left_option"),
+    a: mapTo("left_control"),
     // Magicmove via homerow.app
-    m: mapTo("m", ["left_control", "left_option", "left_shift"]),
+    m: mapTo("m", ["right_control", "right_option", "right_shift"]),
     // Scroll mode via homerow.app
-    comma: mapTo("comma", ["left_control", "left_option", "left_shift"]),
+    comma: mapTo("comma", ["right_control", "right_option", "right_shift"]),
+  }, "action_layer"),
 
-    // c = Musi*c* which isn't "m" because we want it to be on the left hand
-    c: {
-      p: mapTo("play_or_pause"),
-      n: mapTo("fastforward"),
-      b: mapTo("rewind"),
+  // Sticky sublayers: Tap Right Command + sublayer key to activate a persistent mode.
+  // The sublayer remains active until you press a final key or deactivate it with Escape/Caps Lock.
+  // Example: Right Command + O (tap and release) activates "Open" mode, then press G to open Chrome.
+  ...createStickyLayerSubLayers({
+    // b = "B"rowse
+    b: {
+      a: open("https://claude.ai/new"),
+      c: open("https://calendar.google.com/calendar/u/0/r/week"),
+      e: open("https://gmail.com"),
+      g: open("https://github.com"),
+      l: open("https://leetcode.com/problemset/"),
+      r: open("https://reddit.com"),
+      t: open("https://monkeytype.com"),
+    },
+
+    // g = "G"itHub
+    g: {
+      h: open("https://github.com/ratoru/homepage"),
+      d: open("https://github.com/ratoru/dotfiles"),
+      k: open("https://github.com/ratoru/qmk_userspace"),
     },
 
     // n = "Notes"
@@ -185,6 +204,26 @@ const rules: KarabinerRules[] = [
       ),
       // Paste clipboard into new note
       v: open(`"obsidian://new?vault=${OBSIDIAN_VAULT}&clipboard&append"`),
+    },
+
+    // o = "Open" applications (sticky behavior)
+    o: {
+      1: app("1Password"),
+      a: app("Obsidian"),
+      b: app("Brave Browser"),
+      c: app("Calendar"),
+      d: app("Things3"),
+      f: app("FaceTime"),
+      g: app("Google Chrome"),
+      i: app("Messages"),
+      m: app("Spotify"),
+      n: app("Notion"),
+      p: app("Linear"),
+      s: app("Slack"),
+      t: app("Ghostty"),
+      v: app("Zed"),
+      w: app("WhatsApp"),
+      z: app("zoom.us"),
     },
 
     // r = "Raycast"
@@ -208,13 +247,7 @@ const rules: KarabinerRules[] = [
         "raycast://extensions/VladCuciureanu/toothpick/connect-favorite-device-2",
       ),
     },
-    v: mapTo("v", [
-      "left_control",
-      "left_shift",
-      "left_option",
-      "left_command",
-    ]),
-  }),
+  }, "action_layer"),
 ];
 
 const config = {
@@ -232,6 +265,17 @@ const config = {
         // I am building this for the US keyboard layout.
         keyboard_type_v2: "ansi",
       },
+      devices: [
+        {
+          // Aurora Sweep rev1 (splitkb.com)
+          identifiers: {
+            is_keyboard: true,
+            product_id: 60439,
+            vendor_id: 36125,
+          },
+          ignore: true,
+        },
+      ],
     },
   ],
 };
