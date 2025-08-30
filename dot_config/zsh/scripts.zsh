@@ -94,6 +94,11 @@ function ghosttyc {
     --bind="enter:become:$CMD"
 }
 
+# Tree replacement using broot.
+function tree {
+     br -c :pt "$@"
+}
+
 # Show most used commands
 function historystat {
     history 0 | awk '{print $2}' | sort | uniq -c | sort -n -r | head

@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
+# shellcheck shell=bash
 IN_WSL=false
 if [ -n "$WSL_DISTRO_NAME" ]; then
   IN_WSL=true

@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # shellcheck shell=bash
 bd () {
   (($#<1)) && {

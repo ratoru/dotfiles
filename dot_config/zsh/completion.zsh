@@ -2,9 +2,10 @@
 # ---------------------------------------
 # Completion
 # ---------------------------------------
+fpath=(${HOME}/.config/zsh/completions $fpath)
 # Load more completions
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    fpath=($(brew --prefix)/share/zsh-completions $fpath)
 fi
 
 # Should be called before compinit
