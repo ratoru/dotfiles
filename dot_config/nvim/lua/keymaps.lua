@@ -33,6 +33,9 @@ vim.keymap.set({ 'n', 'v' }, '<leader>dd', [["_d]], { desc = 'Delete without reg
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'yank to system clipboard' })
 vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Yank to system clipboard' })
 
+-- Duplicate and comment the first line. Takes a count.
+vim.keymap.set('n', 'ycc', '"yy" . v:count1 . "gcc\']p"', { remap = true, expr = true })
+
 -- Indent while remaining in visual mode.
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')

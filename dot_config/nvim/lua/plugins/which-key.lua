@@ -61,6 +61,7 @@ return {
 
       -- Document existing key chains
       spec = {
+        { '<leader>a', group = 'AI', icon = '' },
         { '<leader>b', group = 'Buffer' },
         { '<leader>c', group = 'Code', mode = { 'n', 'x' } },
         -- { '<leader>d', group = 'Document' },
@@ -74,6 +75,7 @@ return {
         { '<leader>t', group = 'Toggle' },
         { '<leader>x', group = 'Diagnostic' },
         { '<leader>z', group = 'Zettelkasten', icon = '' },
+        { '<leader>R', group = 'Http' },
       },
     },
   },

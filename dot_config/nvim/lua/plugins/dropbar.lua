@@ -6,10 +6,10 @@ return {
   opts = {
     sources = {
       treesitter = {
-        max_depth = 4,
+        max_depth = 1,
       },
       lsp = {
-        max_depth = 4,
+        max_depth = 1,
       },
     },
   },

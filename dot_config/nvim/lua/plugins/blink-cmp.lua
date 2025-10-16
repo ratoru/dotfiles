@@ -30,9 +30,6 @@ return {
       -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
       -- Adjusts spacing to ensure icons are aligned
       nerd_font_variant = 'mono',
-      kind_icons = {
-        Copilot = '',
-      },
     },
 
     -- default list of enabled providers defined so that you can extend it
@@ -44,9 +41,9 @@ return {
           return 3
         end
         -- only applies when typing a command, doesn't apply to arguments
-        if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then
-          return 2
-        end
+        -- if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then
+        --   return 2
+        -- end
         return 0
       end,
       -- providers = {
