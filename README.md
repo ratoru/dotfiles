@@ -69,6 +69,5 @@ I use [Karabiner Elements](./dot_config/private_karabiner/) to optimize my built
 
 ## Future changes
 
-- Add AI chat assistant.
 - Learn `tee` and [GNU parallel](https://blog.ronin.cloud/gnu-parallel/).
   - It's called tee because it makes a T. Data flows across the top of the T (from stdin to stdout), but also gets duplicated out the bottom (to a file).
