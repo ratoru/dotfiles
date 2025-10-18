@@ -9,7 +9,7 @@ do a great job of explaining how to configure `nvim`.
 - Install Neovim. A lot of plugins only support the latest version.
 - Install `git`.
 - Install a Nerd Font.
-- Install `ripgrep`, `fzf`, `fd`, and all the languages you want to use (npm, go, ...).
+- Install `ripgrep`, `fzf`, `fd`, `tree-sitter-cli` and all the languages you want to use (npm, go, ...).
 - Copy this folder into `~/.config/nvim/`. Alternatively, head over to [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
   and follow the install instructions.
 
