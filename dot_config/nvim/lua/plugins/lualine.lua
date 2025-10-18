@@ -71,32 +71,20 @@ return {
 
     Snacks.toggle({
       name = 'lualine symbols',
-      get = function()
-        return vim.b.trouble_lualine ~= false
-      end,
-      set = function(state)
-        vim.b.trouble_lualine = state
-      end,
+      get = function() return vim.b.trouble_lualine ~= false end,
+      set = function(state) vim.b.trouble_lualine = state end,
     }):map '<leader>tl'
 
     Snacks.toggle({
       name = 'lualine lsp names',
-      get = function()
-        return vim.g.custom_lualine_show_lsp_names
-      end,
-      set = function(state)
-        vim.g.custom_lualine_show_lsp_names = state
-      end,
+      get = function() return vim.g.custom_lualine_show_lsp_names end,
+      set = function(state) vim.g.custom_lualine_show_lsp_names = state end,
     }):map '<leader>tL'
 
     Snacks.toggle({
       name = 'lualine session name',
-      get = function()
-        return vim.g.custom_lualine_show_session_name
-      end,
-      set = function(state)
-        vim.g.custom_lualine_show_session_name = state
-      end,
+      get = function() return vim.g.custom_lualine_show_session_name end,
+      set = function(state) vim.g.custom_lualine_show_session_name = state end,
     }):map '<leader>ts'
 
     ---@class PrettyPath.BasePlusHarpoonProvider: PrettyPath.Provider
@@ -178,12 +166,8 @@ return {
             separator = '',
           },
           {
-            function()
-              return 'recording @' .. vim.fn.reg_recording()
-            end,
-            cond = function()
-              return vim.fn.reg_recording() ~= ''
-            end,
+            function() return 'recording @' .. vim.fn.reg_recording() end,
+            cond = function() return vim.fn.reg_recording() ~= '' end,
             color = { fg = '#ff007c' },
             separator = '',
           },

@@ -35,9 +35,7 @@ return {
     end
     -- Buffers and Files
     map('<leader><leader>', fzf.buffers, '[ ] Find existing buffers')
-    map('<leader>/', function()
-      fzf.blines { winopts = { preview = { hidden = 'hidden' } } }
-    end, '[/] Fuzzy search current buffer')
+    map('<leader>/', function() fzf.blines { winopts = { preview = { hidden = 'hidden' } } } end, '[/] Fuzzy search current buffer')
     map('<leader>?', fzf.lines, '[?] Fuzzy search open buffers')
     map('<leader>sf', fzf.files, 'Search files')
     map('<leader>sd', function()
@@ -52,9 +50,7 @@ return {
       }
     end, 'Search buffer directory')
     map('<leader>s.', fzf.oldfiles, 'Search recent files ("." for repeat)')
-    map('<leader>sn', function()
-      fzf.files { cwd = vim.fn.stdpath 'config' }
-    end, 'Search neovim files')
+    map('<leader>sn', function() fzf.files { cwd = vim.fn.stdpath 'config' } end, 'Search neovim files')
 
     -- Search
     map('<leader>sg', fzf.live_grep_native, 'Search by grep')

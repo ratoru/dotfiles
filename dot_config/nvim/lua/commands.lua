@@ -36,9 +36,7 @@ end, { desc = 'Clear registers' })
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.hl.on_yank()
-  end,
+  callback = function() vim.hl.on_yank { timeout = 200 } end,
 })
 
 -- Check if we need to reload the file when it changed
@@ -54,9 +52,7 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
 -- Resize splits if the window gets resized.
 vim.api.nvim_create_autocmd('VimResized', {
   group = vim.api.nvim_create_augroup('ResizeSplits', { clear = true }),
-  callback = function()
-    vim.cmd 'tabdo wincmd ='
-  end,
+  callback = function() vim.cmd 'tabdo wincmd =' end,
 })
 
 -- Close some filetypes with <q>.
@@ -80,9 +76,7 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('RemoveFormatOptionO', { clear = true }),
   pattern = '*',
-  callback = function()
-    vim.opt_local.formatoptions:remove 'o'
-  end,
+  callback = function() vim.opt_local.formatoptions:remove 'o' end,
 })
 
 -- Go to last loc when opening a buffer
@@ -99,6 +93,19 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     local lcount = vim.api.nvim_buf_line_count(buf)
     if mark[1] > 0 and mark[1] <= lcount then
       pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+})
+
+-- auto-create missing dirs when saving a file
+vim.api.nvim_create_autocmd('BufWritePre', {
+  desc = 'Auto-create missing dirs when saving a file',
+  group = vim.api.nvim_create_augroup('kickstart-auto-create-dir', { clear = true }),
+  pattern = '*',
+  callback = function()
+    local dir = vim.fn.expand '<afile>:p:h'
+    if vim.fn.isdirectory(dir) == 0 then
+      vim.fn.mkdir(dir, 'p')
     end
   end,
 })

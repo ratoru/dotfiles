@@ -10,9 +10,7 @@ return {
   keys = {
     {
       '<leader>cr',
-      function()
-        require('refactoring').select_refactor {}
-      end,
+      function() require('refactoring').select_refactor {} end,
       mode = { 'n', 'x' },
       desc = '[R]efactor',
     },

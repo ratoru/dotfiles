@@ -35,8 +35,8 @@ return {
     -- default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
-      min_keyword_length = function(ctx)
+      default = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer', 'copilot' },
+      min_keyword_length = function()
         if vim.bo.filetype == 'markdown' then
           return 3
         end
@@ -46,18 +46,20 @@ return {
         -- end
         return 0
       end,
-      -- providers = {
-      --   copilot = {
-      --     name = 'copilot',
-      --     module = 'blink-copilot',
-      --     score_offset = 100,
-      --     async = true,
-      --     opts = {
-      --       max_completions = 3,
-      --       max_attempts = 4,
-      --     },
-      --   },
-      -- },
+      providers = {
+        -- copilot = {
+        --   name = 'copilot',
+        --   module = 'blink-copilot',
+        --   score_offset = 100,
+        --   async = true,
+        --   opts = {
+        --     max_completions = 3,
+        --     max_attempts = 4,
+        --   },
+        -- },
+        lazydev = { module = 'lazydev.integrations.blink', score_offset = 99 },
+        -- Can add config to put buffer source at a lower priority
+      },
     },
 
     -- experimental auto-brackets support

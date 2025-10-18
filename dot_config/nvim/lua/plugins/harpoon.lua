@@ -8,81 +8,61 @@ return {
   keys = {
     {
       '<leader>om',
-      function()
-        require('harpoon'):list():add()
-      end,
+      function() require('harpoon'):list():add() end,
       mode = { 'n' },
       desc = 'Harpoon file',
     },
     {
       '<leader>oa',
-      function()
-        require('harpoon'):list():select(1)
-      end,
+      function() require('harpoon'):list():select(1) end,
       mode = { 'n' },
       desc = 'Open file - 1',
     },
     {
       '<leader>os',
-      function()
-        require('harpoon'):list():select(2)
-      end,
+      function() require('harpoon'):list():select(2) end,
       mode = { 'n' },
       desc = 'Open file - 2',
     },
     {
       '<leader>od',
-      function()
-        require('harpoon'):list():select(3)
-      end,
+      function() require('harpoon'):list():select(3) end,
       mode = { 'n' },
       desc = 'Open file - 3',
     },
     {
       '<leader>of',
-      function()
-        require('harpoon'):list():select(4)
-      end,
+      function() require('harpoon'):list():select(4) end,
       mode = { 'n' },
       desc = 'Open file - 4',
     },
     {
       '<leader>oc',
-      function()
-        require('harpoon'):list():clear()
-      end,
+      function() require('harpoon'):list():clear() end,
       mode = { 'n' },
       desc = 'Clear all harpoons',
     },
     {
       '<leader>p',
-      function()
-        require('harpoon'):list():prev()
-      end,
+      function() require('harpoon'):list():prev() end,
       mode = { 'n' },
       desc = 'Open [p]rev harpoon file',
     },
     {
       '<leader>n',
-      function()
-        require('harpoon'):list():next()
-      end,
+      function() require('harpoon'):list():next() end,
       mode = { 'n' },
       desc = 'Open [n]ext harpoon file',
     },
     {
       '<C-S-P>',
-      function()
-        require('harpoon'):list():prev()
-      end,
+      function() require('harpoon'):list():prev() end,
       mode = { 'n' },
       desc = 'Open [p]rev harpoon file',
     },
     {
       '<C-S-N>',
-      function()
-        require('harpoon'):list():next()
-      end,
+      function() require('harpoon'):list():next() end,
       mode = { 'n' },
       desc = 'Open [n]ext harpoon file',
     },

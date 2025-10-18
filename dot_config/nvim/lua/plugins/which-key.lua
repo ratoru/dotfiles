@@ -18,6 +18,9 @@ return {
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    ---@module 'which-key'
+    ---@type wk.Opts
+    ---@diagnostic disable-next-line: missing-fields
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.o.timeoutlen
@@ -69,13 +72,14 @@ return {
         { '<leader>g', group = 'Git' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>o', group = 'Open', icon = '󱡀' },
-        { '<leader>s', group = 'Search' },
+        { '<leader>s', group = 'Search', mode = { 'n', 'v' } },
         { '<leader>u', group = 'UI' },
         { '<leader>w', group = 'Workspace' },
         { '<leader>t', group = 'Toggle' },
         { '<leader>x', group = 'Diagnostic' },
         { '<leader>z', group = 'Zettelkasten', icon = '' },
         { '<leader>R', group = 'Http' },
+        -- { 'gr', group = 'LSP Actions', mode = { 'n' } },
       },
     },
   },

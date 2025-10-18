@@ -8,12 +8,8 @@ return {
     dependencies = { 'nvim-tree/nvim-web-devicons', 'echasnovski/mini.bufremove' },
     opts = {
       options = {
-        close_command = function(bufnr)
-          require('mini.bufremove').delete(bufnr, false)
-        end,
-        right_mouse_command = function(bufnr)
-          require('mini.bufremove').delete(bufnr, false)
-        end,
+        close_command = function(bufnr) require('mini.bufremove').delete(bufnr, false) end,
+        right_mouse_command = function(bufnr) require('mini.bufremove').delete(bufnr, false) end,
         diagnostics = 'nvim_lsp',
       },
     },
@@ -22,9 +18,7 @@ return {
       { ']b', '<cmd>BufferLineCycleNext<cr>', { desc = 'Next buffer' }, mode = 'n' },
       {
         '<leader>bd',
-        function()
-          require('mini.bufremove').delete(0, true)
-        end,
+        function() require('mini.bufremove').delete(0, true) end,
         desc = 'Delete current buffer',
       },
       { '<leader>bl', '<cmd>BufferLineCloseLeft<cr>', desc = 'Close buffers to the left' },

@@ -24,93 +24,67 @@ return {
   keys = {
     {
       '<leader>a',
-      function()
-        require('grapple').toggle()
-      end,
+      function() require('grapple').toggle() end,
       desc = 'Tag a file',
     },
     {
       '<C-E>',
-      function()
-        require('grapple').toggle_tags()
-      end,
+      function() require('grapple').toggle_tags() end,
       desc = 'Toggle grapple tags menu',
     },
     {
       '<C-S>n',
-      function()
-        require('grapple').cycle_tags 'next'
-      end,
+      function() require('grapple').cycle_tags 'next' end,
       desc = 'Next tag',
     },
     {
       '<C-S>p',
-      function()
-        require('grapple').cycle_tags 'prev'
-      end,
+      function() require('grapple').cycle_tags 'prev' end,
       desc = 'Previous tag',
     },
     {
       '<leader>1',
-      function()
-        grapple_select(1)
-      end,
+      function() grapple_select(1) end,
       desc = 'which_key_ignore',
     },
     {
       '<leader>2',
-      function()
-        grapple_select(2)
-      end,
+      function() grapple_select(2) end,
       desc = 'which_key_ignore',
     },
     {
       '<leader>3',
-      function()
-        grapple_select(3)
-      end,
+      function() grapple_select(3) end,
       desc = 'which_key_ignore',
     },
     {
       '<leader>4',
-      function()
-        grapple_select(4)
-      end,
+      function() grapple_select(4) end,
       desc = 'which_key_ignore',
     },
     {
       '<leader>5',
-      function()
-        grapple_select(5)
-      end,
+      function() grapple_select(5) end,
       desc = 'which_key_ignore',
     },
     {
       '<leader>6',
-      function()
-        grapple_select(6)
-      end,
+      function() grapple_select(6) end,
       desc = 'which_key_ignore',
     },
     {
       '<leader>7',
-      function()
-        grapple_select(7)
-      end,
+      function() grapple_select(7) end,
       desc = 'which_key_ignore',
     },
     {
       '<leader>8',
-      function()
-        grapple_select(8)
-      end,
+      function() grapple_select(8) end,
       desc = 'which_key_ignore',
     },
     {
       '<leader>9',
-      function()
-        grapple_select(9)
-      end,
+      function() grapple_select(9) end,
       desc = 'which_key_ignore',
     },
   },

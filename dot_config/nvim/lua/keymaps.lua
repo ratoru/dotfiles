@@ -27,7 +27,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- This remap allows you to paste text over a highlighted text
 -- while keeping the original text in the yanked register.
-vim.keymap.set({ 'n', 'v' }, '<leader>dd', [["_d]], { desc = 'Delete without register' })
+vim.keymap.set({ 'n', 'v' }, '<leader>D', [["_d]], { desc = 'Delete without register' })
 
 -- System Clipboard Management
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'yank to system clipboard' })
@@ -45,9 +45,7 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
 -- Execute macro over visual region.
-vim.keymap.set('x', '@', function()
-  return ':norm @' .. vim.fn.getcharstr() .. '<cr>'
-end, { expr = true })
+vim.keymap.set('x', '@', function() return ':norm @' .. vim.fn.getcharstr() .. '<cr>' end, { expr = true })
 
 -- Quitting.
 vim.keymap.set('n', '<leader>Q', '<cmd>qa<cr>', { desc = 'Quit all' })
@@ -60,5 +58,10 @@ vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous result' })
 
 -- Window management
 vim.keymap.set('n', '<leader>be', '<C-w>=', { desc = 'Make windows Equal size' })
+
+-- Paste linewise before/after current line
+-- Usage: `yiw` to yank a word and `]p` to put it on the next line.
+vim.keymap.set('n', '[p', '<Cmd>exe "put! " . v:register<CR>', { desc = 'Paste Above' })
+vim.keymap.set('n', ']p', '<Cmd>exe "put "  . v:register<CR>', { desc = 'Paste Below' })
 
 -- vim: ts=2 sts=2 sw=2 et

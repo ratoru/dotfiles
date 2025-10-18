@@ -26,7 +26,7 @@ vim.o.showmode = false
 -- Enable break indent
 vim.o.breakindent = true
 
--- Save undo history
+-- Enable undo/redo changes even after closing and reopening a file
 vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
@@ -50,6 +50,11 @@ vim.o.splitbelow = true
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
+--
+--  Notice listchars is set using `vim.opt` instead of `vim.o`.
+--  It is very similar to `vim.o` but offers an interface for conveniently interacting with tables.
+--   See `:help lua-options`
+--   and `:help lua-guide-options`
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
@@ -67,9 +72,13 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Disable line wrapping
+vim.o.wrap = false
+
 -- [[ My settings ]]
 -- Set terminal title
 vim.o.title = true
+
 -- Convert tabs to spaces
 vim.o.expandtab = true
 vim.o.tabstop = 4

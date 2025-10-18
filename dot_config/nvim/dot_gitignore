@@ -2,3 +2,5 @@ tags
 test.sh
 .luarc.json
 nvim
+
+.DS_Store
