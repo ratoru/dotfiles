@@ -38,18 +38,18 @@ return {
     },
     {
       '<leader>at',
-      function() require('sidekick.cli').send { msg = '{this}' } end,
+      function() require('sidekick.cli').send { msg = '{this}', name = 'claude', focus = true } end,
       mode = { 'x', 'n' },
       desc = 'Send This',
     },
     {
       '<leader>af',
-      function() require('sidekick.cli').send { msg = '{file}' } end,
+      function() require('sidekick.cli').send { msg = '{file}', name = 'claude', focus = true } end,
       desc = 'Send File',
     },
     {
       '<leader>av',
-      function() require('sidekick.cli').send { msg = '{selection}' } end,
+      function() require('sidekick.cli').send { msg = '{selection}', name = 'claude', focus = true } end,
       mode = { 'x' },
       desc = 'Send Visual Selection',
     },

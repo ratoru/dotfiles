@@ -6,37 +6,23 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-    indent = { animate = { enabled = false } },
-    image = {},
-    input = {},
-    scratch = { enabled = true },
     dashboard = {
       sections = {
         { icon = ' ', title = 'Keymaps', section = 'keys', indent = 2, padding = 1 },
         { icon = ' ', title = 'Recent Files', section = 'recent_files', indent = 2, padding = 1 },
-        { icon = ' ', title = 'Projects', section = 'projects', indent = 2, padding = 1 },
-        {
-          icon = ' ',
-          title = 'Git Status',
-          section = 'terminal',
-          enabled = function() return Snacks.git.get_root() ~= nil end,
-          cmd = 'git status --short --branch --renames',
-          height = 5,
-          padding = 1,
-          ttl = 5 * 60,
-          indent = 3,
-        },
         { section = 'startup' },
       },
     },
-    lazygit = {},
-    picker = {},
     explorer = {
       replace_netrw = false,
     },
+    gh = {},
+    image = {},
+    -- indent = { animate = { enabled = false } },
+    input = {},
+    lazygit = {},
+    picker = {},
+    scratch = { enabled = true },
     toggle = {},
   },
   keys = {
@@ -323,5 +309,28 @@ return {
       function() Snacks.picker.lsp_workspace_symbols() end,
       desc = 'LSP Workspace Symbols',
     },
+    { '<leader>gi', function() Snacks.picker.gh_issue() end, desc = 'GitHub Issues (open)' },
+    { '<leader>gI', function() Snacks.picker.gh_issue { state = 'all' } end, desc = 'GitHub Issues (all)' },
+    { '<leader>gp', function() Snacks.picker.gh_pr() end, desc = 'GitHub Pull Requests (open)' },
+    { '<leader>gP', function() Snacks.picker.gh_pr { state = 'all' } end, desc = 'GitHub Pull Requests (all)' },
   },
+  init = function()
+    -- Lets LSP clients know that a file has been renamed
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'OilActionsPost',
+      callback = function(event)
+        if event.data.actions[1].type == 'move' then
+          Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
+        end
+      end,
+    })
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'VeryLazy',
+      callback = function()
+        -- Create some toggle mappings
+        Snacks.toggle.option('spell', { name = 'Spelling' }):map '<leader>us'
+        Snacks.toggle.option('wrap', { name = 'Wrap' }):map '<leader>uw'
+      end,
+    })
+  end,
 }

@@ -23,7 +23,7 @@ return {
   },
   keys = {
     {
-      '<leader>a',
+      '<leader>;',
       function() require('grapple').toggle() end,
       desc = 'Tag a file',
     },

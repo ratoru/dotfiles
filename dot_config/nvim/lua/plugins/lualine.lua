@@ -194,9 +194,7 @@ return {
             separator = '',
           },
           -- {
-          --   function()
-          --     return ' '
-          --   end,
+          --   function() return ' ' end,
           --   color = function()
           --     local status = require('sidekick.status').get()
           --     if status then

@@ -44,6 +44,8 @@ return {
       require('mini.move').setup()
 
       require('mini.align').setup()
+
+      require('mini.tabline').setup()
     end,
   },
 }

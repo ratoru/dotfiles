@@ -5,6 +5,11 @@ return {
   cmd = { 'DiffviewOpen', 'DiffviewClose', 'DiffviewToggleFiles', 'DiffviewFocusFiles' },
   opts = {
     enhanced_diff_hl = true,
+    view = {
+      merge_tool = {
+        layout = 'diff3_mixed',
+      },
+    },
   },
   -- keys = { { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "DiffView" } },
 }

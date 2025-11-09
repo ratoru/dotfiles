@@ -23,7 +23,7 @@ require('lazy').setup({
   -- Use `opts = {}` to force a plugin to be loaded.
   --
 
-  -- modular approach: using `require 'path/name'` will
+  -- modular approach: using `require 'path.name'` will
   -- include a plugin definition from file lua/path/name.lua
 
   require 'plugins.autopairs',
@@ -36,7 +36,6 @@ require('lazy').setup({
   require 'plugins.conform',
   -- require 'plugins.copilot',
   require 'plugins.diffview',
-  require 'plugins.dropbar',
   require 'plugins.flash',
   -- require 'plugins.fzf',
   require 'plugins.gitsigns',
