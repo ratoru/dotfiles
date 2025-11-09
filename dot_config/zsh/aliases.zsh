@@ -9,7 +9,9 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
+alias c='claude'
 alias n="nvim"
+alias lg='lazygit'
 
 # Aliases for tools.
 if command -v eza &>/dev/null; then
@@ -21,10 +23,6 @@ else
     alias ll="ls -alF"
     alias lt="ls -lFt"
 fi
-
-alias lg='lazygit'
-alias lzd='lazydocker'
-
 
 # Empty the Trash on all mounted volumes and the main HDD.
 # Also, clear Apple’s System Logs to improve shell startup speed.

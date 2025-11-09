@@ -1,6 +1,7 @@
 ################
 # Settings     #
 ################
+minimum-contrast = 1.1
 cursor-invert-fg-bg = true
 
 cursor-click-to-move = true
@@ -9,6 +10,7 @@ mouse-hide-while-typing = true
 unfocused-split-opacity = 0.9
 
 link-url = true
+link-previews = true
 
 maximize = true
 window-padding-x = 8
@@ -51,6 +53,7 @@ keybind = ctrl+a>left=new_split:left
 keybind = ctrl+a>down=new_split:down
 keybind = ctrl+a>up=new_split:up
 keybind = ctrl+a>right=new_split:right
+keybind = ctrl+a>e=equalize_splits
 
 keybind = ctrl+a>f=toggle_split_zoom
 keybind = ctrl+a>n=next_tab
