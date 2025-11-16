@@ -164,6 +164,8 @@ const rules: KarabinerRules[] = [
     m: mapTo("m", ["right_control", "right_option", "right_shift"]),
     // Scroll mode via homerow.app
     comma: mapTo("comma", ["right_control", "right_option", "right_shift"]),
+
+    v: mapTo("v", ["left_control", "left_option", "left_command", "left_shift"])
   }, "action_layer"),
 
   // Sticky sublayers: Tap Right Command + sublayer key to activate a persistent mode.
@@ -271,6 +273,15 @@ const config = {
           identifiers: {
             is_keyboard: true,
             product_id: 60439,
+            vendor_id: 36125,
+          },
+          ignore: true,
+        },
+        {
+          // Halcyon Elora rev2 (splitkb.com)
+          identifiers: {
+            is_keyboard: true,
+            product_id: 41874,
             vendor_id: 36125,
           },
           ignore: true,
