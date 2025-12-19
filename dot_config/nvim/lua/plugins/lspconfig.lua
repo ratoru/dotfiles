@@ -230,7 +230,7 @@ return {
           prettierd = {},
 
           -- Python
-          basedpyright = {},
+          ty = {},
           ruff = {},
 
           -- Rust
