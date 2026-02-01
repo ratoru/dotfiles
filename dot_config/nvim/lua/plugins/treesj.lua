@@ -6,14 +6,14 @@ return {
   opts = {},
   keys = {
     {
-      '<leader>tm',
+      '<leader>cm',
       function() require('treesj').toggle() end,
-      desc = 'split / join code block',
+      desc = 'Split / join code block',
     },
     {
-      '<leader>tM',
+      '<leader>cM',
       function() require('treesj').toggle { split = { recursive = true } } end,
-      desc = 'split / join code block rec',
+      desc = 'Split / join code block rec',
     },
   },
 }

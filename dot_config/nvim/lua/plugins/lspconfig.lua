@@ -88,28 +88,34 @@ return {
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
+          -- map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
           -- map('gd', function()
           --   require('fzf-lua').lsp_definitions { jump_to_single_result = true }
           -- end, 'Goto Definition')
 
           -- Find references for the word under your cursor.
+          -- map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
           -- map('gr', require('fzf-lua').lsp_references, 'Goto References')
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
+          -- map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
           -- map('gI', require('fzf-lua').lsp_implementations, 'Goto Implementation')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
+          -- map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
           -- map('<leader>D', require('fzf-lua').lsp_typedefs, 'Type Definition')
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
+          -- map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
           -- map('<leader>ds', require('fzf-lua').lsp_document_symbols, 'Document Symbols')
 
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
+          -- map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
           -- map('<leader>ws', require('fzf-lua').lsp_live_workspace_symbols, 'Workspace Symbols')
 
           -- Rename the variable under your cursor.
@@ -122,7 +128,7 @@ return {
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
-          -- map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
+          map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
           -- Toggle to show/hide diagnostic messages
           map('<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, '[T]oggle [D]iagnostics')
@@ -170,22 +176,18 @@ return {
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
       vim.diagnostic.config {
+        update_in_insert = false,
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
-        signs = vim.g.have_nerd_font and {
-          text = {
-            [vim.diagnostic.severity.ERROR] = '󰅚 ',
-            [vim.diagnostic.severity.WARN] = '󰀪 ',
-            [vim.diagnostic.severity.INFO] = '󰋽 ',
-            [vim.diagnostic.severity.HINT] = '󰌶 ',
-          },
-        } or {},
         virtual_text = {
           source = 'if_many',
           spacing = 2,
         },
         -- Display multiline diagnostics as virtual lines
         -- virtual_lines = true,
+
+        -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
+        jump = { float = true },
       }
 
       -- LSP servers and clients are able to communicate to each other what features they support.
@@ -222,9 +224,6 @@ return {
           -- Golang
           gopls = {},
 
-          -- Bash and Shell
-          shfmt = {},
-
           -- Markdown
           marksman = {},
           prettierd = {},
@@ -237,9 +236,6 @@ return {
           -- rust_analyzer = {},
           -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
           --
-
-          -- Json
-          jq = {},
 
           -- Terraform
           terraformls = {},
@@ -280,9 +276,16 @@ return {
       --
       -- You can add other tools here that you want Mason to install
       -- for you, so that they are available from within Neovim.
+      -- For example, linters for nvim-lint and formatters for conform.nvim.
       local ensure_installed = vim.tbl_keys(servers.mason or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        -- Lua
+        'stylua',
+        -- Bash and Shell
+        'shfmt',
+        'shellcheck',
+        -- Json
+        'jq',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

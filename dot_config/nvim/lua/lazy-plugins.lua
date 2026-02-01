@@ -23,14 +23,14 @@ require('lazy').setup({
   -- Use `opts = {}` to force a plugin to be loaded.
   --
 
-  -- modular approach: using `require 'path.name'` will
+  -- modular approach: using `require 'path/name'` will
   -- include a plugin definition from file lua/path/name.lua
 
   require 'plugins.autopairs',
   require 'plugins.blink-cmp',
-  require 'plugins.colorschemes.catppuccin',
-  require 'plugins.colorschemes.gruvbox',
-  require 'plugins.colorschemes.kanagawa',
+  -- require 'plugins.colorschemes.catppuccin',
+  -- require 'plugins.colorschemes.gruvbox',
+  -- require 'plugins.colorschemes.kanagawa',
   require 'plugins.colorschemes.tokyonight',
   require 'plugins.colorschemes.vague',
   require 'plugins.conform',
@@ -45,11 +45,12 @@ require('lazy').setup({
   require 'plugins.lint',
   require 'plugins.lspconfig',
   require 'plugins.lualine',
+  require 'plugins.markview',
   require 'plugins.mini',
   require 'plugins.neogen',
   require 'plugins.oil',
   require 'plugins.refactoring',
-  -- require 'plugins.sidekick',
+  require 'plugins.seeker',
   require 'plugins.snacks',
   require 'plugins.todo-comments',
   require 'plugins.treesitter',

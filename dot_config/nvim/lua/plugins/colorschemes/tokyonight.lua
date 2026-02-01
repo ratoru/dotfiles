@@ -3,9 +3,6 @@
 return {
   'folke/tokyonight.nvim',
   priority = 1000,
-  ---@class tokyonight.Config
-  ---@field on_colors fun(colors: ColorScheme)
-  ---@field on_highlights fun(highlights: tokyonight.Highlights, colors: ColorScheme)
   opts = {
     style = 'night',
     styles = {

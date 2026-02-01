@@ -26,22 +26,21 @@ return {
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
-        local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
           return {
             timeout_ms = 500,
-            lsp_format = lsp_format_opt,
+            lsp_format = 'fallback',
           }
         end
       end,
       formatters_by_ft = {
+        bash = { 'shfmt' },
+        go = { 'goimports', 'gofmt' },
+        json = { 'jq' },
         lua = { 'stylua' },
         markdown = { 'prettierd' },
-        bash = { 'shfmt' },
-        sh = { 'shfmt' },
-        rust = { 'rustfmt' },
         python = {
           -- To fix auto-fixable lint errors.
           'ruff_fix',
@@ -50,8 +49,10 @@ return {
           -- To organize the imports.
           'ruff_organize_imports',
         },
-        json = { 'jq' },
-        terraform = { 'terraformls' },
+        rust = { 'rustfmt' },
+        sh = { 'shfmt' },
+        terraform = { 'terraform_fmt' },
+        zsh = { 'shfmt' },
         -- You can use 'stop_after_first' to run the first available formatter from the list
       },
       vim.api.nvim_create_user_command('Format', function(args)

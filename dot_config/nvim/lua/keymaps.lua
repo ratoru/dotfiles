@@ -64,4 +64,18 @@ vim.keymap.set('n', '<leader>be', '<C-w>=', { desc = 'Make windows Equal size' }
 vim.keymap.set('n', '[p', '<Cmd>exe "put! " . v:register<CR>', { desc = 'Paste Above' })
 vim.keymap.set('n', ']p', '<Cmd>exe "put "  . v:register<CR>', { desc = 'Paste Below' })
 
+-- Copy relative path
+vim.keymap.set('n', '<leader>br', function()
+  local path = vim.fn.expand '%:p:.'
+  vim.fn.setreg('+', path)
+  print('Copied relative path: ' .. path)
+end, { desc = 'Copy relative path' })
+
+-- Copy absolute path
+vim.keymap.set('n', '<leader>ba', function()
+  local path = vim.fn.expand '%:p'
+  vim.fn.setreg('+', path)
+  print('Copied absolute path: ' .. path)
+end, { desc = 'Copy absolute path' })
+
 -- vim: ts=2 sts=2 sw=2 et

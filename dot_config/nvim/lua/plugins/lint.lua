@@ -9,8 +9,11 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         -- markdown = { 'markdownlint' },
+        sh = { 'shellcheck' },
+        bash = { 'shellcheck', 'bash' },
         python = { 'ruff' },
-        zsh = { 'zsh' },
+        terraform = { 'tflint' },
+        zsh = { 'shellcheck', 'zsh' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
