@@ -1,0 +1,20 @@
+#compdef bd
+
+emulate -L zsh
+local current="$PWD"
+local -a parents
+local expl
+
+# Remove the current directory since it isn't a parent
+current="${current:h}"
+
+# Get parents
+while [[ "$current" != "/" && "$current" != "." ]]; do
+parents+=("${current:t}")
+current="${current:h}"
+done
+
+# Add root to the parents list
+parents+=("/")
+
+_wanted directories expl 'parent directories' compadd -a parents

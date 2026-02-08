@@ -1,0 +1,24 @@
+#compdef ralph
+
+local context state state_descr line
+typeset -A opt_args
+
+_arguments -C \
+    '1:mode or iterations:->first_arg' \
+    '2:iterations:->second_arg'
+
+case $state in
+    (first_arg)
+        _alternative \
+            'keywords:mode:((plan\:"Run in planning mode"))' \
+            'defaults:iterations:(50 500 5000)' \
+            'custom:Manual Input:_guard "^[0-9]+$" "number"'
+        ;;
+    (second_arg)
+        if [[ ${line[1]} == "plan" ]]; then
+            _message "max iterations (integer)"
+        fi
+        ;;
+esac
+
+# vim: ft=zsh

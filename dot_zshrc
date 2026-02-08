@@ -2,25 +2,33 @@
 # Options
 # ---------------------------------------
 # ----- History -----
-setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
-setopt SHARE_HISTORY             # Share history between all sessions.
-setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
-setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
-setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
-setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
-setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+setopt extended_history       # Write the history file in the ':start:elapsed;command' format.
+setopt share_history          # Share history between all sessions.
+setopt hist_expire_dups_first # Expire a duplicate event first when trimming history.
+setopt hist_ignore_dups       # Do not record an event that was just recorded again.
+setopt hist_ignore_all_dups   # Delete an old recorded event if a new event is a duplicate.
+setopt hist_find_no_dups      # Do not display a previously found event.
+setopt hist_ignore_space      # Do not record an event starting with a space.
+setopt hist_save_no_dups      # Do not write a duplicate event to the history file.
+setopt hist_verify            # Do not execute immediately upon history expansion.
+
+# ----- Directories -----
+setopt auto_pushd    # Make cd push the old directory onto the dirstack.
+setopt pushd_minus   # Exchanges meanings of +/- when navigating the dirstack.
+setopt pushd_silent  # Do not print the directory stack after pushd or popd.
+setopt pushd_to_home # Push to home directory when no argument is given.
+setopt auto_cd       # Go to folder path without using cd.
 
 # ----- Other -----
-setopt AUTO_CD              # Go to folder path without using cd.
-setopt CORRECT              # Spelling correction
+setopt extended_glob     # Use extended globbing syntax (#,~,^).
+setopt correct           # Spelling correction
+setopt NO_rm_star_silent # Ask for confirmation for `rm *` or `rm path/*`
 
 # ---------------------------------------
 # Completion
 # ---------------------------------------
 source $HOME/.config/zsh/completion.zsh
-# Set up fzf key bindings and fuzzy completion
+# Set up fzf key bindings
 source <(fzf --zsh)
 
 # ---------------------------------------
@@ -37,7 +45,9 @@ source $HOME/.config/zsh/aliases.zsh
 # Utility Functions
 # ---------------------------------------
 source $HOME/.config/zsh/scripts.zsh
-source $HOME/.config/zsh/plugins/gitit.zsh
+source $HOME/.config/zsh/plugins/jobs.zsh
+source $HOME/.config/zsh/plugins/ralph.zsh
+source $HOME/.config/zsh/plugins/worktree-manager.zsh
 
 # ---------------------------------------
 # Navigation
@@ -58,9 +68,9 @@ eval "$(mise activate zsh)"
 # ---------------------------------------
 # Starship
 # See https://github.com/starship/starship/issues/3418
-if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
-      "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
-    zle -N zle-keymap-select "";
+if [[ "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select" ||
+      "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
+      zle -N zle-keymap-select ""
 fi
 eval "$(starship init zsh)"
 
