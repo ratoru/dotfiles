@@ -7,6 +7,13 @@
 "  UI Configurations
 "  ------------------------------------------------
    set showcmd          " show command in bottom bar
+   set cursorline       " highlight current line
+   highlight CursorLine cterm=NONE ctermbg=NONE guibg=NONE
+   set scrolloff=10     " keep 10 lines above/below cursor
+   set splitright       " open vertical splits to the right
+   set splitbelow       " open horizontal splits below
+   set title            " set terminal title
+   set mouse=a          " enable mouse support
 
 
 "  General settings
@@ -16,11 +23,14 @@
    set shiftwidth=4     " number of spaces to use for autoindenting and '>'
    set expandtab
    set autoindent       " always set autoindenting on
+   set breakindent      " wrapped lines preserve indentation
    set ignorecase       " ignore case when searching
    set smartcase        " ingonore case if search pattern is all lowercase,
                         "      case-sensitive otherwise
    set hlsearch         " highlight search term
    set incsearch        " show search matches as you type
+   set undofile         " persist undo history across sessions
+   set confirm          " ask to save instead of failing on :q
 
 
 "  Syntax Highlighting
@@ -45,6 +55,32 @@
 
    " Initialize plugin system
    call plug#end()
+
+
+"  Keymaps
+"  ------------------------------------------------
+   " Clear search highlights
+   nnoremap <Esc> :nohlsearch<CR>
+
+   " Split navigation
+   nnoremap <C-h> <C-w><C-h>
+   nnoremap <C-l> <C-w><C-l>
+   nnoremap <C-j> <C-w><C-j>
+   nnoremap <C-k> <C-w><C-k>
+
+   " Keep cursor centered while scrolling/searching
+   nnoremap <C-d> <C-d>zz
+   nnoremap <C-u> <C-u>zz
+   nnoremap n nzzzv
+   nnoremap N Nzzzv
+
+   " Stay in visual mode when indenting
+   vnoremap < <gv
+   vnoremap > >gv
+
+   " Move lines in visual mode
+   vnoremap J :m '>+1<CR>gv=gv
+   vnoremap K :m '<-2<CR>gv=gv
 
 
 "  Fzf in Vim
