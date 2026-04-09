@@ -11,6 +11,10 @@
 	conflictstyle = zdiff3
 [branch]
 	sort = -committerdate
+[core]
+	# Speed up on large repos
+	fsmonitor = true
+	untrackedCache = true
 [alias]
 	# short aliases
 	st = status 
