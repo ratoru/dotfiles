@@ -94,9 +94,16 @@ function ghosttyc {
     --bind="enter:become:$CMD"
 }
 
-# Tree replacement using broot.
-function tree {
-     br -c :pt "$@"
+# Launch a new project in Ghostty, using zoxide to find the directory.
+p() {
+  local config_root="${XDG_CONFIG_HOME:-$HOME/.config}"
+  local target_dir=$(zoxide query "$1")
+
+  if [ -n "$target_dir" ]; then
+    osascript "$config_root/ghostty/project-setup.applescript"
+  else
+    echo "No match found in zoxide for: $1"
+  fi
 }
 
 # Show most used commands

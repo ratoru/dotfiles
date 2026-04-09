@@ -61,8 +61,6 @@ eval "$(zoxide init zsh)"
 # ---------------------------------------
 eval "$(mise activate zsh)"
 
-[ -f "/Users/raphael/.ghcup/env" ] && . "/Users/raphael/.ghcup/env" # ghcup-env
-
 # ---------------------------------------
 # Prompt
 # ---------------------------------------

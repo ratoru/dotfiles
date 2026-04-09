@@ -13,7 +13,7 @@ return {
         bash = { 'shellcheck', 'bash' },
         python = { 'ruff' },
         terraform = { 'tflint' },
-        zsh = { 'shellcheck', 'zsh' },
+        zsh = { 'zsh' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
