@@ -28,9 +28,6 @@ require('lazy').setup({
 
   require 'plugins.autopairs',
   require 'plugins.blink-cmp',
-  -- require 'plugins.colorschemes.catppuccin',
-  -- require 'plugins.colorschemes.gruvbox',
-  -- require 'plugins.colorschemes.kanagawa',
   require 'plugins.colorschemes.tokyonight',
   require 'plugins.colorschemes.vague',
   require 'plugins.conform',
@@ -58,7 +55,6 @@ require('lazy').setup({
   require 'plugins.treesitter-textobjects',
   require 'plugins.treesj',
   require 'plugins.trouble',
-  require 'plugins.undotree',
   require 'plugins.which-key',
 }, {
   ui = {

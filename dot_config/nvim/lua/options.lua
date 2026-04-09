@@ -86,7 +86,7 @@ vim.o.shiftwidth = 4
 vim.o.termguicolors = true -- for bufferline
 
 -- Reduce size of `~/.local/state/nvim/lsp.log`
-vim.lsp.set_log_level 'OFF'
+vim.lsp.log.set_level 'OFF'
 
 -- Set window border
 vim.o.winborder = 'rounded'

@@ -78,4 +78,8 @@ vim.keymap.set('n', '<leader>ba', function()
   print('Copied absolute path: ' .. path)
 end, { desc = 'Copy absolute path' })
 
+-- Undotree
+vim.cmd 'packadd nvim.undotree'
+vim.keymap.set('n', '<leader>tu', require('undotree').open, { desc = '[T]oggle [u]ndo tree' })
+
 -- vim: ts=2 sts=2 sw=2 et

@@ -42,15 +42,16 @@ To make Neovim and some of the other CLI tools look good you will need a Nerdfon
 - [Iosevka](https://github.com/be5invis/Iosevka/tree/v30.3.3). To use Iosevka, go to the repo, pick the font variant you like (e.g. SS14), and download the term variant. In iTerm pick the Extended variant and use a Nerd Font like Meslo for non ascii characters.
 - [Maple Mono](https://github.com/subframe7536/maple-font). This font is a lot more playful than Iosevka.
 - [Meslo Nerd Font](https://github.com/romkatv/powerlevel10k/blob/master/font.md)
+- [Fira Code](https://github.com/tonsky/FiraCode)
 
 For note taking I am a big fan of [Atkinson Hyperlegible Next](https://www.brailleinstitute.org/about-us/news/braille-institute-launches-enhanced-atkinson-hyperlegible-font-to-make-reading-easier/).
 
 ### Themes
 
+- [Vague](https://github.com/vague2k/vague.nvim)
 - Tokyonight
 - GruvboxDarkHard
 - [Snazzy Terminal Theme](https://github.com/sindresorhus/iterm2-snazzy)
-- [Vague](https://github.com/vague2k/vague.nvim)
 
 ### Environments
 
@@ -65,8 +66,3 @@ Read through [`.macos`](./executable_dot_macos) to see if you would like to use 
 ### Productive Keyboard Setup
 
 I use [Karabiner Elements](./dot_config/private_karabiner/) to optimize my built-in keyboard.
-
-## Future changes
-
-- Learn `tee` and [GNU parallel](https://blog.ronin.cloud/gnu-parallel/).
-  - It's called tee because it makes a T. Data flows across the top of the T (from stdin to stdout), but also gets duplicated out the bottom (to a file).
