@@ -36,14 +36,18 @@ auto-update = check
 ################
 # Keybinds     #
 ################
-keybind = super+j=toggle_quick_terminal
-keybind = super+down=jump_to_prompt:1
-keybind = super+up=jump_to_prompt:-1
+keybind = cmd+e=toggle_quick_terminal
+keybind = cmd+down=jump_to_prompt:1
+keybind = cmd+up=jump_to_prompt:-1
 
-keybind = performable:opt+left=goto_split:left
-keybind = performable:opt+down=goto_split:bottom
-keybind = performable:opt+up=goto_split:top
-keybind = performable:opt+right=goto_split:right
+keybind = performable:ctrl+h=goto_split:left
+keybind = performable:ctrl+j=goto_split:bottom
+keybind = performable:ctrl+k=goto_split:top
+keybind = performable:ctrl+l=goto_split:right
+keybind = performable:ctrl+left=goto_split:left
+keybind = performable:ctrl+down=goto_split:bottom
+keybind = performable:ctrl+up=goto_split:top
+keybind = performable:ctrl+right=goto_split:right
 
 keybind = ctrl+a>h=new_split:left
 keybind = ctrl+a>j=new_split:down
@@ -56,11 +60,12 @@ keybind = ctrl+a>right=new_split:right
 keybind = ctrl+a>e=equalize_splits
 
 keybind = ctrl+a>f=toggle_split_zoom
+
 keybind = ctrl+a>n=next_tab
 keybind = ctrl+a>p=previous_tab
 
 # Claude Code
-keybind = shift+enter=text:\x1b\r
+keybind = shift+enter=text:\n
 
 ###################################
 # Font & Theme - Hotswappable     #
