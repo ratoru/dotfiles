@@ -13,20 +13,24 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
+# Allow backspace to delete past the insert-mode entry point
+bindkey -v '^?' backward-delete-char
+bindkey -v '^H' backward-delete-char
+
 # Cursor Shape
 function zle-keymap-select {
-    if [[ ${KEYMAP} == vicmd ]] ||
-	[[ $1 = 'block' ]]; then
-	echo -ne '\e[2 q'
-    elif [[ ${KEYMAP} == main ]] ||
-	[[ ${KEYMAP} == viins ]] ||
-	[[ ${KEYMAP} = '' ]] ||
-	[[ $1 = 'beam' ]]; then
-	echo -ne '\e[6 q'
-    fi
+	if [[ ${KEYMAP} == vicmd ]] ||
+		[[ $1 = 'block' ]]; then
+		echo -ne '\e[2 q'
+	elif [[ ${KEYMAP} == main ]] ||
+		[[ ${KEYMAP} == viins ]] ||
+		[[ ${KEYMAP} = '' ]] ||
+		[[ $1 = 'beam' ]]; then
+		echo -ne '\e[6 q'
+	fi
 }
 function zle-line-init() {
-    echo -ne '\e[6 q'
+	echo -ne '\e[6 q'
 }
 
 zle -N zle-keymap-select

@@ -1,87 +1,146 @@
-"  Set-up relative and absolute line number handling
-"  ------------------------------------------------
-   set number
-   set relativenumber
+" Leader Key
+" ------------------------------------------------
+let mapleader = " "
 
 
-"  UI Configurations
-"  ------------------------------------------------
-   set showcmd          " show command in bottom bar
-   set cursorline       " highlight current line
-   highlight CursorLine cterm=NONE ctermbg=NONE guibg=NONE
-   set scrolloff=10     " keep 10 lines above/below cursor
-   set splitright       " open vertical splits to the right
-   set splitbelow       " open horizontal splits below
-   set title            " set terminal title
-   set mouse=a          " enable mouse support
+" Performance
+" ------------------------------------------------
+set updatetime=250
+set timeoutlen=500
 
 
-"  General settings
-"  ------------------------------------------------
-   set nowrap           " dont wrap lines
-   set tabstop=4        " a tab is four spaces
-   set shiftwidth=4     " number of spaces to use for autoindenting and '>'
-   set expandtab
-   set autoindent       " always set autoindenting on
-   set breakindent      " wrapped lines preserve indentation
-   set ignorecase       " ignore case when searching
-   set smartcase        " ingonore case if search pattern is all lowercase,
-                        "      case-sensitive otherwise
-   set hlsearch         " highlight search term
-   set incsearch        " show search matches as you type
-   set undofile         " persist undo history across sessions
-   set confirm          " ask to save instead of failing on :q
+" UI
+" ------------------------------------------------
+set number
+set relativenumber
+set showcmd          " show command in bottom bar
+set scrolloff=10     " keep 10 lines above/below cursor
+set splitright       " open vertical splits to the right
+set splitbelow       " open horizontal splits below
+set title            " set terminal title
+set mouse=a          " enable mouse support
+set laststatus=2     " always show status line
+set statusline=%f\ %m%r%h%w%=%y\ [%l/%L,\ %c]\ %p%%
+let &t_SI = "\e[6 q"  " insert mode: line cursor
+let &t_EI = "\e[2 q"  " normal mode: block cursor
+let &t_SR = "\e[4 q"  " replace mode: underline cursor
 
 
-"  Syntax Highlighting
-"  ------------------------------------------------
-   syntax on
-   set showmatch        " highlight matching [{()}]
+" Editing
+" ------------------------------------------------
+set nowrap           " dont wrap lines
+set tabstop=4        " a tab is four spaces
+set shiftwidth=4     " number of spaces to use for autoindenting and '>'
+set expandtab
+set autoindent       " always set autoindenting on
+set breakindent      " wrapped lines preserve indentation
+set hidden           " allow switching buffers without saving
+set confirm          " ask to save instead of failing on :q
+set clipboard=unnamed " sync with system clipboard
+set wildmenu         " visual tab-completion menu for commands
+set wildmode=longest:full,full
+set list             " show invisible characters
+set listchars=tab:»\ ,trail:·,nbsp:␣
+set autoread
+set backspace=indent,eol,start  " backspace works everywhere
+set nojoinspaces     " single space after '.' when joining
+filetype plugin indent on " enable filetype detection and plugins
 
 
-"  Plugins
-"  ------------------------------------------------
-"  Uses vim-plug.
-   call plug#begin('~/.vim/plugged')
-
-   " Vim-Matchup for the % key.  
-   Plug 'andymass/vim-matchup'
-
-   " Vim-Surround
-   Plug 'tpope/vim-surround'
-
-   " Cooklang Syntax Highlighting
-   Plug 'luizribeiro/vim-cooklang', { 'for': 'cook' }
-
-   " Initialize plugin system
-   call plug#end()
+" Search
+" ------------------------------------------------
+set ignorecase       " ignore case when searching
+set smartcase        " case-sensitive if pattern has uppercase
+set hlsearch         " highlight search terms
+set incsearch        " show search matches as you type
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --smart-case
+    set grepformat^=%f:%l:%c:%m
+endif
 
 
-"  Keymaps
-"  ------------------------------------------------
-   " Clear search highlights
-   nnoremap <Esc> :nohlsearch<CR>
-
-   " Split navigation
-   nnoremap <C-h> <C-w><C-h>
-   nnoremap <C-l> <C-w><C-l>
-   nnoremap <C-j> <C-w><C-j>
-   nnoremap <C-k> <C-w><C-k>
-
-   " Keep cursor centered while scrolling/searching
-   nnoremap <C-d> <C-d>zz
-   nnoremap <C-u> <C-u>zz
-   nnoremap n nzzzv
-   nnoremap N Nzzzv
-
-   " Stay in visual mode when indenting
-   vnoremap < <gv
-   vnoremap > >gv
-
-   " Move lines in visual mode
-   vnoremap J :m '>+1<CR>gv=gv
-   vnoremap K :m '<-2<CR>gv=gv
+" Undo Directory
+" ------------------------------------------------
+set undofile         " persist undo history across sessions
+if !isdirectory($HOME.'/.vim/undodir')
+    call mkdir($HOME.'/.vim/undodir', 'p')
+endif
+set undodir=~/.vim/undodir
 
 
-"  Fzf in Vim
-"   set rtp+=/opt/homebrew/opt/fzf
+" Syntax Highlighting
+" ------------------------------------------------
+syntax on
+set showmatch        " highlight matching [{()}]
+
+
+" Autocmds
+" ------------------------------------------------
+augroup vimrc
+    autocmd!
+    " Restore cursor position when reopening a file
+    autocmd BufReadPost * if &filetype != 'gitcommit' && line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
+    " Stop autocommenting when opening a new line with 'o'
+    autocmd FileType * setlocal formatoptions-=o
+    " Reload files changed outside vim
+    autocmd FocusGained,BufEnter * checktime
+    " Rebalance splits on terminal resize
+    autocmd VimResized * wincmd =
+    " Close certain filetypes with q
+    autocmd FileType help nnoremap <buffer> q :close<CR>
+    autocmd FileType man nnoremap <buffer> q :close<CR>
+    autocmd FileType qf nnoremap <buffer> q :close<CR>
+    " Auto-create missing directories when saving
+    autocmd BufWritePre * if !isdirectory(expand('<afile>:p:h')) | call mkdir(expand('<afile>:p:h'), 'p') | endif
+augroup END
+
+
+" Keymaps
+" ------------------------------------------------
+nnoremap <silent><esc><esc> :nohlsearch<CR>
+nnoremap Y y$
+
+" Split navigation
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-l> <C-w><C-l>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+
+" Keep cursor centered while scrolling/searching
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Stay in visual mode when indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Move lines in visual mode
+vnoremap <silent> J :m '>+1<CR>gv=gv
+vnoremap <silent> K :m '<-2<CR>gv=gv
+
+" Open netrw
+nnoremap - :Explore %:p:h<CR>
+
+" Buffer Management
+nnoremap <leader>b :ls<CR>:b<Space>
+nnoremap ]b :bnext<CR>
+nnoremap [b :bprev<CR>
+
+" Quickfix List
+nnoremap ]q :cnext<CR>zz
+nnoremap [q :cprev<CR>zz
+nnoremap <leader>q :copen<CR>
+
+" Suppress the shell output, jump back automatically
+command! -nargs=+ Grep silent grep! <args> | copen
+nnoremap <leader>/ :Grep<Space>
+
+
+" Add-Ons
+" ------------------------------------------------
+if isdirectory('/opt/homebrew/opt/fzf')
+    set rtp+=/opt/homebrew/opt/fzf
+    nnoremap <leader><leader> :FZF<CR>
+endif
