@@ -91,4 +91,7 @@ vim.lsp.log.set_level 'OFF'
 -- Set window border
 vim.o.winborder = 'rounded'
 
+-- More inuitive number increments
+vim.o.nrformats = 'unsigned'
+
 -- vim: ts=2 sts=2 sw=2 et

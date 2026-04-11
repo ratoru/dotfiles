@@ -43,7 +43,8 @@ set list             " show invisible characters
 set listchars=tab:»\ ,trail:·,nbsp:␣
 set autoread
 set backspace=indent,eol,start  " backspace works everywhere
-set nojoinspaces     " single space after '.' when joining
+set nojoinspaces        " single space after '.' when joining
+set nrformats=unsigned  " more intuitive incrementing
 filetype plugin indent on " enable filetype detection and plugins
 
 
