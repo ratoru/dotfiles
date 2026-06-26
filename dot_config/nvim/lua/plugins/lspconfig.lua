@@ -85,38 +85,30 @@ return {
             vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          -- Jump to the definition of the word under your cursor.
-          --  This is where a variable was first declared, or where a function is defined, etc.
-          --  To jump back, press <C-t>.
-          -- map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-          -- map('gd', function()
-          --   require('fzf-lua').lsp_definitions { jump_to_single_result = true }
-          -- end, 'Goto Definition')
+          -- LSP navigation via fzf-lua (fuzzy picker + preview).
+          -- Naming follows Neovim 0.11/0.12 defaults (gr*), but bound to fzf-lua
+          -- so results open in a fuzzy picker instead of the quickfix list.
+          -- (grn=rename, gra=code action, K=hover are left as Neovim defaults;
+          --  gra routes through fzf-lua automatically via register_ui_select.)
+
+          -- Jump to the definition (jumps directly if there's only one result).
+          map('gd', function() require('fzf-lua').lsp_definitions { jump_to_single_result = true } end, 'Goto Definition')
 
           -- Find references for the word under your cursor.
-          -- map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-          -- map('gr', require('fzf-lua').lsp_references, 'Goto References')
+          map('grr', require('fzf-lua').lsp_references, 'Goto References')
 
           -- Jump to the implementation of the word under your cursor.
-          --  Useful when your language has ways of declaring types without an actual implementation.
-          -- map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-          -- map('gI', require('fzf-lua').lsp_implementations, 'Goto Implementation')
+          map('gri', require('fzf-lua').lsp_implementations, 'Goto Implementation')
 
-          -- Jump to the type of the word under your cursor.
-          --  Useful when you're not sure what type a variable is and you want to see
-          --  the definition of its *type*, not where it was *defined*.
-          -- map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-          -- map('<leader>D', require('fzf-lua').lsp_typedefs, 'Type Definition')
+          -- Jump to the type's definition (not where the variable was defined).
+          map('grt', require('fzf-lua').lsp_typedefs, 'Goto Type Definition')
 
-          -- Fuzzy find all the symbols in your current document.
-          --  Symbols are things like variables, functions, types, etc.
-          -- map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-          -- map('<leader>ds', require('fzf-lua').lsp_document_symbols, 'Document Symbols')
+          -- Fuzzy find symbols in the current document / whole workspace.
+          map('gO', require('fzf-lua').lsp_document_symbols, 'Document Symbols')
+          map('<leader>sS', require('fzf-lua').lsp_live_workspace_symbols, 'Workspace Symbols')
 
-          -- Fuzzy find all the symbols in your current workspace.
-          --  Similar to document symbols, except searches over your entire project.
-          -- map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-          -- map('<leader>ws', require('fzf-lua').lsp_live_workspace_symbols, 'Workspace Symbols')
+          -- All LSP locations (defs + refs + impls + ...) in one fuzzy list.
+          map('grf', require('fzf-lua').lsp_finder, 'LSP Finder (all locations)')
 
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
@@ -132,7 +124,7 @@ return {
 
           -- Toggle to show/hide diagnostic messages
           map('<leader>td', function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end, '[T]oggle [D]iagnostics')
-          map('<leader>tf', function() vim.diagnostic.open_float(nil, { border = 'rounded', source = 'if_many' }) end, 'Enter Diagnostics in [f]loating Window')
+          map('<leader>tf', function() vim.diagnostic.open_float(nil, { source = 'if_many' }) end, 'Enter Diagnostics in [f]loating Window')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
@@ -178,7 +170,7 @@ return {
       vim.diagnostic.config {
         update_in_insert = false,
         severity_sort = true,
-        float = { border = 'rounded', source = 'if_many' },
+        float = { source = 'if_many' },
         virtual_text = {
           source = 'if_many',
           spacing = 2,
@@ -187,7 +179,15 @@ return {
         -- virtual_lines = true,
 
         -- Auto open the float, so you can easily read the errors when jumping with `[d` and `]d`
-        jump = { float = true },
+        jump = {
+          on_jump = function(_, bufnr)
+            vim.diagnostic.open_float {
+              bufnr = bufnr,
+              scope = 'cursor',
+              focus = false,
+            }
+          end,
+        },
       }
 
       -- LSP servers and clients are able to communicate to each other what features they support.
@@ -218,8 +218,9 @@ return {
         --
         --  Feel free to add/remove any LSPs here that you want to install via Mason. They will automatically be installed and setup.
         mason = {
-          -- Copilot for Sidekick
-          -- copilot = {},
+          -- NOTE: Copilot's LSP server is provided by copilot.lua (it bundles and
+          -- self-manages its own copilot-language-server, which also drives sidekick
+          -- NES). Enabling it here too just causes start/kill churn, so it's omitted.
 
           -- Golang
           gopls = {},
@@ -246,6 +247,8 @@ return {
             -- capabilities = {...},
             settings = {
               Lua = {
+                -- Disable lua_ls formatting (formatting is done by stylua via conform)
+                format = { enable = false },
                 completion = {
                   callSnippet = 'Replace',
                 },

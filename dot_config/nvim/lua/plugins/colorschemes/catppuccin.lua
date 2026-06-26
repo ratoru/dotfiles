@@ -10,7 +10,6 @@ return {
       flavor = 'mocha',
       integrations = {
         flash = true,
-        harpoon = true,
         neotree = true,
         lsp_trouble = true,
         which_key = true,

@@ -1,15 +1,25 @@
+local ai_enabled = vim.g.ai_enabled
+
+-- Build the default source list, including copilot only when AI is enabled.
+local default_sources = { 'lsp', 'path', 'snippets', 'lazydev', 'buffer' }
+if ai_enabled then
+  table.insert(default_sources, 'copilot')
+end
+
+local dependencies = {
+  -- optionals
+  'rafamadriz/friendly-snippets',
+}
+if ai_enabled then
+  table.insert(dependencies, 'fang2hou/blink-copilot')
+end
+
 ---@module 'lazy'
 ---@type LazySpec
 return {
   'saghen/blink.cmp',
-  lazy = false, -- lazy loading handled internally
-  -- optional: provides snippets for the snippet source
-  dependencies = {
-    'rafamadriz/friendly-snippets',
-    -- 'fang2hou/blink-copilot',
-  },
-
-  -- Build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+  dependencies = dependencies,
+  version = '1.*',
   build = 'cargo build --release',
 
   ---@module 'blink.cmp'
@@ -35,14 +45,7 @@ return {
     -- default list of enabled providers defined so that you can extend it
     -- elsewhere in your config, without redefining it, via `opts_extend`
     sources = {
-      default = {
-        'lsp',
-        'path',
-        'snippets',
-        'lazydev',
-        'buffer',
-        -- 'copilot',
-      },
+      default = default_sources,
       min_keyword_length = function()
         if vim.bo.filetype == 'markdown' then
           return 3
@@ -54,16 +57,16 @@ return {
         return 0
       end,
       providers = {
-        -- copilot = {
-        --   name = 'copilot',
-        --   module = 'blink-copilot',
-        --   score_offset = 100,
-        --   async = true,
-        --   opts = {
-        --     max_completions = 3,
-        --     max_attempts = 4,
-        --   },
-        -- },
+        copilot = {
+          name = 'copilot',
+          module = 'blink-copilot',
+          score_offset = 100,
+          async = true,
+          opts = {
+            max_completions = 3,
+            max_attempts = 4,
+          },
+        },
         lazydev = { module = 'lazydev.integrations.blink', score_offset = 99 },
         -- Can add config to put buffer source at a lower priority
       },
@@ -100,12 +103,6 @@ return {
       enabled = true,
       window = {
         border = 'rounded',
-      },
-    },
-
-    fuzzy = {
-      prebuilt_binaries = {
-        download = false,
       },
     },
   },

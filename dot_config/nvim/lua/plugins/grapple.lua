@@ -13,7 +13,7 @@ end
 ---@type LazySpec
 return {
   'cbochs/grapple.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'nvim-mini/mini.nvim' },
   event = { 'BufReadPost', 'BufNewFile' },
   cmd = 'Grapple',
   opts = {

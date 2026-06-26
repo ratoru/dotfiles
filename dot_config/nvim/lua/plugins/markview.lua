@@ -7,7 +7,7 @@ return {
   dependencies = { 'saghen/blink.cmp' },
   opts = {
     preview = {
-      icon_provider = 'devicons',
+      icon_provider = 'mini',
     },
   },
   keys = {

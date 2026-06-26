@@ -4,6 +4,11 @@ return {
   { -- Collection of various small independent plugins/modules
     'nvim-mini/mini.nvim',
     config = function()
+      -- Icon provider. Set up early and mock 'nvim-web-devicons' so plugins
+      -- that expect it (grapple, fzf, etc.) integrate with mini.icons.
+      require('mini.icons').setup()
+      MiniIcons.mock_nvim_web_devicons()
+
       -- Better Around/Inside textobjects
       --
       -- Examples:

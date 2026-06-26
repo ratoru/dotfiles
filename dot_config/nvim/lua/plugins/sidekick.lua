@@ -2,6 +2,7 @@
 ---@type LazySpec
 return {
   'folke/sidekick.nvim',
+  enabled = function() return vim.g.ai_enabled end,
   opts = {},
   keys = {
     {
@@ -38,18 +39,18 @@ return {
     },
     {
       '<leader>at',
-      function() require('sidekick.cli').send { msg = '{this}', name = 'claude', focus = true } end,
+      function() require('sidekick.cli').send { msg = '{this}' } end,
       mode = { 'x', 'n' },
       desc = 'Send This',
     },
     {
       '<leader>af',
-      function() require('sidekick.cli').send { msg = '{file}', name = 'claude', focus = true } end,
+      function() require('sidekick.cli').send { msg = '{file}' } end,
       desc = 'Send File',
     },
     {
       '<leader>av',
-      function() require('sidekick.cli').send { msg = '{selection}', name = 'claude', focus = true } end,
+      function() require('sidekick.cli').send { msg = '{selection}' } end,
       mode = { 'x' },
       desc = 'Send Visual Selection',
     },

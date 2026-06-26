@@ -8,7 +8,7 @@ return {
     keys = {
       {
         '<leader>bf',
-        function() require('conform').format { async = true, lsp_format = 'fallback' } end,
+        function() require('conform').format { async = true } end,
         mode = '',
         desc = 'Format buffer',
       },
@@ -17,6 +17,10 @@ return {
     ---@type conform.setupOpts
     opts = {
       notify_on_error = false,
+      default_format_opts = {
+        -- Use external formatters if configured, otherwise fall back to LSP formatting.
+        lsp_format = 'fallback',
+      },
       format_on_save = function(bufnr)
         -- Disable with a global or buffer-local variable
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -31,7 +35,6 @@ return {
         else
           return {
             timeout_ms = 500,
-            lsp_format = 'fallback',
           }
         end
       end,
@@ -55,9 +58,6 @@ return {
         zsh = { 'shfmt' },
         -- You can use 'stop_after_first' to run the first available formatter from the list
       },
-    },
-    config = function(_, opts)
-      require('conform').setup(opts)
       vim.api.nvim_create_user_command('Format', function(args)
         local range = nil
         if args.count ~= -1 then
@@ -69,11 +69,10 @@ return {
         end
         require('conform').format {
           async = true,
-          lsp_format = 'fallback',
           range = range,
         }
-      end, { range = true })
-    end,
+      end, { range = true }),
+    },
   },
 }
 -- vim: ts=2 sts=2 sw=2 et

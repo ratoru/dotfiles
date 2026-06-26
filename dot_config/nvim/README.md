@@ -50,22 +50,35 @@ Additionally, I added some `mini` plugins in `init.lua`.
 
 ### Color Schemes
 
-Aside from the usual `onedark`, I discovered a few other color schemes that I really enjoy.
+My clear favorite is [tokyonight.nvim](https://github.com/folke/tokyonight.nvim).
 
-- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
+I use [vague.nvim](https://github.com/vague-theme/vague.nvim) as my terminal theme, but couldn't
+quite get used to it in Neovim. For the adventurous, here is a long list of noteworthy options:
+
 - [Catppuccin](https://github.com/catppuccin/nvim)
-- [nordic.nvim](https://github.com/AlexvZyl/nordic.nvim) - a slightly darker Nord.
+- [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
+- [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
 - [monokai-pro.nvim](https://github.com/loctvl842/monokai-pro.nvim)
 - [nightfox.nvim](https://github.com/EdenEast/nightfox.nvim) - specifically the `carbonfox` variant.
-- [kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim)
+- [nordic.nvim](https://github.com/AlexvZyl/nordic.nvim) - a slightly darker Nord.
+- [rose-pine](https://github.com/rose-pine/neovim)
+- [tokyonight.nvim](https://github.com/folke/tokyonight.nvim)
+- [vague.nvim](https://github.com/vague-theme/vague.nvim)
+- [vim-moonfly-colors](https://github.com/bluz71/vim-moonfly-colors)
 
 ### AI
 
-I am using `copilot.lua`, `sidekick.nvim`, and Claude Code.
+I usually run coding agents in their own terminal window. Inside nvim I mainly
+rely on line completion and NEP using `copilot.lua` and `sidekick.nvim`.
+
+On machines without AI access (e.g. no Copilot license), set `vim.g.ai_enabled
+= false` in `init.lua`. This single flag disables `copilot.lua`,
+`sidekick.nvim`, the `blink.cmp` copilot source, and the sidekick statusline
+component.
 
 ## Uninstalling
 
-For information how to uninstall refer to the kickstart repository or go directly to [lazy.nvim](https://lazy.folke.io/usage#-uninstalling).
+For information how to uninstall refer to [lazy.nvim](https://lazy.folke.io/usage#-uninstalling).
 
 ## Things I wish I knew sooner
 
@@ -80,3 +93,4 @@ For information how to uninstall refer to the kickstart repository or go directl
 - What the quickfix list is and how to use `cdo`.
 - Use `P` in visual mode to paste without overwriting the register.
 - `:[range]g/{pattern}/{command}` to run command on all lines matching pattern. `v` for lines not matching. Commands can be `d` (delete), `s` (substitute), `m` (move), `t` (copy), `normal` (normal mode commands), `j` (join), `y` (yank), etc.
+- `q:` opens the command-line window: your command history in an editable buffer where you can navigate, edit and re-run with `<CR>`. `q/` and `q?` do the same for search history.

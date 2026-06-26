@@ -87,21 +87,6 @@ return {
       set = function(state) vim.g.custom_lualine_show_session_name = state end,
     }):map '<leader>ts'
 
-    ---@class PrettyPath.BasePlusHarpoonProvider: PrettyPath.Provider
-    ---@field super PrettyPath.Provider
-    local pretty_path_util = require('lualine-pretty-path.providers.base'):extend()
-
-    function pretty_path_util:render_symbols()
-      local indexChar = { '¹', '²', '³', '⁴', '⁵' }
-      if package.loaded['harpoon'] then
-        local current_file = vim.fn.fnamemodify(vim.fn.bufname '%', ':.')
-        local harpoonItem, harpoonIndex = require('harpoon'):list():get_by_value(current_file)
-        if harpoonItem then
-          return indexChar[harpoonIndex]
-        end
-      end
-    end
-
     return vim.tbl_deep_extend('force', opts or {}, {
       options = {
         -- When theme is set to auto, Lualine uses dofile instead of require
@@ -137,9 +122,6 @@ return {
         lualine_c = {
           {
             'pretty_path',
-            providers = {
-              default = pretty_path_util,
-            },
             directories = {
               max_depth = 4,
             },
@@ -193,19 +175,24 @@ return {
             fmt = trunc(0, 0, 140, true), -- hide when window is < 80 columns
             separator = '',
           },
-          -- {
-          --   function() return ' ' end,
-          --   color = function()
-          --     local status = require('sidekick.status').get()
-          --     if status then
-          --       return status.kind == 'Error' and 'DiagnosticError' or status.busy and 'DiagnosticWarn' or 'Special'
-          --     end
-          --   end,
-          --   cond = function()
-          --     local status = require 'sidekick.status'
-          --     return status.get() ~= nil
-          --   end,
-          -- },
+          {
+            function() return ' ' end,
+            color = function()
+              if not vim.g.ai_enabled then return end
+              local status = require('sidekick.status').get()
+              if status then
+                return status.kind == 'Error' and 'DiagnosticError' or status.busy and 'DiagnosticWarn' or 'Special'
+              end
+            end,
+            cond = function()
+              -- Skip entirely when AI is disabled (sidekick isn't installed then).
+              if not vim.g.ai_enabled then
+                return false
+              end
+              local status = require 'sidekick.status'
+              return status.get() ~= nil
+            end,
+          },
         },
         lualine_y = {
           { 'grapple' },

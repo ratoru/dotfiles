@@ -7,6 +7,7 @@ return {
       max_lines = 6,
       multiline_threshold = 2,
     }
-    vim.keymap.set('n', '[c', function() require('treesitter-context').go_to_context(vim.v.count1) end, { silent = true, desc = 'Go to [c]ontext' })
+    -- NOTE: [c / ]c are left as the built-in diff change-navigation mappings.
+    vim.keymap.set('n', '[x', function() require('treesitter-context').go_to_context(vim.v.count1) end, { silent = true, desc = 'Go to conte[x]t' })
   end,
 }

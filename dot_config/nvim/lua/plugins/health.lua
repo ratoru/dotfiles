@@ -35,7 +35,7 @@ end
 
 return {
   check = function()
-    vim.health.start 'my nvim'
+    vim.health.start 'nvim'
 
     vim.health.info [[NOTE: Not every warning is a 'must-fix' in `:checkhealth`
 

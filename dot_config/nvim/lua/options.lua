@@ -91,7 +91,18 @@ vim.lsp.log.set_level 'OFF'
 -- Set window border
 vim.o.winborder = 'rounded'
 
--- More inuitive number increments
-vim.o.nrformats = 'unsigned'
+-- More intuitive incrementing/decrementing with <C-a> and <C-x>
+vim.o.nrformats = 'blank'
+
+-- Experimental UI2: floating cmdline and messages.
+require('vim._core.ui2').enable()
+
+-- Disable unused remote-plugin providers (node/perl/ruby/python).
+-- All plugins in this config are Lua-based, so these legacy bridges are never
+-- used. Disabling them quiets the corresponding `:checkhealth` warnings.
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_python3_provider = 0
 
 -- vim: ts=2 sts=2 sw=2 et
