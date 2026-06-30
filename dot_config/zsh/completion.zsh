@@ -3,10 +3,8 @@
 # Completion
 # ---------------------------------------
 fpath=(${HOME}/.config/zsh/completions $fpath)
-# Load more completions
-if type brew &>/dev/null; then
-    fpath=($(brew --prefix)/share/zsh-completions $fpath)
-fi
+# zsh-completions is provided via antidote (kind:fpath); its dir is added to fpath
+# before compinit runs because ez-compinit defers compinit until after .zshrc loads.
 
 # Should be called before compinit
 zmodload zsh/complist
@@ -18,16 +16,18 @@ bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 
-# Initialize completions
-autoload -U compinit; compinit
+# compinit is owned by ez-compinit (loaded via antidote). It wraps compinit, queues
+# compdef calls, and runs the real compinit after .zshrc finishes loading so all
+# fpath entries are present. Enable its 24h security-check cache (the `-C` win).
+zstyle ':plugin:ez-compinit' 'use-cache' 'yes'
 _comp_options+=(globdots) # With hidden files
 
 # Options
-setopt MENU_COMPLETE        # Automatically highlight first element of completion menu
-setopt ALWAYS_TO_END        # Move cursor to the end of a completed word.
-setopt AUTO_LIST            # Automatically list choices on ambiguous completion.
-setopt COMPLETE_IN_WORD     # Complete from both ends of a word.
-setopt AUTO_PARAM_SLASH     # If completed parameter is a directory, add a trailing slash.
+setopt MENU_COMPLETE    # Automatically highlight first element of completion menu
+setopt ALWAYS_TO_END    # Move cursor to the end of a completed word.
+setopt AUTO_LIST        # Automatically list choices on ambiguous completion.
+setopt COMPLETE_IN_WORD # Complete from both ends of a word.
+setopt AUTO_PARAM_SLASH # If completed parameter is a directory, add a trailing slash.
 
 # ----- zstyles -----
 # :completion:<function>:<completer>:<command>:<argument>:<tag>

@@ -22,66 +22,67 @@ setopt auto_cd       # Go to folder path without using cd.
 # ----- Other -----
 setopt extended_glob     # Use extended globbing syntax (#,~,^).
 setopt correct           # Spelling correction
-setopt NO_rm_star_silent # Ask for confirmation for `rm *` or `rm path/*`
+setopt NO_rm_star_silent # Ask for confirmation for `rm *' or `rm path/*'
 
 # ---------------------------------------
 # Completion
 # ---------------------------------------
-source $HOME/.config/zsh/completion.zsh
-# Set up fzf key bindings
-source <(fzf --zsh)
+source "$HOME/.config/zsh/completion.zsh"
 
 # ---------------------------------------
 # Vim like editing
 # ---------------------------------------
-source $HOME/.config/zsh/vim-mode.zsh
+source "$HOME/.config/zsh/vim-mode.zsh"
 
 # ---------------------------------------
 # Aliases for common commands
 # ---------------------------------------
-source $HOME/.config/zsh/aliases.zsh
+source "$HOME/.config/zsh/aliases.zsh"
 
 # ---------------------------------------
 # Utility Functions
 # ---------------------------------------
-source $HOME/.config/zsh/scripts.zsh
-source $HOME/.config/zsh/plugins/jobs.zsh
-source $HOME/.config/zsh/plugins/ralph.zsh
-source $HOME/.config/zsh/plugins/worktree-manager.zsh
+source "$HOME/.config/zsh/scripts.zsh"
+source "$HOME/.config/zsh/plugins/ralph.zsh"
+source "$HOME/.config/zsh/plugins/worktree-manager.zsh"
+source "$HOME/.config/zsh/plugins/jobs.zsh"
 
 # ---------------------------------------
 # Navigation
 # ---------------------------------------
-source $HOME/.config/zsh/plugins/bd.zsh
-# Zoxide directory jumping
-eval "$(zoxide init zsh)"
+source "$HOME/.config/zsh/plugins/bd.zsh"
 
 # ---------------------------------------
-# Other tools
+# Plugins (antidote)
 # ---------------------------------------
-eval "$(mise activate zsh)"
+source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+antidote load "$HOME/.config/zsh/.zsh_plugins.txt"
 
 # ---------------------------------------
 # Prompt
 # ---------------------------------------
-# Starship
-# See https://github.com/starship/starship/issues/3418
-if [[ "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select" ||
-      "${widgets[zle - keymap - select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
-      zle -N zle-keymap-select ""
-fi
-eval "$(starship init zsh)"
+autoload -Uz promptinit && promptinit
+prompt pure
 
-# Autosuggestions
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# ---------------------------------------
+# Tool integrations
+# ---------------------------------------
+# evalcache (loaded above via antidote) caches each `eval "$(... )"` to disk so it
+# doesn't fork a subprocess on every startup. Run `_evalcache_clear` after upgrading
+# these tools — wired into the `update` alias.
+_evalcache mise activate zsh      # mise: runtime/tool version manager (shims + hooks)
+_evalcache zoxide init zsh        # zoxide: smarter `cd` / directory jumping
+_evalcache fzf --zsh              # fzf: fuzzy-finder key bindings + completion
+_evalcache jj util completion zsh # jj: Jujutsu VCS completions
 
-# Highlighting. Needs to be at the end of the file!
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# History substring search. Needs to be after zsh-syntax-highlighting!
-source $HOME/.config/zsh/plugins/history-substring-search.zsh
+# History substring search (plugin loaded via antidote). Keybindings:
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_TIMEOUT=0.3
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+# ---------------------------------------
+# Syntax highlighting — MUST be the last line (after compinit/bindkeys).
+# ---------------------------------------
+eval "$(zsh-patina activate)"

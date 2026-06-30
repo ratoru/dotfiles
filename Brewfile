@@ -1,6 +1,10 @@
 tap "jesseduffield/lazygit"
 brew "jesseduffield/lazygit/lazygit"
 
+tap "michel-kraemer/zsh-patina"
+brew "zsh-patina"
+
+brew "antidote"
 brew "bat"
 brew "chezmoi"
 brew "difftastic"
@@ -11,11 +15,8 @@ brew "gh"
 brew "jq"
 brew "neovim"
 brew "ripgrep"
-brew "starship"
 brew "tree-sitter-cli"
 brew "zoxide"
-brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
 
 # Casks (GUI applications)
 cask "karabiner-elements"

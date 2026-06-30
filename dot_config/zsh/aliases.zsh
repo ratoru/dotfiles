@@ -10,21 +10,27 @@ alias dirh='dirs -v'
 _dotdot=".."
 for _index in {1..9}; do
     alias "$_index"="cd -${_index}"     # dirstack aliases (eg: "2"="cd -2")
-    alias -g "..${_index}"="${_dotdot}" # global backref aliases: (eg: "..3"="../../..")
+    alias -g "..${_index}"="${_dotdot}" # global backref aliases (eg: "..3"="../../..")
     _dotdot+="/.."
 done
 unset _dotdot _index
 
-alias c='claude'
-alias n="nvim"
-alias lg='lazygit'
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 
 # Aliases for tools.
+alias c="claude"
+alias n="nvim"
+alias lg='lazygit'
+# alias lzd='lazydocker'
+
 if command -v eza &>/dev/null; then
     alias ls="eza --icons=auto -F -H --group-directories-first --git -1"
     alias ll="ls -alF"
     # Long form, groups, mark file types, order by last modified
-    alias lt="eza -lgF -s oldest --icons"
+    alias lt="eza -lgF -s modified --icons"
 else
     alias ll="ls -alF"
     alias lt="ls -lFt"
@@ -39,17 +45,16 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
+# Show/hide hidden files in Finder -- macOS only
+alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
 # Sleep (when going AFK) -- macOS only
 # Can lock the screen if system setting is set to require password immediately after sleep.
 alias afk="pmset displaysleepnow"
 
-# One of @janmoesen’s ProTip™s
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-    alias "${method}"="lwp-request -m '${method}'"
-done
-
-# Install updates for Homebrew (+ packages), and , npm (+ packages), and Rust.
-alias update='brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; rustup update'
+# Install updates for Homebrew (+ packages), and ...
+alias update='brew update; brew upgrade; brew cleanup; mise up; npm install npm -g; npm update -g; rustup update; uv tool upgrade --all; _evalcache_clear'
 
 # Find all files recursively and sort by last modified, ignore hidden files
 alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
