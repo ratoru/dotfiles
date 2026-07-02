@@ -2,6 +2,8 @@
 # Options
 # ---------------------------------------
 # ----- History -----
+HISTSIZE=10000                # Maximum events for internal history
+SAVEHIST=10000                # Maximum events in history file
 setopt extended_history       # Write the history file in the ':start:elapsed;command' format.
 setopt share_history          # Share history between all sessions.
 setopt hist_expire_dups_first # Expire a duplicate event first when trimming history.

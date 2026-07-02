@@ -1,0 +1,6 @@
+# Set config dir
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Set editor to nvim
+export VISUAL="nvim"
+export EDITOR="$VISUAL"
