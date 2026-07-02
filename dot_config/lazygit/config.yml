@@ -1,3 +1,33 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/jesseduffield/lazygit/master/schema/config.json
+gui:
+  nerdFontsVersion: "3"
+  showCommandLog: false
+  authorColors:
+    "*": "#f3be7c"
+  theme:
+    activeBorderColor:
+      - "#aeaed1"
+      - "bold"
+    inactiveBorderColor:
+      - "#606079"
+    optionsTextColor:
+      - "#606079"
+    selectedLineBgColor:
+      - "#252530"
+    cherryPickedCommitFgColor:
+      - "#d8647e"
+    cherryPickedCommitBgColor:
+      - "bg"
+    markedBaseCommitFgColor:
+      - "#f3be7c"
+    markedBaseCommitBgColor:
+      - "bg"
+    unstagedChangesColor:
+      - "#d8647e"
+    defaultFgColor:
+      - "#cdcdcd"
 git:
-  paging:
-    externalDiffCommand: difft --color=always --display=inline --syntax-highlight=off
+  pagers:
+    - pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}" --syntax-theme="vague" --tabs 4
+    - pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}" --syntax-theme="vague" --tabs 4 --side-by-side
+    - externalDiffCommand: difft --color=always --display=inline
