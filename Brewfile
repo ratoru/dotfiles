@@ -13,11 +13,13 @@ brew "fd"
 brew "fzf"
 brew "gh"
 brew "jq"
+brew "mise"
 brew "neovim"
 brew "ripgrep"
 brew "tree-sitter-cli"
 brew "zoxide"
 
 # Casks (GUI applications)
+cask "ghostty"
 cask "karabiner-elements"
 cask "obsidian"

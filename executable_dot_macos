@@ -28,33 +28,6 @@ defaults write com.apple.dock "expose-group-apps" -bool "true"
 # Scroll up on a Dock icon to show all Space's opened windows for an app, or open stack.
 defaults write com.apple.dock "scroll-to-open" -bool "true"
 
-# Hot corners
-# Possible values:
-# 0: No Option
-# 2: Mission Control
-# 3: Show application windows
-# 4: Desktop
-# 5: Start screen saver
-# 6: Disable screen saver
-# 7: Dashboard
-# 10: Put display to sleep
-# 11: Launchpad
-# 12: Notification Center
-# 13: Lock Screen
-# Modifiers:
-# 0: No Modifier
-# 131072: Shift Key
-# 262144: Control Key
-# 524288: Option Key
-# 1048576: Command Key
-# Top right screen corner → Desktop
-defaults write com.apple.dock wvous-tr-corner -int 4
-defaults write com.apple.dock wvous-tr-modifier -int 0
-# Rest nothing
-defaults write com.apple.dock wvous-tl-corner -int 0
-defaults write com.apple.dock wvous-bl-corner -int 0
-defaults write com.apple.dock wvous-br-corner -int 0
-
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
@@ -83,39 +56,6 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
 
-# Rearrange toolbar
-defaults write com.apple.finder "NSToolbar Configuration Browser" '{
-    "TB Default Item Identifiers" =     (
-        "com.apple.finder.BACK",
-        "com.apple.finder.SWCH",
-        NSToolbarSpaceItem,
-        "com.apple.finder.ARNG",
-        "com.apple.finder.SHAR",
-        "com.apple.finder.LABL",
-        "com.apple.finder.ACTN",
-        NSToolbarSpaceItem,
-        "com.apple.finder.SRCH"
-    );
-    "TB Display Mode" = 2;
-    "TB Icon Size Mode" = 1;
-    "TB Is Shown" = 1;
-    "TB Item Identifiers" =     (
-        "com.apple.finder.BACK",
-        "com.apple.finder.AirD",
-        "com.apple.finder.SHAR",
-        NSToolbarSpaceItem,
-        "com.apple.finder.SWCH",
-        "com.apple.finder.ARNG",
-        "com.apple.finder.LABL",
-        "com.apple.finder.ACTN",
-        NSToolbarSpaceItem,
-        "com.apple.finder.SRCH"
-    );
-    "TB Size Mode" = 1;
-}'
-
-
-
 ###############################################################################
 # Printer                                                                     #
 ###############################################################################
@@ -126,7 +66,6 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 # Automatically quit printer app once the print jobs complete
 defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
-
 
 ###############################################################################
 # Track Pad                                                                   #
@@ -141,14 +80,12 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadThreeFingerDrag -bool true
 defaults write com.apple.AppleMultitouchTrackpad "TrackpadThreeFingerDrag" -bool "true"
 
-
 ###############################################################################
 # Messages                                                                    #
 ###############################################################################
 
 # # Disable automatic emoji substitution (i.e. use plain text smileys)
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
-
 
 ###############################################################################
 # Other                                                                       #
@@ -160,7 +97,6 @@ done
 
 echo 'Next, we will set the screen to lock after 5 seconds after screen saver starts or display is turned off.'
 sysadminctl -screenLock 5 -password -
-
 
 echo "Done! Note that some of these changes require a logout/restart to take effect."
 
