@@ -12,3 +12,4 @@ zsh-users/zsh-history-substring-search
 
 # Misc
 mroth/evalcache
+romkatv/zsh-bench kind:path
