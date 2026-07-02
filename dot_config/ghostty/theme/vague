@@ -25,9 +25,10 @@ palette = 15=#d7d7d7
 background = #141415
 foreground = #cdcdcd
 cursor-color = #cdcdcd
+cursor-text = cell-background
 selection-background = #252530
 selection-foreground = #cdcdcd
-split-divider-color = #252530
+split-divider-color = #878787
 
 macos-icon = custom-style
 macos-icon-ghost-color = cdcdcd
