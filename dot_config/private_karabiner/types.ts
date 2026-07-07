@@ -18,7 +18,7 @@ export interface Parameters {
   "basic.simultaneous_threshold_milliseconds"?: number;
 }
 
-type Conditions =
+export type Conditions =
   | FrontMostApplicationCondition
   | DeviceCondition
   | KeyboardTypeCondition
@@ -128,6 +128,11 @@ export interface Modifiers {
 
 export interface To {
   key_code?: KeyCode;
+  /**
+   * Consumer (media / system) usage keys.
+   * @see: {@link https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/to/}
+   */
+  consumer_key_code?: ConsumerKeyCode;
   modifiers?: ModifiersKeys[];
   shell_command?: string;
   set_variable?: {
@@ -144,6 +149,29 @@ export interface To {
   software_function?: SoftwareFunction;
 }
 
+/**
+ * A subset of consumer usage keys. macOS exposes many media/system controls here
+ * rather than as `key_code`. Track-skip in particular must use scan_next/previous
+ * (fast_forward/rewind are *seek*, not skip).
+ * @see: {@link https://github.com/pqrs-org/Karabiner-Elements/blob/main/src/apps/PreferencesWindow/Resources/simple_modifications.json}
+ */
+export type ConsumerKeyCode =
+  | "mute"
+  | "volume_increment"
+  | "volume_decrement"
+  | "play_or_pause"
+  | "scan_next_track"
+  | "scan_previous_track"
+  | "fast_forward"
+  | "rewind"
+  | "eject"
+  | "display_brightness_increment"
+  | "display_brightness_decrement"
+  | "microphone" // mute microphone (v15.6)
+  | "ac_search" // (v15.4)
+  | "ac_desktop_show_all_windows" // Mission Control (v16.1)
+  | "ac_desktop_show_all_applications"; // App Exposé (v16.1)
+
 export interface MouseKey {
   y?: number;
   x?: number;
@@ -154,6 +182,19 @@ export interface MouseKey {
 
 export interface SoftwareFunction {
   iokit_power_management_sleep_system?: Record<string, unknown>;
+  /**
+   * Open/activate an application natively (no shell). Provide a bundle identifier or
+   * a file path, or use frontmost_application_history_index to switch to a recent app
+   * (1 = previous app).
+   * @see: {@link https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/to/software_function/open_application/}
+   */
+  open_application?: OpenApplication;
+}
+
+export interface OpenApplication {
+  bundle_identifier?: string;
+  file_path?: string;
+  frontmost_application_history_index?: number;
 }
 
 export type KeyCode =
@@ -264,6 +305,8 @@ export type KeyCode =
   //   not_from: true
   | "mission_control"
   //   not_from: true
+  | "do_not_disturb"
+  //   generic_desktop::do_not_disturb (v15.8)
   | "launchpad"
   //   not_from: true
   | "dashboard"

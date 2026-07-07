@@ -11,55 +11,15 @@ If you like TypeScript and want your Karabiner configuration maintainable & type
 
 ## My keymap
 
-**Right Command** acts as the primary layer key, enabling access to various sublayers and direct mappings. **Caps Lock** is mapped to Left Control when held (with Escape on tap alone).
+**Right Command** acts as the primary layer key, enabling access to various sublayers and direct mappings. **Caps Lock** is mapped to Left Control when held (with Escape on tap alone), and cancels an active sticky sublayer.
 
-The system supports two types of layers:
+There are three kinds of bindings:
 
-1. **Direct mappings**: Right Command + key triggers immediate actions (e.g., Right Command + J = Left Arrow)
-2. **Sticky sublayers**: Right Command + sublayer key activates a persistent mode until a final key is pressed
+1. **Direct mappings**: Right Command + key triggers an immediate action (e.g. Right Command + J = Left Arrow).
+2. **Sublayers**: Right Command + sublayer key, then a sub-key, while held (e.g. Right Command + W + F = maximize).
+3. **Sticky sublayers**: Right Command + sublayer key latches a mode until the next key press.
 
-### Sticky Sublayers (persistent until final key pressed)
-
-- `B` → Browse websites (A=Claude.ai, G=GitHub, R=Reddit, etc.)
-- `G` → GitHub repositories (H=homepage, D=dotfiles, K=QMK userspace)
-- `N` → Notes/Obsidian (A=add note, F=find notes, C=contact note, V=paste clipboard)
-- `O` → Open applications (G=Chrome, T=Ghostty, V=Zed, etc.)
-- `R` → Raycast extensions (C=color picker, E=emoji, P=confetti, H=clipboard history)
-
-### Window Management Layer (`W`)
-
-- `F` → Maximize, `G` → Almost maximize
-- `H/J/K/L` → Left/Bottom/Top/Right half
-- `M/,/.` → First/Center/Last third
-- `Y/O` → Previous/Next display
-- `U/I` → Previous/Next tab
-- `N` → Next window
-- `[/]` → Back/Forward
-
-### System Controls Layer (`E`)
-
-- `U/J` → Volume up/down
-- `I/K` → Brightness up/down  
-- `L` → Lock screen
-- `P` → Play/pause
-- `;` → Fast forward
-- `V` → Voice command (Option+Space)
-- `T` → Toggle system appearance (dark/light)
-
-### Music Controls Layer (`C`)
-
-- `P` → Play/pause
-- `N` → Next track
-- `B` → Previous track
-
-### Direct Navigation Mappings (no sublayer)
-
-- `J/K/I/L` → Left/Down/Up/Right arrows
-- `H/Y` → Page down/up
-- `;/P` → Backspace/Delete
-- `F/D/S/A` → Shift/Cmd/Option/Control modifiers
-- `M` → Magicmove (via homerow.app)
-- `,` → Scroll mode (via homerow.app)
+See [`KEYMAP.md`](./KEYMAP.md) for the full keymap.
 
 ## Development
 
@@ -72,8 +32,8 @@ Make sure you have [Karabiner Elements](https://karabiner-elements.pqrs.org/) an
   - Install & start Karabiner Elements
   - Clone this repository
   - Delete the default ~/.config/karabiner folder
-  - Create a symlink with ln -s ~/github/mxstbr/karabiner ~/.config (where ~/github/mxstbr/karabiner is your local path to where you cloned the repository)
-  - Restart karabiner_console_user_server with launchctl kickstart -k gui/`id -u`/org.pqrs.karabiner.karabiner_console_user_server
+  - Create a symlink with `ln -s ~/github/mxstbr/karabiner ~/.config` (where `~/github/mxstbr/karabiner` is your local path to where you cloned the repository)
+  - Restart karabiner_console_user_server with `launchctl kickstart -k gui/$(id -u)/org.pqrs.karabiner.karabiner_console_user_server`
 
 ### Commands
 
@@ -83,6 +43,9 @@ deno task build
 
 # Watch mode (rebuilds on changes)
 deno task watch
+
+# Regenerate the keymap doc (KEYMAP.md)
+deno task docs
 
 # Format code
 deno fmt

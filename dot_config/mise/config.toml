@@ -1,4 +1,8 @@
 [tools]
 deno = "latest"
-go = "latest"
-node = "lts"
+node = {version = "lts", postinstall = "corepack enable"}
+python = ["3.12", "3.11"]
+
+[settings]
+minimum_release_age = "3d"
+python.uv_venv_auto = "source"

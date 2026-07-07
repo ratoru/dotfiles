@@ -22,7 +22,11 @@
     }
   },
   "tasks": {
-    "build": "deno run --allow-read --allow-write rules.ts",
-    "watch": "deno run --allow-read --allow-write --watch rules.ts"
+    // Scope permissions: the script only reads the local sources and writes the
+    // chezmoi source file (private_karabiner.json, deployed as karabiner.json).
+    "build": "deno run --allow-read=. --allow-write=private_karabiner.json rules.ts private_karabiner.json",
+    "watch": "deno run --allow-read=. --allow-write=private_karabiner.json --watch rules.ts private_karabiner.json",
+    // Regenerate KEYMAP.md (the keymap cheat-sheet) from rules.ts.
+    "docs": "deno run --allow-read=. --allow-write=KEYMAP.md docs.ts KEYMAP.md"
   }
 }
