@@ -24,7 +24,6 @@ alias .....="cd ../../../.."
 alias c="claude"
 alias n="nvim"
 alias lg='lazygit'
-# alias lzd='lazydocker'
 
 if command -v eza &>/dev/null; then
     alias ls="eza --icons=auto -F -H --group-directories-first --git -1"
@@ -54,7 +53,7 @@ alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool fals
 alias afk="pmset displaysleepnow"
 
 # Install updates for Homebrew (+ packages), and ...
-alias update='brew update; brew upgrade; brew cleanup; mise up; npm install npm -g; npm update -g; rustup update; uv tool upgrade --all; _evalcache_clear'
+alias update='brew update; brew upgrade; brew cleanup; mise up; npm install npm -g; npm update -g; rustup update; uv tool upgrade --all; antidote update; _evalcache_clear'
 
 # Find all files recursively and sort by last modified, ignore hidden files
 alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'

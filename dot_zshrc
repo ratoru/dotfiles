@@ -63,6 +63,10 @@ antidote load "$HOME/.config/zsh/.zsh_plugins.txt"
 # ---------------------------------------
 # Prompt
 # ---------------------------------------
+if [[ -n $AI_AGENT$CLAUDECODE$CURSOR_AGENT$GEMINI_CLI$OPENCODE  ]]; then
+    zstyle 'prompt:pure:git' show no
+fi
+
 autoload -Uz promptinit && promptinit
 prompt pure
 

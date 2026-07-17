@@ -53,34 +53,50 @@ git_segment() {
     [[ -z "$line" ]] && continue
     if [[ "$line" == '#'* ]]; then
       case "$line" in
-        '# branch.head '*)
-          branch=${line#'# branch.head '}
-          [[ "$branch" == "(detached)" ]] && branch="DETACHED"
-          ;;
-        '# branch.upstream '*) has_upstream=1 ;;
-        '# branch.ab '*)
-          local ab=${line#'# branch.ab '}
-          local a=${ab%% *} b=${ab##* }
-          ahead=${a#+}; behind=${b#-}
-          ;;
+      '# branch.head '*)
+        branch=${line#'# branch.head '}
+        [[ "$branch" == "(detached)" ]] && branch="DETACHED"
+        ;;
+      '# branch.upstream '*) has_upstream=1 ;;
+      '# branch.ab '*)
+        local ab=${line#'# branch.ab '}
+        local a=${ab%% *} b=${ab##* }
+        ahead=${a#+}
+        behind=${b#-}
+        ;;
       esac
     else
       # First non-header line means a tracked/untracked change exists.
       dirty=1
       break
     fi
-  done <<< "$git_out"
+  done <<<"$git_out"
 
   [[ -z "$branch" ]] && return
 
   local seg="${BRANCH_FG}${branch}${RESET}"
   [[ -n "$dirty" ]] && seg+="${DIRTY_FG}*${RESET}"
-  if (( has_upstream && (ahead > 0 || behind > 0) )); then
+  if ((has_upstream && (ahead > 0 || behind > 0))); then
     seg+=" "
-    (( behind > 0 )) && seg+="${SYNC_FG}⇣${RESET}"
-    (( ahead > 0 )) && seg+="${SYNC_FG}⇡${RESET}"
+    ((behind > 0)) && seg+="${SYNC_FG}⇣${RESET}"
+    ((ahead > 0)) && seg+="${SYNC_FG}⇡${RESET}"
   fi
   print -r -- "$seg"
+}
+
+# Parses the newline-separated `jj log` template output (passed in as $1):
+# bookmark names, then change id. Prints "bookmark-or-change-id", or
+# nothing if not a jj repo.
+jj_segment() {
+  local jj_out=$1
+  [[ -z "$jj_out" ]] && return
+
+  local -a lines=("${(@f)jj_out}")
+  local bookmarks=$lines[1] change_id=$lines[2]
+  [[ -z "$change_id" ]] && return
+
+  local label=${bookmarks:-$change_id}
+  print -r -- "${BRANCH_FG}${label}${RESET}"
 }
 
 # Last up-to-3 path components of $1, relative to $HOME, shrunk to fit
@@ -94,13 +110,13 @@ dir_segment() {
   rel=${rel#/}
 
   local -a parts=("${(@s:/:)rel}")
-  local -i n=${#parts} maxlen=$(( ${COLUMNS:-80} / 2 ))
-  local -i keep=$(( n < 3 ? n : 3 ))
+  local -i n=${#parts} maxlen=$((${COLUMNS:-80} / 2))
+  local -i keep=$((n < 3 ? n : 3))
   local dir=$rel
-  while (( keep >= 1 )); do
+  while ((keep >= 1)); do
     dir="${(j:/:)parts[n-keep+1,n]}"
-    (( ${#dir} <= maxlen )) && break
-    (( keep-- ))
+    ((${#dir} <= maxlen)) && break
+    ((keep--))
   done
   print -r -- "${DIR_FG}${dir}${RESET}"
 }
@@ -108,11 +124,24 @@ dir_segment() {
 main() {
   local input=$(cat)
 
-  # Run git in the background so it overlaps with the jq parse below.
+  # Run git (and jj, if installed) in the background so they overlap with
+  # the jq parse below. The $+commands[] check is a hash-table lookup, not
+  # a fork, so it's free even when jj isn't installed.
   local git_tmp="${TMPDIR:-/tmp}/cc_pure_git.$$"
-  trap 'rm -f "$git_tmp"' EXIT
-  { GIT_OPTIONAL_LOCKS=0 git status --porcelain=v2 --branch > "$git_tmp" 2>/dev/null } &
+  local jj_tmp="${TMPDIR:-/tmp}/cc_pure_jj.$$"
+  trap 'rm -f "$git_tmp" "$jj_tmp"' EXIT
+  { GIT_OPTIONAL_LOCKS=0 git status --porcelain=v2 --branch >"$git_tmp" 2>/dev/null; } &
   local git_pid=$!
+
+  local jj_pid=0
+  if (( $+commands[jj] )); then
+    {
+      jj log -r @ --no-graph --ignore-working-copy \
+        -T 'bookmarks ++ "\n" ++ change_id.short(8) ++ "\n"' \
+        >"$jj_tmp" 2>/dev/null
+    } &
+    jj_pid=$!
+  fi
 
   # One jq fork, newline-separated fields into an array. No fallbacks for
   # missing used_percentage/cache counts -- assumes a recent Claude Code.
@@ -123,22 +152,29 @@ main() {
     (.context_window.used_percentage // ""),
     (.context_window.current_usage.cache_read_input_tokens // 0),
     (.context_window.current_usage.cache_creation_input_tokens // 0),
+    (.context_window.current_usage.input_tokens // 0),
     (.cost.total_cost_usd // ""),
     (.cost.total_lines_added // 0),
     (.cost.total_lines_removed // 0),
     (.rate_limits.five_hour.used_percentage // "")
-  ' <<< "$input")}")
+  ' <<<"$input")}")
 
   local model=$f[1] effort=$f[2] cwd=$f[3] used_pct=$f[4]
-  local -i cache_read=$f[5] cache_create=$f[6]
-  local cost=$f[7]
-  local -i added=$f[8] removed=$f[9]
-  local five_hour=$f[10]
+  local -i cache_read=$f[5] cache_create=$f[6] fresh_input=$f[7]
+  local cost=$f[8]
+  local -i added=$f[9] removed=$f[10]
+  local five_hour=$f[11]
 
   wait "$git_pid" 2>/dev/null
   local git_out=$(<"$git_tmp")
 
-  # --- left cluster: cwd, git, changes, context usage, cache hit rate, cost
+  local jj_out=""
+  if ((jj_pid)); then
+    wait "$jj_pid" 2>/dev/null
+    jj_out=$(<"$jj_tmp")
+  fi
+
+  # --- left cluster: cwd, git, jj, changes, context usage, cache hit rate, cost
   local -a left=()
 
   left+="$(dir_segment "$cwd")"
@@ -146,20 +182,23 @@ main() {
   local git_seg=$(git_segment "$git_out")
   [[ -n "$git_seg" ]] && left+="$git_seg"
 
-  (( added > 0 )) && left+="${ADD_FG}+${added}${RESET}"
-  (( removed > 0 )) && left+="${DEL_FG}-${removed}${RESET}"
+  local jj_seg=$(jj_segment "$jj_out")
+  [[ -n "$jj_seg" ]] && left+="$jj_seg"
+
+  ((added > 0)) && left+="${ADD_FG}+${added}${RESET}"
+  ((removed > 0)) && left+="${DEL_FG}-${removed}${RESET}"
 
   if [[ -n "$used_pct" ]]; then
     local -i pct=${used_pct%%.*}
-    local -i level=$(( (pct * 8 + 50) / 100 ))
-    (( level > 7 )) && level=7
-    left+="${CTX_FG}${CTX_BAR[level+1]}${pct}%${RESET}"
+    local -i level=$(((pct * 8 + 50) / 100))
+    ((level > 7)) && level=7
+    left+="${CTX_FG}${CTX_BAR[level + 1]}${pct}%${RESET}"
   fi
 
   # % of cache-touched tokens that were cheap reads, not fresh writes.
-  local -i cache_total=$(( cache_read + cache_create ))
-  if (( cache_total > 0 )); then
-    local -i cache_pct=$(( (cache_read * 100 + cache_total / 2) / cache_total ))
+  local -i cache_total=$((cache_read + cache_create + fresh_input))
+  if ((cache_total > 0)); then
+    local -i cache_pct=$(((cache_read * 100 + cache_total / 2) / cache_total))
     left+="${CACHE_FG}↻${cache_pct}%${RESET}"
   fi
 
@@ -180,9 +219,9 @@ main() {
   local -i left_len="${#$(strip_ansi "$left_joined")}"
   local -i right_len="${#$(strip_ansi "$right_joined")}"
 
-  local -i usable_cols=$(( ${COLUMNS:-80} - RIGHT_MARGIN ))
-  local -i pad=$(( usable_cols - left_len - right_len - 1 ))
-  (( pad < 1 )) && pad=1
+  local -i usable_cols=$((${COLUMNS:-80} - RIGHT_MARGIN))
+  local -i pad=$((usable_cols - left_len - right_len - 1))
+  ((pad < 1)) && pad=1
 
   local pad_str
   printf -v pad_str '%*s' "$pad" ''

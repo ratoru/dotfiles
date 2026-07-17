@@ -8,5 +8,8 @@ vim.filetype.add {
   },
   extension = {
     ['http'] = 'http',
+    ['mdx'] = 'markdown.mdx',
   },
 }
+
+vim.treesitter.language.register('markdown', 'mdx')

@@ -92,7 +92,7 @@ return {
           --  gra routes through fzf-lua automatically via register_ui_select.)
 
           -- Jump to the definition (jumps directly if there's only one result).
-          map('gd', function() require('fzf-lua').lsp_definitions { jump_to_single_result = true } end, 'Goto Definition')
+          map('gd', function() require('fzf-lua').lsp_definitions { jump1 = true } end, 'Goto Definition')
 
           -- Find references for the word under your cursor.
           map('grr', require('fzf-lua').lsp_references, 'Goto References')

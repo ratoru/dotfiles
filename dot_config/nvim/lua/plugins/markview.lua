@@ -8,6 +8,7 @@ return {
   opts = {
     preview = {
       icon_provider = 'mini',
+      filetype = { 'markdown', 'markdown.mdx' },
     },
   },
   keys = {
