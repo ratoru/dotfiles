@@ -1,9 +1,6 @@
 tap "jesseduffield/lazygit"
 brew "jesseduffield/lazygit/lazygit"
 
-tap "michel-kraemer/zsh-patina"
-brew "zsh-patina"
-
 brew "antidote"
 brew "bat"
 brew "chezmoi"
@@ -19,6 +16,7 @@ brew "neovim"
 brew "ripgrep"
 brew "tree-sitter-cli"
 brew "zoxide"
+brew "zsh-patina"
 
 # Casks (GUI applications)
 cask "ghostty"

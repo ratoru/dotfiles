@@ -8,7 +8,7 @@ These dotfiles are designed to strike a good balance between minimalism and grea
 
 I manage my dotfiles using `chezmoi`. Setting up a new machine can be done by [running one line](https://www.chezmoi.io/quick-start/#set-up-a-new-machine-with-a-single-command).
 
-For my complete setup read [My clean and simple terminal setup](https://ratoru.com/blog/terminal).
+For my complete setup read [Developing in the Terminal](https://ratoru.com/blog/developing-in-the-terminal/).
 
 ## 🔨 Featured Tools
 
