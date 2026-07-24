@@ -26,10 +26,12 @@ alias n="nvim"
 alias lg='lazygit'
 
 if command -v eza &>/dev/null; then
-    alias ls="eza --icons=auto -F -H --group-directories-first --git -1"
-    alias ll="ls -alF"
+    alias ls="eza --icons=auto --group-directories-first -F -H -1"
+    alias ll="eza --icons=auto --group-directories-first -F alH --git"
     # Long form, groups, mark file types, order by last modified
-    alias lt="eza -lgF -s modified --icons"
+    alias lt="eza --icons=auto -lgF -s modified"
+    alias tree="eza -T --icons=auto --group-directories-first --hyperlink"
+    alias treel="eza -alT --icons=auto --group-directories-first --git --hyperlink"
 else
     alias ll="ls -alF"
     alias lt="ls -lFt"
