@@ -1,4 +1,7 @@
 font-family = Fira Code
 
+adjust-cell-height = 15%
+adjust-cursor-height = 15%
+
 
 # vim: ft=config
