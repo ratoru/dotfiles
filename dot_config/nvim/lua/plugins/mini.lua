@@ -47,10 +47,9 @@ return {
       --   Make sure that the option key is set to "Meta" in your terminal emulator.
       --   In iTerm2, this is under Preferences -> Profiles -> Keys -> Left option key acts as 'Esc+'.
       require('mini.move').setup()
-
       require('mini.align').setup()
-
       require('mini.tabline').setup()
+      require('mini.statuscolumn').setup()
     end,
   },
 }

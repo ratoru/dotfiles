@@ -1,9 +1,9 @@
 README.md
 .gitignore
-/**/dot_DS_Store
-/**/github-copilot/hosts.json
-/**/imgs
-/**/zed/conversations
-/**/zed/embeddings
-/**/zed/prompts
-/**/karabiner/automatic_backups
+**/.DS_Store
+**/github-copilot/hosts.json
+**/imgs
+**/zed/conversations
+**/zed/embeddings
+**/zed/prompts
+**/karabiner/automatic_backups

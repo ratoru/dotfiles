@@ -78,6 +78,25 @@ vim.keymap.set('n', '<leader>ba', function()
   print('Copied absolute path: ' .. path)
 end, { desc = 'Copy absolute path' })
 
+-- Copy file:line reference for AI tools
+vim.keymap.set('n', '<leader>bl', function()
+  local ref = vim.fn.expand '%:p' .. ':' .. vim.fn.line '.'
+  vim.fn.setreg('+', ref)
+  vim.notify('Copied file:line path: ' .. ref)
+end, { desc = 'Copy file:line path' })
+
+-- Copy file:line-range reference for AI tools (visual mode)
+vim.keymap.set('n', '<leader>bl', function()
+  local start_line = vim.fn.line 'v'
+  local end_line = vim.fn.line '.'
+  if start_line > end_line then
+    start_line, end_line = end_line, start_line
+  end
+  local ref = vim.fn.expand '%:p' .. ':' .. start_line .. '-' .. end_line
+  vim.fn.setreg('+', ref)
+  vim.notify('Copied file:line range reference: ' .. ref)
+end, { desc = 'Copy file:line range path' })
+
 -- Undotree
 vim.cmd 'packadd nvim.undotree'
 vim.keymap.set('n', '<leader>tu', require('undotree').open, { desc = '[T]oggle [u]ndo tree' })
