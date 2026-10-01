@@ -1,17 +1,15 @@
----@module 'lazy'
----@type LazySpec
-return {
-  'folke/tokyonight.nvim',
-  priority = 1000,
-  opts = {
-    style = 'night',
-    styles = {
-      comments = { italic = false },
-    },
+vim.pack.add { 'https://github.com/folke/tokyonight.nvim' }
+
+---@module 'tokyonight'
+---@type tokyonight.Config
+---@diagnostic disable-next-line: missing-fields
+local opts = {
+  style = 'night',
+  styles = {
+    comments = { italic = false },
   },
-  config = function(_, opts)
-    require('tokyonight').setup(opts)
-    vim.cmd.colorscheme 'tokyonight'
-  end,
 }
+require('tokyonight').setup(opts)
+vim.cmd.colorscheme 'tokyonight'
+
 -- vim: ts=2 sts=2 sw=2 et

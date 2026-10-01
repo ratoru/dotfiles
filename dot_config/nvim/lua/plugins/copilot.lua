@@ -1,15 +1,13 @@
----@module 'lazy'
----@type LazySpec
-return {
-  'zbirenbaum/copilot.lua',
-  enabled = function() return vim.g.ai_enabled end,
-  cmd = 'Copilot',
-  build = ':Copilot auth',
-  -- Load on file-open as well as insert, so its copilot client (which drives
-  -- both blink-copilot completions and sidekick NES) is ready before first edit.
-  event = { 'InsertEnter', 'BufReadPost', 'BufNewFile' },
-  opts = {
-    suggestion = { enabled = false },
-    panel = { enabled = false },
-  },
+if not vim.g.ai_enabled then
+  return
+end
+
+-- Run `:Copilot auth` once after first install.
+vim.pack.add { 'https://github.com/zbirenbaum/copilot.lua' }
+
+require('copilot').setup {
+  suggestion = { enabled = false },
+  panel = { enabled = false },
 }
+
+-- vim: ts=2 sts=2 sw=2 et
