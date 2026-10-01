@@ -21,8 +21,9 @@ Start Neovim
 nvim
 ```
 
-That's it! Lazy will install all the plugins you have. Use `:Lazy` to view
-current plugin status. Hit `q` to close the window.
+That's it! `vim.pack` (Neovim's built-in plugin manager) will install all the
+plugins at the revisions recorded in `nvim-pack-lock.json`. Plugins are listed
+in `lua/plugins/init.lua`.
 
 Read through the `init.lua` file in your configuration folder for more
 information about extending and exploring Neovim. That also includes
@@ -32,7 +33,7 @@ examples of adding popularly requested plugins.
 
 ### Settings and Keymaps
 
-Read through `keymaps.lua` and `commands.lua` in `/lua/custom/` to see what I added. Some of the key features:
+Read through `keymaps.lua` and `commands.lua` to see what I added. Some of the key features:
 
 - Better clipboard handling.
 - Smoother indenting.
@@ -78,14 +79,18 @@ component.
 
 ## Uninstalling
 
-For information how to uninstall refer to [lazy.nvim](https://lazy.folke.io/usage#-uninstalling).
+Remove the config and the plugin data:
+
+```sh
+rm -rf ~/.config/nvim ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
+```
 
 ## Things I wish I knew sooner
 
 - The most impactful thing you can do is getting good at vim motions. All this setup is largely for fun.
 - Take some time to read [LazyVim for Ambitious Devs](https://lazyvim-ambitious-devs.phillips.codes/course/chapter-1/) and [You don't grok Vi](https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118).
 - Read the [window docs](https://neovim.io/doc/user/windows.html) to understand what buffers and windows are.
-- Run `:Lazy` to see what plugins you have installed. If something is broken, you might have to update your plugins.
+- Run `:lua vim.pack.update()` to review and apply plugin updates (`:w` to confirm, `:q` to cancel), and `:checkhealth vim.pack` if something looks off. After updating, run `chezmoi re-add ~/.config/nvim/nvim-pack-lock.json`.
 - Run `:Mason` to permanently delete LSPs you installed.
 - Commands (starting with `:`) can be autocompleted using `tab`.
 - Explore the keymaps by pressing `space` and reading all the options.

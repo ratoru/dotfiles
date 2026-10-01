@@ -1,17 +1,10 @@
----@module 'lazy'
----@type LazySpec
-return {
-  'danymat/neogen',
-  opts = {
-    snippet_engine = 'nvim',
-  },
-  -- Uncomment next line if you want to follow only stable versions
-  -- version = "*"
-  keys = {
-    {
-      '<leader>cd',
-      '<cmd>Neogen<cr>',
-      desc = 'Generate [d]oc comments',
-    },
-  },
+-- Add `version = vim.version.range '*'` to follow only stable versions
+vim.pack.add { 'https://github.com/danymat/neogen' }
+
+require('neogen').setup {
+  snippet_engine = 'nvim',
 }
+
+vim.keymap.set('n', '<leader>cd', '<cmd>Neogen<cr>', { desc = 'Generate [d]oc comments' })
+
+-- vim: ts=2 sts=2 sw=2 et

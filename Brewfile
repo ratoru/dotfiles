@@ -3,6 +3,7 @@ brew "jesseduffield/lazygit/lazygit"
 
 brew "antidote"
 brew "bat"
+brew 'btop'
 brew "chezmoi"
 brew "difftastic"
 brew "eza"
