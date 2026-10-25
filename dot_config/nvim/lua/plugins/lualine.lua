@@ -53,35 +53,14 @@ local fileformat_only_if_not_unix = function()
 end
 
 Snacks.toggle({
-  name = 'lualine symbols',
-  get = function() return vim.b.trouble_lualine ~= false end,
-  set = function(state) vim.b.trouble_lualine = state end,
-}):map '<leader>tl'
-
-Snacks.toggle({
   name = 'lualine lsp names',
   get = function() return vim.g.custom_lualine_show_lsp_names end,
   set = function(state) vim.g.custom_lualine_show_lsp_names = state end,
 }):map '<leader>tL'
 
-Snacks.toggle({
-  name = 'lualine session name',
-  get = function() return vim.g.custom_lualine_show_session_name end,
-  set = function(state) vim.g.custom_lualine_show_session_name = state end,
-}):map '<leader>ts'
-
 require('lualine').setup {
   options = {
-    -- When theme is set to auto, Lualine uses dofile instead of require
-    -- to load the theme. We need the theme to be loaded via require since
-    -- we modify the cached singleton in tokyonight's config function to
-    -- add different colors for the x section
-    theme = function()
-      if vim.g.colors_name and vim.g.colors_name:match '^tokyonight' then
-        return require('lualine.themes.' .. vim.g.colors_name)
-      end
-      return 'auto'
-    end,
+    theme = 'auto',
     component_separators = { left = '╲', right = '╱' },
     disabled_filetypes = { 'alpha', 'snacks_dashboard' },
     section_separators = { left = '', right = '' },
@@ -189,7 +168,6 @@ require('lualine').setup {
     'mason',
     'oil',
     'quickfix',
-    'toggleterm',
     'trouble',
   },
 }

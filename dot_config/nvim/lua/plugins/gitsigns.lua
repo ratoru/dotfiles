@@ -16,7 +16,7 @@ local opts = {
     -- Navigation
     map('n', ']h', function()
       if vim.wo.diff then
-        vim.cmd.normal { ']h', bang = true }
+        vim.cmd.normal { ']c', bang = true }
       else
         gitsigns.nav_hunk 'next'
       end
@@ -24,7 +24,7 @@ local opts = {
 
     map('n', '[h', function()
       if vim.wo.diff then
-        vim.cmd.normal { '[h', bang = true }
+        vim.cmd.normal { '[c', bang = true }
       else
         gitsigns.nav_hunk 'prev'
       end

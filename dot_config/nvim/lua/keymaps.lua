@@ -6,7 +6,7 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Quickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Diagnostics location list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -25,8 +25,7 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
--- This remap allows you to paste text over a highlighted text
--- while keeping the original text in the yanked register.
+-- Delete into the black hole register, keeping the yanked text intact.
 vim.keymap.set({ 'n', 'v' }, '<leader>D', [["_d]], { desc = 'Delete without register' })
 
 -- System Clipboard Management
@@ -79,14 +78,14 @@ vim.keymap.set('n', '<leader>ba', function()
 end, { desc = 'Copy absolute path' })
 
 -- Copy file:line reference for AI tools
-vim.keymap.set('v', '<leader>bl', function()
+vim.keymap.set('n', '<leader>bl', function()
   local ref = vim.fn.expand '%:p' .. ':' .. vim.fn.line '.'
   vim.fn.setreg('+', ref)
   vim.notify('Copied file:line path: ' .. ref)
 end, { desc = 'Copy file:line path' })
 
 -- Copy file:line-range reference for AI tools (visual mode)
-vim.keymap.set('n', '<leader>bl', function()
+vim.keymap.set('v', '<leader>bl', function()
   local start_line = vim.fn.line 'v'
   local end_line = vim.fn.line '.'
   if start_line > end_line then

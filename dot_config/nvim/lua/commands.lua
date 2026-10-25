@@ -64,7 +64,6 @@ vim.api.nvim_create_autocmd('FileType', {
     'man',
     'qf',
     'query',
-    'spectre_panel',
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false

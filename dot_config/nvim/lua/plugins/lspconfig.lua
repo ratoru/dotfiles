@@ -88,7 +88,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Rename the variable under your cursor.
     --  Most Language Servers support renaming across files, etc.
-    map('cd', vim.lsp.buf.rename, 'Change Definiton')
+    map('cd', vim.lsp.buf.rename, 'Change Definition')
 
     -- Execute a code action, usually your cursor needs to be on top of an error
     -- or a suggestion from your LSP for this to activate.
@@ -201,9 +201,11 @@ local servers = {
     -- Golang
     gopls = {},
 
+    -- Json
+    jsonls = {},
+
     -- Markdown
     marksman = {},
-    prettierd = {},
 
     -- Python
     ty = {},
@@ -258,6 +260,8 @@ local servers = {
 -- For example, linters for nvim-lint and formatters for conform.nvim.
 local ensure_installed = vim.tbl_keys(servers.mason or {})
 vim.list_extend(ensure_installed, {
+  -- Go
+  'goimports',
   -- Lua
   'stylua',
   -- Bash and Shell
@@ -265,6 +269,10 @@ vim.list_extend(ensure_installed, {
   'shellcheck',
   -- Json
   'jq',
+  -- Markdown
+  'prettierd',
+  -- Terraform
+  'tflint',
 })
 -- Deferred: only ensures tools are installed, and loading the Mason registry is
 -- the slowest part of startup. LSP attach does not depend on it.

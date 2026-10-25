@@ -28,7 +28,7 @@ local opts = {
   end,
   formatters_by_ft = {
     bash = { 'shfmt' },
-    go = { 'goimports', 'gofmt' },
+    go = { 'goimports' }, -- also applies gofmt formatting
     json = { 'jq' },
     lua = { 'stylua' },
     markdown = { 'prettierd' },

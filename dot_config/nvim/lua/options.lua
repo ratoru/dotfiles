@@ -83,7 +83,7 @@ vim.o.title = true
 vim.o.expandtab = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-vim.o.termguicolors = true -- for bufferline
+vim.o.termguicolors = true -- 24-bit colour, even where auto-detection fails (e.g. some tmux setups)
 
 -- Reduce size of `~/.local/state/nvim/lsp.log`
 vim.lsp.log.set_level 'OFF'

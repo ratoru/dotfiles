@@ -27,8 +27,9 @@ end
 -- Select keymaps
 local xo = { 'x', 'o' }
 vim.keymap.set(xo, 'i=', select '@assignment.inner', { desc = 'Select inner part of an assignment' })
-vim.keymap.set(xo, 'l=', select '@assignment.lhs', { desc = 'Select left hand side of an assignment' })
-vim.keymap.set(xo, 'r=', select '@assignment.rhs', { desc = 'Select right hand side of an assignment' })
+-- lhs/rhs live under `i` (key/value): `l=` / `r=` would make `l` and `r` wait for a second key.
+vim.keymap.set(xo, 'ik', select '@assignment.lhs', { desc = 'Select left hand side (key) of an assignment' })
+vim.keymap.set(xo, 'iv', select '@assignment.rhs', { desc = 'Select right hand side (value) of an assignment' })
 vim.keymap.set(xo, 'aa', select '@parameter.outer', { desc = 'Select outer part of a parameter/argument' })
 vim.keymap.set(xo, 'ia', select '@parameter.inner', { desc = 'Select inner part of a parameter/argument' })
 vim.keymap.set(xo, 'ai', select '@conditional.outer', { desc = 'Select outer part of a conditional' })
