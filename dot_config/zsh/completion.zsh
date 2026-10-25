@@ -3,6 +3,8 @@
 # Completion
 # ---------------------------------------
 fpath=(${HOME}/.config/zsh/completions $fpath)
+# Homebrew completions
+fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 # zsh-completions is provided via antidote (kind:fpath); its dir is added to fpath
 # before compinit runs because ez-compinit defers compinit until after .zshrc loads.
 

@@ -79,14 +79,14 @@ vim.keymap.set('n', '<leader>ba', function()
 end, { desc = 'Copy absolute path' })
 
 -- Copy file:line reference for AI tools
-vim.keymap.set('n', '<leader>bl', function()
+vim.keymap.set('v', '<leader>bl', function()
   local ref = vim.fn.expand '%:p' .. ':' .. vim.fn.line '.'
   vim.fn.setreg('+', ref)
   vim.notify('Copied file:line path: ' .. ref)
 end, { desc = 'Copy file:line path' })
 
 -- Copy file:line-range reference for AI tools (visual mode)
-vim.keymap.set('v', '<leader>bl', function()
+vim.keymap.set('n', '<leader>bl', function()
   local start_line = vim.fn.line 'v'
   local end_line = vim.fn.line '.'
   if start_line > end_line then

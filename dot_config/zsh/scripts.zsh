@@ -3,6 +3,17 @@
 # Utility Functions
 # ---------------------------------------
 
+# Allows lazygit to switch directory
+lg() {
+  export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+  lazygit "$@"
+  if [ -f "$LAZYGIT_NEW_DIR_FILE" ]; then
+    cd "$(cat "$LAZYGIT_NEW_DIR_FILE")"
+    rm -f "$LAZYGIT_NEW_DIR_FILE"
+  fi
+}
+
 # Assume AWS Profile for current terminal session
 function aws-prof() {
   if [ -z "$1" ]; then
@@ -157,22 +168,4 @@ function timer() {
     echo -e "\a"
     echo "Time is up!"
   fi
-}
-
-# ---------------------------------------
-# Git Worktree
-# ---------------------------------------
-function gwj() {
-  local out query
-  query="${1:- }"
-  out=$(
-    git worktree list |
-      fzf --preview='git log --oneline -n10 {2}' --query "$query" -1 |
-      awk '{print $1}'
-  )
-  cd $out
-}
-
-function gwa() {
-  git worktree add "$1" && cd "$1"
 }

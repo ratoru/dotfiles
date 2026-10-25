@@ -46,7 +46,7 @@ source "$HOME/.config/zsh/aliases.zsh"
 # ---------------------------------------
 source "$HOME/.config/zsh/scripts.zsh"
 source "$HOME/.config/zsh/plugins/ralph.zsh"
-source "$HOME/.config/zsh/plugins/worktree-manager.zsh"
+source "$HOME/.config/zsh/plugins/wt.zsh"
 source "$HOME/.config/zsh/plugins/jobs.zsh"
 
 # ---------------------------------------

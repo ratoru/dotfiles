@@ -23,7 +23,6 @@ alias .....="cd ../../../.."
 # Aliases for tools.
 alias c="claude"
 alias n="nvim"
-alias lg='lazygit'
 
 if command -v eza &>/dev/null; then
     alias ls="eza --icons auto --group-directories-first -F always -H -1"
